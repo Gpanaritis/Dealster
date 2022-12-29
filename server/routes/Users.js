@@ -1,9 +1,16 @@
 const express = require('express');
 const router = express.Router();
-const { Users } = require('../models');
+const db = require('../models');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const auth = require('../middleware/auth');
+const {verifyToken, isAdmin} = require('../middleware/authJwt');
+// const op = require('sequelize').Op;
+
+const Users = db.Users;
+const Roles = db.Roles;
+console.log(Users);
+console.log(Roles);
+// const auth = require('../middleware/auth');
 
 router.get('/', async (req, res) => {
     const users = await Users.findAll();
@@ -32,6 +39,23 @@ router.post('/register', async (req, res) => {
         password: encryptedPassword,
         email: email
     });
+
+    if (req.body.roles) {
+        // const roles = await Roles.findAll({
+        //     where: {
+        //         name: {
+        //             [op.or]: req.body.roles
+        //         }
+        //     }
+        // });
+        const roles = [1, 2];
+        await user.setRoles(roles);
+    } else {
+        // user role = 1
+        // const userRole = await Roles.findOne({ where: { name: "user" } });
+        const roles = [2];
+        await user.setRoles(roles);
+    }
 
     //Create token
     const token = jwt.sign(
@@ -71,20 +95,22 @@ router.post('/login', async (req, res) => {
             }
         );
 
-
-        // const token = jwt.sign(
-        //     { id: user.id, email },
-        //     process.env.TOKEN_KEY,
-        //     {
-        //         expiresIn: "2h",
-        //     }
-        // );
-
         //save user token
         user.token = token;
 
+        let authorities = [];
+        const roles = await user.getRoles();
+        for (let i = 0; i < roles.length; i++) {
+            authorities.push("ROLE_" + roles[i].name.toUpperCase());
+        }
         //user
-        res.status(200).json(user);
+        res.status(200).send({
+            id: user.id,
+            username: user.username,
+            email: user.email,
+            roles: authorities,
+            accessToken: token
+        });
     }
     res.status(400).send("Invalid Credentials");
 });
@@ -104,8 +130,12 @@ router.get('/me', async (req, res) => {
     }
 });
 
-router.get("/welcome", auth, (req, res) => {
+router.get("/welcome", verifyToken, (req, res) => {
     res.status(200).send("Welcome 🙌 ");
+});
+
+router.get("/admin", [verifyToken, isAdmin], (req, res) => {
+    res.status(200).send("Admin content.");
 });
 
 module.exports = router;

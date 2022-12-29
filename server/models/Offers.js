@@ -25,11 +25,11 @@ module.exports = (sequelize, DataTypes) => {
     }
     );
 
-    Offers.associate = (models) => {
-        Offers.hasMany(models.Reactions, {
-            foreignKey: 'offer_id',
-            as: 'reactions'
-        });
-    };
+    // Offers.associate = (models) => {
+    //     Offers.hasMany(models.Reactions, {
+    //         foreignKey: 'offer_id',
+    //         as: 'reactions'
+    //     });
+    // };
     return Offers;
 }

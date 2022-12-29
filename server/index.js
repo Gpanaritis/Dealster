@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const cors = require('cors');
-const auth = require('./middleware/auth');
+const {verifyToken} = require('./middleware/authJwt');
 
 app.use(express.json());
 app.use(cors());

@@ -15,11 +15,11 @@ module.exports = (sequelize, DataTypes) => {
     }
     );
 
-    Category.associate = (models) => {
-        Category.hasMany(models.Subcategory, {
-            foreignKey: 'category_id',
-            as: 'subcategories'
-        });
-    };
+    // Category.associate = (models) => {
+    //     Category.hasMany(models.Subcategory, {
+    //         foreignKey: 'category_id',
+    //         as: 'subcategories'
+    //     });
+    // };
     return Category;
 }

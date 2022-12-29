@@ -31,17 +31,17 @@ module.exports = (sequelize, DataTypes) => {
     }
     );
 
-    Users.associate = (models) => {
-        Users.hasMany(models.Reactions, {
-            foreignKey: 'user_id',
-            as: 'reactions'
-        });
+    // Users.associate = (models) => {
+    //     Users.hasMany(models.Reactions, {
+    //         foreignKey: 'user_id',
+    //         as: 'reactions'
+    //     });
 
-        Users.hasMany(models.Offers, {
-            foreignKey: 'user_id',
-            as: 'offers'
-        });
-    };
+    //     Users.hasMany(models.Offers, {
+    //         foreignKey: 'user_id',
+    //         as: 'offers'
+    //     });
+    // };
 
 
     return Users;

@@ -19,21 +19,21 @@ module.exports = (sequelize, DataTypes) => {
         updatedAt: DataTypes.DATE
     }
     );
-    Products.associate = (models) => {
-        Products.hasMany(models.Offers, {
-            foreignKey: 'product_id',
-            as: 'offers'
-        });
-        Products.belongsToMany(models.Subcategory, {
-            through: 'Products_Subcategory',
-            as: 'subcategories',
-            foreignKey: 'product_id'
-        });
-        Products.belongsToMany(models.Super_markets, {
-            through: 'Products_Super_markets',
-            as: 'super_markets',
-            foreignKey: 'super_market_id'
-        });
-    };
+    // Products.associate = (models) => {
+    //     Products.hasMany(models.Offers, {
+    //         foreignKey: 'product_id',
+    //         as: 'offers'
+    //     });
+    //     Products.belongsToMany(models.Subcategory, {
+    //         through: 'Products_Subcategory',
+    //         as: 'subcategories',
+    //         foreignKey: 'product_id'
+    //     });
+    //     Products.belongsToMany(models.Super_markets, {
+    //         through: 'Products_Super_markets',
+    //         as: 'super_markets',
+    //         foreignKey: 'super_market_id'
+    //     });
+    // };
     return Products;
 }
