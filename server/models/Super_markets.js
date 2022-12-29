@@ -25,12 +25,12 @@ module.exports = (sequelize, DataTypes) => {
     }
     );
 
-    Super_markets.associate = (models) => {
-        Super_markets.hasMany(models.Offers, {
-            foreignKey: 'super_market_id',
-            as: 'offers'
-        });
-    };
+    // Super_markets.associate = (models) => {
+    //     Super_markets.hasMany(models.Offers, {
+    //         foreignKey: 'super_market_id',
+    //         as: 'offers'
+    //     });
+    // };
 
     return Super_markets;
 }

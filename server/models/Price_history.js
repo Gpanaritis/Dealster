@@ -13,11 +13,11 @@ module.exports = (sequelize, DataTypes) => {
     }
     );
 
-    Price_history.associate = (models) => {
-        Price_history.belongsTo(models.Products, {
-            foreignKey: 'product_id',
-            onDelete: 'CASCADE'
-        });
-    };
+    // Price_history.associate = (models) => {
+    //     Price_history.belongsTo(models.Products, {
+    //         foreignKey: 'product_id',
+    //         onDelete: 'CASCADE'
+    //     });
+    // };
     return Price_history;
 }

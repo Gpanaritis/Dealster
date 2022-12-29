@@ -21,22 +21,27 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             unique: true
         },
+        token:
+        {
+            type : DataTypes.STRING,
+            allowNull: true
+        },
         createdAt: DataTypes.DATE,
         updatedAt: DataTypes.DATE
     }
     );
 
-    Users.associate = (models) => {
-        Users.hasMany(models.Reactions, {
-            foreignKey: 'user_id',
-            as: 'reactions'
-        });
+    // Users.associate = (models) => {
+    //     Users.hasMany(models.Reactions, {
+    //         foreignKey: 'user_id',
+    //         as: 'reactions'
+    //     });
 
-        Users.hasMany(models.Offers, {
-            foreignKey: 'user_id',
-            as: 'offers'
-        });
-    };
+    //     Users.hasMany(models.Offers, {
+    //         foreignKey: 'user_id',
+    //         as: 'offers'
+    //     });
+    // };
 
 
     return Users;

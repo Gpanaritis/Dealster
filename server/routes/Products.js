@@ -20,4 +20,23 @@ router.get('/:product_id/supermarkets', async (req, res) => {
     res.json(supermarkets);
 });
 
+//post if product does not exist, and update if it does
+router.post('/', async (req, res) => {
+    const product = await Products.findOrCreate({
+        where: { name: req.body.name },
+        defaults: {
+            name: req.body.name,
+            subcategory_id: req.body.subcategory_id,
+            super_market_id: req.body.super_market_id
+        }
+    });
+    res.json(product);
+});
+
+//post products
+router.post('/products', async (req, res) => {
+    const products = await Products.bulkCreate(req.body);
+    res.json(products);
+});
+
 module.exports = router;
