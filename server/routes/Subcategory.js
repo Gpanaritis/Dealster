@@ -10,8 +10,45 @@ router.get('/', async (req, res) => {
 
 //get all products for a subcategory
 router.get('/:subcategory_id/products', async (req, res) => {
-    const products = await Products.findAll({ where: { subcategory_id: req.params.subcategory_id } });
-    res.json(products);
+    try{
+        const subcategory = await Subcategory.findByPk(req.params.subcategory_id, {
+            include: {
+                model: Products,
+                as : 'products',
+                attributes: ['id', 'name', 'price'],
+                through: { attributes: [] }
+            }
+        });
+        res.json(subcategory.products);
+    }
+    catch(error){
+        console.error(`Error fetching products for subcategory: ${error}`);
+        res.status(500).json({ error: 'Error fetching products for subcategory' });
+    }
+});
+
+//post a new subcategory
+router.post('/', async (req, res) => {
+    try{
+        const subcategory = await Subcategory.create(req.body);
+        res.json(subcategory);
+    }
+    catch(error){
+        console.error(`Error creating subcategory: ${error}`);
+        res.status(500).json({ error: 'Error creating subcategory' });
+    }
+});
+
+// post many new subcategories
+router.post('/many', async (req, res) => {
+    try{
+        const subcategories = await Subcategory.bulkCreate(req.body);
+        res.json(subcategories);
+    }
+    catch(error){
+        console.error(`Error creating subcategories: ${error}`);
+        res.status(500).json({ error: 'Error creating subcategories' });
+    }
 });
 
 module.exports = router;

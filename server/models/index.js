@@ -67,7 +67,5 @@ db.Users.hasMany(db.Reactions, { foreignKey: 'user_id', as: 'reactions' });
 db.Roles.belongsToMany(db.Users, { through: 'Users_Roles', as: 'users', foreignKey: 'role_id', otherKey: 'user_id' });
 db.Users.belongsToMany(db.Roles, { through: 'Users_Roles', as: 'roles', foreignKey: 'user_id', otherKey: 'role_id' });
 
-db.Roles = ["admin", "user"];
-
 
 module.exports = db;

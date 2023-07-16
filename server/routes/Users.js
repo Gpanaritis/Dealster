@@ -41,20 +41,12 @@ router.post('/register', async (req, res) => {
     });
 
     if (req.body.roles) {
-        // const roles = await Roles.findAll({
-        //     where: {
-        //         name: {
-        //             [op.or]: req.body.roles
-        //         }
-        //     }
-        // });
-        const roles = [1, 2];
+        const roles = req.body.roles;
+        console.log(roles);
         await user.setRoles(roles);
     } else {
-        // user role = 1
-        // const userRole = await Roles.findOne({ where: { name: "user" } });
-        const roles = [2];
-        await user.setRoles(roles);
+        const userRole = await Roles.findOne({ where: { name: "user" } });
+        await user.setRoles(userRole);
     }
 
     //Create token

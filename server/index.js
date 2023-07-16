@@ -17,6 +17,7 @@ const productsRouter = require('./routes/Products');
 const offersRouter = require('./routes/Offers');
 const supermarketsRouter = require('./routes/Super_markets');
 const ReactionsRouter = require('./routes/Reactions');
+const rolesRouter = require('./routes/Roles');
 
 app.use('/auth', usersRouter);
 app.use('/categories', categoriesRouter);
@@ -25,6 +26,7 @@ app.use('/products', productsRouter);
 app.use('/offers', offersRouter);
 app.use('/supermarkets', supermarketsRouter);
 app.use('/reactions', ReactionsRouter);
+app.use('/roles', rolesRouter);
 
 
 db.sequelize.sync().then(() => {
