@@ -12,6 +12,7 @@ import Profile from "./components/Profile";
 import BoardUser from "./components/BoardUser";
 import BoardModerator from "./components/BoardModerator";
 import BoardAdmin from "./components/BoardAdmin";
+import Map from "./components/Map";
 
 import EventBus from "./common/EventBus";
 
@@ -58,21 +59,11 @@ const App = () => {
             </Link>
           </li>
 
-          {showModeratorBoard && (
-            <li className="nav-item">
-              <Link to={"/mod"} className="nav-link">
-                Moderator Board
-              </Link>
-            </li>
-          )}
-
-          {showAdminBoard && (
-            <li className="nav-item">
-              <Link to={"/admin"} className="nav-link">
-                Admin Board
-              </Link>
-            </li>
-          )}
+          <li className="nav-item">
+            <Link to={"/map"} className="nav-link">
+              Map
+            </Link>
+          </li>
 
           {currentUser && (
             <li className="nav-item">
@@ -113,7 +104,7 @@ const App = () => {
         )}
       </nav>
 
-      <div className="container mt-3">
+      <div className="col-md-0">
         <Routes>
           <Route path="/" element={<Home/>} />
           <Route path="/home" element={<Home/>} />
@@ -123,6 +114,7 @@ const App = () => {
           <Route path="/user" element={<BoardUser/>} />
           <Route path="/mod" element={<BoardModerator/>} />
           <Route path="/admin" element={<BoardAdmin/>} />
+          <Route path="/map" element={<Map/>} />
         </Routes>
       </div>
 

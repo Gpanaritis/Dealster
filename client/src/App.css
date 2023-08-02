@@ -30,3 +30,8 @@ label {
   -webkit-border-radius: 50%;
   border-radius: 50%;
 }
+
+.leaflet-container {
+  width: 100vw;
+  height: calc(100vh - 56px);
+}
