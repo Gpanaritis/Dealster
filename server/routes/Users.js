@@ -104,7 +104,9 @@ router.post('/login', async (req, res) => {
             accessToken: token
         });
     }
-    res.status(400).send("Invalid Credentials");
+    else{
+        res.status(400).send("Invalid Credentials");
+    }
 });
 
 router.get('/me', async (req, res) => {
