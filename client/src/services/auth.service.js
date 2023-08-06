@@ -16,19 +16,6 @@ const login = async (email, password) => {
     localStorage.setItem("user", JSON.stringify(response.data));
   }
   return response.data;
-
-  // return axios
-  //   .post(API_URL + "login", {
-  //     email,
-  //     password,
-  //   })
-  //   .then((response) => {
-  //     if (response.data.accessToken) {
-  //       localStorage.setItem("user", JSON.stringify(response.data));
-  //     }
-
-  //     return response.data;
-  //   });
 };
 
 const logout = () => {

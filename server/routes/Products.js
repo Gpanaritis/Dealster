@@ -90,6 +90,20 @@ router.post('/:product_id/supermarkets', async (req, res) => {
     }
 });
 
+// add a product to all supermarkets
+router.post("/:product_id/supermarkets/all", async (req, res) => {
+    try{
+        const product = await Products.findOne({ where: { id: req.params.product_id } });
+        const supermarkets = await Super_markets.findAll();
+        await product.addSupermarkets(supermarkets);
+        res.json(product);
+    }
+    catch(error){
+        console.error(`Error creating product: ${error}`);
+        res.status(500).json({ error: 'Error creating product' });
+    }
+});
+
 //add a product to a subcategory
 router.post('/:product_id/subcategories', async (req, res) => {
     try{
