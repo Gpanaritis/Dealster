@@ -104,6 +104,22 @@ router.post("/:product_id/supermarkets/all", async (req, res) => {
     }
 });
 
+// add all products to all supermarkets
+router.post("/all/supermarkets/all", async (req, res) => {
+    try{
+        const products = await Products.findAll();
+        const supermarkets = await Super_markets.findAll();
+        for (const product of products){
+            await product.addSupermarkets(supermarkets);
+        }
+        res.json(products);
+    }
+    catch(error){
+        console.error(`Error creating product: ${error}`);
+        res.status(500).json({ error: 'Error creating product' });
+    }
+});
+
 //add a product to a subcategory
 router.post('/:product_id/subcategories', async (req, res) => {
     try{
