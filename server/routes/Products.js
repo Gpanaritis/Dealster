@@ -61,8 +61,20 @@ router.get('/:product_id/subcategories', async (req, res) => {
 //     res.json(product);
 // });
 
-//post products
+// post product
 router.post('/', async (req, res) => {
+    try{
+        const product = await Products.create(req.body);
+        res.json(product);
+    }
+    catch(error){
+        console.error(`Error creating product: ${error}`);
+        res.status(500).json({ error: 'Error creating product' });
+    }
+});
+
+//post products
+router.post('/many', async (req, res) => {
     try{
         const products = await Products.bulkCreate(req.body);
         res.json(products);

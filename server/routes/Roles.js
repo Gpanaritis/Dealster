@@ -55,8 +55,8 @@ router.get('/:role_id/users', async (req, res) => {
     }
 });
 
-// post a new role
-router.post('/', async (req, res) => {
+// post new roles
+router.post('/many', async (req, res) => {
     const roles = req.body;
     try {
       const createdRoles = await Roles.bulkCreate(roles);
@@ -64,6 +64,17 @@ router.post('/', async (req, res) => {
     } catch (error) {
       console.error(`Error creating roles: ${error}`);
       res.status(500).json({ error: 'Error creating roles' });
+    }
+});
+
+router.post('/', async (req, res) => {
+    const role = req.body;
+    try {
+      const createdRole = await Roles.create(role);
+      res.json(createdRole);
+    } catch (error) {
+      console.error(`Error creating role: ${error}`);
+      res.status(500).json({ error: 'Error creating role' });
     }
 });
 
