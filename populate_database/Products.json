@@ -3,13 +3,15 @@
         "id": "1",
         "name": "Intermed Reval Plus Gel Χεριών Lollipop 75ml",
         "price": "1.50",
-        "subcategory_ids": ["1"]
+        "subcategory_ids": ["1"],
+        "supermarket_names": ["Lidl","Σκλαβενίτης"]
     },
     {
         "id": "2",
         "name": "Dettol Αντιβ/κό Σπρέι 500ml",
         "price": "2.13",
-        "subcategory_ids": ["1"]
+        "subcategory_ids": ["1"],
+        "supermarket_names": "all"
     },
     {
         "id": "3",

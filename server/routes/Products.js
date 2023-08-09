@@ -3,6 +3,7 @@ const router = express.Router();
 const { Products } = require('../models');
 const { Subcategory } = require('../models');
 const { Super_markets } = require('../models');
+const e = require('express');
 
 //get all products
 router.get('/', async (req, res) => {
@@ -74,21 +75,19 @@ router.post('/many', async (req, res) => {
                 const subcategories = await Subcategory.findAll({ where: { id: product.subcategory_ids } });
                 await createdProduct.addSubcategory(subcategories);
             }
+            if(product.supermarket_ids){
+                const supermarkets = await Super_markets.findAll({ where: { id: product.supermarket_ids } });
+                await createdProduct.addSupermarkets(supermarkets);
+            }
+            if(product.supermarket_names == 'all'){
+                const supermarkets = await Super_markets.findAll();
+                await createdProduct.addSupermarkets(supermarkets);
+            }
+            else if(product.supermarket_names){
+                const supermarkets = await Super_markets.findAll({ where: { name: product.supermarket_names } });
+                await createdProduct.addSupermarkets(supermarkets);
+            }
         }
-
-
-        // const products = await Products.bulkCreate(req.body);
-        // const subcategory_ids = req.body.map(subcategory => subcategory.subcategory_ids).flat();
-        // const subcategories = await Subcategory.findAll({ where: { id: subcategory_ids } });
-
-        // for(const product of products){
-        //     const productSubcategoryIds = req.body.find(p => p.id === product.id).subcategory_ids;
-        //     const productSubcategories = subcategories.filter(subcategory => productSubcategoryIds.includes(subcategory.id));
-        //     await product.addSubcategories(productSubcategories);
-
-        //     console.log(productSubcategories);
-        //     console.log(productSubcategoryIds);
-        // }
         res.json(createdProduct);
     }
     catch(error){
@@ -96,6 +95,7 @@ router.post('/many', async (req, res) => {
         res.status(500).json({ error: 'Error creating products' });
     }
 });
+
 
 //add a product to supermarkets
 router.post('/:product_id/supermarkets', async (req, res) => {
