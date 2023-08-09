@@ -48,24 +48,16 @@ router.get('/:product_id/subcategories', async (req, res) => {
     }
 });
 
-//post if product does not exist, and update if it does
-// router.post('/', async (req, res) => {
-//     const product = await Products.findOrCreate({
-//         where: { name: req.body.name },
-//         defaults: {
-//             name: req.body.name,
-//             subcategory_id: req.body.subcategory_id,
-//             super_market_id: req.body.super_market_id
-//         }
-//     });
-//     res.json(product);
-// });
-
 // post product
 router.post('/', async (req, res) => {
     try{
         const product = await Products.create(req.body);
         res.json(product);
+
+        if(req.body.subcategory_ids){
+            const subcategories = await Subcategory.findAll({ where: { id: req.body.subcategory_ids } });
+            await product.addSubcategory(subcategories);
+        }
     }
     catch(error){
         console.error(`Error creating product: ${error}`);
@@ -76,8 +68,28 @@ router.post('/', async (req, res) => {
 //post products
 router.post('/many', async (req, res) => {
     try{
-        const products = await Products.bulkCreate(req.body);
-        res.json(products);
+        for(const product of req.body){
+            createdProduct = await Products.create(product);
+            if(product.subcategory_ids){
+                const subcategories = await Subcategory.findAll({ where: { id: product.subcategory_ids } });
+                await createdProduct.addSubcategory(subcategories);
+            }
+        }
+
+
+        // const products = await Products.bulkCreate(req.body);
+        // const subcategory_ids = req.body.map(subcategory => subcategory.subcategory_ids).flat();
+        // const subcategories = await Subcategory.findAll({ where: { id: subcategory_ids } });
+
+        // for(const product of products){
+        //     const productSubcategoryIds = req.body.find(p => p.id === product.id).subcategory_ids;
+        //     const productSubcategories = subcategories.filter(subcategory => productSubcategoryIds.includes(subcategory.id));
+        //     await product.addSubcategories(productSubcategories);
+
+        //     console.log(productSubcategories);
+        //     console.log(productSubcategoryIds);
+        // }
+        res.json(createdProduct);
     }
     catch(error){
         console.error(`Error creating products: ${error}`);
