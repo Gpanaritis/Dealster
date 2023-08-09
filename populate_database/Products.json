@@ -1,46 +1,286 @@
 [
     {
         "id": "1",
-        "name": "Intermed Reval Plus Gel Χεριών Lollipop 75ml",
-        "price": "1.50",
-        "subcategory_ids": ["1"],
-        "supermarket_names": ["Lidl","Σκλαβενίτης"]
-    },
-    {
-        "id": "2",
-        "name": "Dettol Αντιβ/κό Σπρέι 500ml",
-        "price": "2.13",
+        "name": "Ψωμί διπλοζυμωτό",
+        "price": "1.68",
         "subcategory_ids": ["1"],
         "supermarket_names": "all"
     },
     {
-        "id": "3",
-        "name": "Dettol Αντιβ Υγρό Κρεμοσ Ευαίσθ Επιδερμ Αντ/κο 250ml",
-        "price": "2.62",
-        "subcategory_ids": ["1"]
+    "id": "2",
+    "name": "Ψωμί hamburger",
+    "price": "2.35",
+    "subcategory_ids": ["1"],
+    "supermarket_names": "all"
     },
+    {
+    "id": "3",
+    "name": "Ψωμί τόστ χωριάτικο",
+    "price": "4.02",
+    "subcategory_ids": ["1"],
+    "supermarket_names": "all"
+    },
+    
     {
         "id": "4",
-        "name": "Dettol Κρεμ Sensitive Αντ/κο 750ml",
-        "price": "2.63",
-        "subcategory_ids": ["1"]
-    },
+        "name": "Αρτοσκεύασμα σίκαλης",
+        "price": "4.07",
+        "subcategory_ids": ["1"],
+        "supermarket_names": "all"
+        },
+    
     {
-        "id": "5",
-        "name": "Dettol Κρεμ Relax Αντ/κο 750ml",
-        "price": "2.63",
-        "subcategory_ids": ["1"]
+    "id": "5",
+    "name": "Ψωμί χωρίς γλουτένη",
+    "price": "5.28",
+    "subcategory_ids": ["1"],
+    "supermarket_names": "all"
     },
+    
     {
         "id": "6",
-        "name": "Activel Plus Αντισηπτικό Gel Χεριών 500ml",
-        "price": "2.69",
-        "subcategory_ids": ["1"]
+        "name": "Strudel μήλο κανέλα",
+        "price": "2.77",
+        "subcategory_ids": ["2"],
+        "supermarket_names": "all"
+        },
+        {
+            "id": "7",
+            "name": "Κείκ Ανάμικτο Ατομικό 80g",
+            "price": "1.12",
+            "subcategory_ids": ["2"],
+            "supermarket_names": "all"
+            },
+    {
+        "id": "8",
+        "name": "Κείκ Ανάμικτο Ατομικό 80g",
+        "price": "1.12",
+        "subcategory_ids": ["2"],
+        "supermarket_names": "all"
     },
     {
-        "id": "7",
-        "name": "Donna Οινόπνευμα Καθαρό 245ml",
-        "price": "8.35",
-        "subcategory_ids": ["1"]
+        "id": "9",
+        "name": "Κέικ Βανίλια Κακάο 375g",
+        "price": "3.33",
+        "subcategory_ids": ["2"],
+        "supermarket_names": "all"
+    },
+    {
+        "id": "10",
+        "name": "Κέικ Black Forest 400g",
+        "price": "4.98",
+        "subcategory_ids": ["2"],
+        "supermarket_names": "all"
+    },
+    {
+        "id": "11",
+        "name": "Αρακάς Βιολογικός Κατεψυγμένος 450gr",
+        "price": "4.26",
+        "subcategory_ids": ["3"],
+        "supermarket_names": "all"
+    },
+    {
+        "id": "12",
+        "name": "Παγωτό Mini Sandwich Βανίλια Κακάο 4X80gr",
+        "price": "3.64",
+        "subcategory_ids": ["3"],
+        "supermarket_names": "all"
+    },
+    {
+        "id": "13",
+        "name": "Κρεμμύδι Ψιλοκομμένο Κατεψυγμένο 250gr",
+        "price": "2.36",
+        "subcategory_ids": ["3"],
+        "supermarket_names": "all"
+    },
+    {
+        "id": "14",
+        "name": "Κοτομπουκιές Παναρισμένες 400gr",
+        "price": "7.25",
+        "subcategory_ids": ["3"],
+        "supermarket_names": "all"
+    },
+    {
+        "id": "15",
+        "name": "Ψαροκροκέτες 450g",
+        "price": "3.47",
+        "subcategory_ids": ["3"],
+        "supermarket_names": "all"
+    },
+    {
+        "id": "16",
+        "name": "Πατάτες Χονδρές Συσκευασμένες",
+        "price": "4.11",
+        "subcategory_ids": ["4"],
+        "supermarket_names": "all"
+    },
+    {
+        "id": "17",
+        "name": "Πατάτες Baby Πλυμένες Κύπρου 750 gr",
+        "price": "2.18",
+        "subcategory_ids": ["4"],
+        "supermarket_names": "all"
+    },
+    {
+        "id": "18",
+        "name": "Καρότα Ελληνικά",
+        "price": "2.02",
+        "subcategory_ids": ["4"],
+        "supermarket_names": "all"
+    },
+    {
+        "id": "19",
+        "name": "Συσκευασμένα Ελληνικά 1 Τεμάχιο",
+        "price": "1.39",
+        "subcategory_ids": ["4"],
+        "supermarket_names": "all"
+    },
+    {
+        "id": "20",
+        "name": "Κρεμμυδάκια Χλωρά 140g",
+        "price": "0.95",
+        "subcategory_ids": ["4"],
+        "supermarket_names": "all"
+    },
+    {
+        "id": "21",
+        "name": "Αναψυκτικό Cola Zero Κουτί 6x330ml",
+        "price": "4.32",
+        "subcategory_ids": ["5"],
+        "supermarket_names": "all"
+    },
+    {
+        "id": "22",
+        "name": "Ice Tea Green Χωρίς Ζάχαρη 500ml",
+        "price": "1.27",
+        "subcategory_ids": ["5"],
+        "supermarket_names": "all"
+    },
+    {
+        "id": "23",
+        "name": "Αναψυκτικό Cola Στέβια Φιάλη 1lt",
+        "price": "0.75",
+        "subcategory_ids": ["5"],
+        "supermarket_names": "all"
+    },
+    {
+        "id": "24",
+        "name": "Σόδα Κουτί 6x330ml",
+        "price": "1.47",
+        "subcategory_ids": ["5"],
+        "supermarket_names": "all"
+    },
+    {
+        "id": "25",
+        "name": "Αναψυκτικό Pink Grapefruit Κουτί 330ml",
+        "price": "0.88",
+        "subcategory_ids": ["5"],
+        "supermarket_names": "all"
+    },
+    {
+        "id": "26",
+        "name": "Μπύρα Ζύθος ΒΑΠ Κουτί 6x500ml 4+2 Δώρο",
+        "price": "5.73",
+        "subcategory_ids": ["6"],
+        "supermarket_names": "all"
+    },
+    {
+        "id": "27",
+        "name": "Μπύρα Pilsner Κουτί 8x330ml 6+2 Δώρο",
+        "price": "6.99",
+        "subcategory_ids": ["6"],
+        "supermarket_names": "all"
+    },
+    {
+        "id": "28",
+        "name": "PILS HELLAS | Μπύρα Κουτί 6x330ml 5+1 Δώρο",
+        "price": "4.83",
+        "subcategory_ids": ["6"],
+        "supermarket_names": "all"
+    },
+    {
+        "id": "29",
+        "name": "KAISER | Μπύρα Κουτί 4x500ml",
+        "price": "5.82",
+        "subcategory_ids": ["6"],
+        "supermarket_names": "all"
+    },
+    {
+        "id": "30",
+        "name": "Μπύρα Peroni Nastro Φιάλη 330ml",
+        "price": "2.09",
+        "subcategory_ids": ["6"],
+        "supermarket_names": "all"
+    },
+    {
+        "id": "31",
+        "name": "FAIRY | Υγρό Απορρυπαντικό Πιάτων Ultra 900ml",
+        "price": "2.99",
+        "subcategory_ids": ["7"],
+        "supermarket_names": "all"
+    },
+    {
+        "id": "32",
+        "name": "FINISH | Υγρό Εκθαμβωτικό Πλυντηρίου Πιάτων Λεμόνι 400ml",
+        "price": "4.06",
+        "subcategory_ids": ["7"],
+        "supermarket_names": "all"
+    },
+    {
+        "id": "33",
+        "name": "ΑΒ | Υγρό Πιάτων Λεμόνι 500ml",
+        "price": "0.95",
+        "subcategory_ids": ["7"],
+        "supermarket_names": "all"
+    },
+    {
+        "id": "34",
+        "name": "Υγρό Πιάτων Action Λευκό Ξύδι & Πράσινο Μήλο Αντλία 650ml",
+        "price": "2.01",
+        "subcategory_ids": ["7"],
+        "supermarket_names": "all"
+    },
+    {
+        "id": "35",
+        "name": "Κάψουλες Πλυντηρίου Πιάτων Power All in 1 Λεμόνι 85 Tεμάχια",
+        "price": "22.29",
+        "subcategory_ids": ["7"],
+        "supermarket_names": "all"
+    },
+    {
+        "id": "36",
+        "name": "Συμπυκνωμένο Μαλακτικό Indulge Gold Orchid 55 Μεζούρες",
+        "price": "5.04",
+        "subcategory_ids": ["8"],
+        "supermarket_names": "all"
+    },
+    {
+        "id": "37",
+        "name": "Συμπυκνωμένο Μαλακτικό Mistral 77 Μεζούρες",
+        "price": "4.80",
+        "subcategory_ids": ["8"],
+        "supermarket_names": "all"
+    },
+    {
+        "id": "38",
+        "name": "Συμπυκνωμένο Μαλακτικό Fresh Ocean Escape 55 Μεζούρες",
+        "price": "5.04",
+        "subcategory_ids": ["8"],
+        "supermarket_names": "all"
+    },
+    {
+        "id": "39",
+        "name": "Συμπυκνωμένο Μαλακτικό Bizantium 38 Μεζούρες",
+        "price": "3.39",
+        "subcategory_ids": ["8"],
+        "supermarket_names": "all"
+    },
+    {
+        "id": "40",
+        "name": "Συμπυκνωμένο Μαλακτικό Aroma Βανίλια και Μανταρίνι 77 Μεζούρες",
+        "price": "4.80",
+        "subcategory_ids": ["8"],
+        "supermarket_names": "all"
     }
+
 ]
