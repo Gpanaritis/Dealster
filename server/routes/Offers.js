@@ -1,12 +1,31 @@
 const express = require('express');
 const router = express.Router();
-const { Offers } = require('../models');
+const { Offers, Super_markets } = require('../models');
 
 //get all offers
 router.get('/', async (req, res) => {
     try{
         const offers = await Offers.findAll();
         res.json(offers);
+    }
+    catch(error){
+        console.error(`Error fetching offers: ${error}`);
+        res.status(500).json({ error: 'Error fetching offers' });
+    }
+});
+
+
+router.get('/supermarkets', async (req, res) => {
+    try{
+        const offers = await Offers.findAll({
+            include: [{
+                model: Super_markets,
+                as: "supermarket",
+                attributes: ['id', 'name', 'latitude', 'longitude']
+            }]
+        });
+        const offersWithSupermarkets = offers.map(offer => offer.supermarket);
+        res.json(offersWithSupermarkets);
     }
     catch(error){
         console.error(`Error fetching offers: ${error}`);

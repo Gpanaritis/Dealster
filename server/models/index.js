@@ -49,6 +49,9 @@ db.Roles = require('./Roles')(sequelize, Sequelize);
 db.Category.hasMany(db.Subcategory, { foreignKey: 'category_id', as: 'subcategories' });
 
 db.Offers.hasMany(db.Reactions, { foreignKey: 'offer_id', as: 'reactions' });
+db.Offers.belongsTo(db.Users, { foreignKey: 'user_id', as: 'user' });
+db.Offers.belongsTo(db.Products, { foreignKey: 'product_id', as: 'product' });
+db.Offers.belongsTo(db.Super_markets, { foreignKey: 'supermarket_id', as: 'supermarket' });
 
 db.Products.hasMany(db.Price_history, { foreignKey: 'product_id', as: 'price_history' });
 db.Products.hasMany(db.Offers, { foreignKey: 'product_id', as: 'offers' });
