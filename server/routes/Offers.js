@@ -41,25 +41,21 @@ router.get('/supermarket/:super_market_id', async (req, res) => {
 //post a new offer
 router.post('/', async (req, res) => {
     try{
-        const offer = await Offers.create(req.body);
-        res.json(offer);
+        // if req.body is an array, use bulkCreate
+        if(Array.isArray(req.body)){
+            const offers = await Offers.bulkCreate(req.body);
+            res.json(offers);
+        }
+        // else use create
+        else{
+            const offer = await Offers.create(req.body);
+            res.json(offer);
+        }
     }
     catch(error){
         console.error(`Error creating offer: ${error}`);
         res.status(500).json({ error: 'Error creating offer' });
     }
 });
-
-// //get all offers for a product
-// router.get('/:product_id', async (req, res) => {
-//     const offers = await Offers.findAll({ where: { product_id: req.params.product_id } });
-//     res.json(offers);
-// });
-
-// //get all offers for a supermarket
-// router.get('/supermarket/:super_market_id', async (req, res) => {
-//     const offers = await Offers.findAll({ where: { super_market_id: req.params.super_market_id } });
-//     res.json(offers);
-// });
 
 module.exports = router;

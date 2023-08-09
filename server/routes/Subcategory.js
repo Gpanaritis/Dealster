@@ -30,24 +30,18 @@ router.get('/:subcategory_id/products', async (req, res) => {
 //post a new subcategory
 router.post('/', async (req, res) => {
     try{
-        const subcategory = await Subcategory.create(req.body);
-        res.json(subcategory);
+        if(Array.isArray(req.body)){
+            const subcategories = await Subcategory.bulkCreate(req.body);
+            res.json(subcategories);
+        }
+        else{
+            const subcategory = await Subcategory.create(req.body);
+            res.json(subcategory);
+        }
     }
     catch(error){
         console.error(`Error creating subcategory: ${error}`);
         res.status(500).json({ error: 'Error creating subcategory' });
-    }
-});
-
-// post many new subcategories
-router.post('/many', async (req, res) => {
-    try{
-        const subcategories = await Subcategory.bulkCreate(req.body);
-        res.json(subcategories);
-    }
-    catch(error){
-        console.error(`Error creating subcategories: ${error}`);
-        res.status(500).json({ error: 'Error creating subcategories' });
     }
 });
 

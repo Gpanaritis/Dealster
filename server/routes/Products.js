@@ -49,46 +49,44 @@ router.get('/:product_id/subcategories', async (req, res) => {
     }
 });
 
-// post product
-router.post('/', async (req, res) => {
-    try{
-        const product = await Products.create(req.body);
-        res.json(product);
-
-        if(req.body.subcategory_ids){
-            const subcategories = await Subcategory.findAll({ where: { id: req.body.subcategory_ids } });
-            await product.addSubcategory(subcategories);
-        }
-    }
-    catch(error){
-        console.error(`Error creating product: ${error}`);
-        res.status(500).json({ error: 'Error creating product' });
-    }
-});
 
 //post products
-router.post('/many', async (req, res) => {
-    try{
-        for(const product of req.body){
-            createdProduct = await Products.create(product);
-            if(product.subcategory_ids){
-                const subcategories = await Subcategory.findAll({ where: { id: product.subcategory_ids } });
-                await createdProduct.addSubcategory(subcategories);
-            }
-            if(product.supermarket_ids){
-                const supermarkets = await Super_markets.findAll({ where: { id: product.supermarket_ids } });
-                await createdProduct.addSupermarkets(supermarkets);
-            }
-            if(product.supermarket_names == 'all'){
-                const supermarkets = await Super_markets.findAll();
-                await createdProduct.addSupermarkets(supermarkets);
-            }
-            else if(product.supermarket_names){
-                const supermarkets = await Super_markets.findAll({ where: { name: product.supermarket_names } });
-                await createdProduct.addSupermarkets(supermarkets);
-            }
+router.post('/', async (req, res) => {
+    // create a function
+    const createProduct = async (product) => {
+        const createdProduct = await Products.create(product);
+        if(product.subcategory_ids){
+            const subcategories = await Subcategory.findAll({ where: { id: product.subcategory_ids } });
+            await createdProduct.addSubcategory(subcategories);
         }
-        res.json(createdProduct);
+        if(product.supermarket_ids){
+            const supermarkets = await Super_markets.findAll({ where: { id: product.supermarket_ids } });
+            await createdProduct.addSupermarkets(supermarkets);
+        }
+        if(product.supermarket_names == 'all'){
+            const supermarkets = await Super_markets.findAll();
+            await createdProduct.addSupermarkets(supermarkets);
+        }
+        else if(product.supermarket_names){
+            const supermarkets = await Super_markets.findAll({ where: { name: product.supermarket_names } });
+            await createdProduct.addSupermarkets(supermarkets);
+        }
+        return createdProduct;
+    }
+
+    try{
+        if(Array.isArray(req.body)){
+            for(const product of req.body){
+                createdProduct = await createProduct(product);
+            }
+            res.json(createdProduct);
+        }
+        else{
+
+            createdProduct = await createProduct(req.body);
+            res.json(createdProduct);
+        }
+
     }
     catch(error){
         console.error(`Error creating products: ${error}`);

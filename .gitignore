@@ -126,3 +126,4 @@ dist
 .yarn/install-state.gz
 .pnp.*
 server/config/config.json
+server/config/config.json

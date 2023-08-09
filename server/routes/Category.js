@@ -24,8 +24,21 @@ router.get('/:category_id/subcategories', async (req, res) => {
 //post a new category
 router.post('/', async (req, res) => {
     try{
-        const category = await Category.create(req.body);
-        res.json(category);
+        // if category already exists, return error
+        const existingCategory = await Category.findOne({ where: { name: req.body.name } });
+        if(existingCategory){
+            return res.status(409).json({ error: 'Category already exists' });
+        }
+
+        if(Array.isArray(req.body)){
+            const categories = await Category.bulkCreate(req.body);
+            return res.json(categories);
+        }
+        // else create new category
+        else{
+            const category = await Category.create(req.body);
+            return res.json(category);
+        }
     }
     catch(error){
         console.error(`Error creating category: ${error}`);

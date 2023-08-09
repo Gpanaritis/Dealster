@@ -24,4 +24,21 @@ router.get('/user/:userId', async (req, res) => {
     }
 });
 
+//create a reaction
+router.post('/', async (req, res) => {
+    try{
+        if(Array.isArray(req.body)){
+            const reactions = await Reactions.bulkCreate(req.body);
+            res.json(reactions);
+        }
+        else{
+            const reaction = await Reactions.create(req.body);
+            res.json(reaction);
+        }
+    } catch (error) {
+        console.error(`Error creating reaction: ${error}`);
+        res.status(500).json({ error: 'Error creating reaction' });
+    }
+});
+
 module.exports = router;
