@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const { Offers, Super_markets } = require('../models');
+const { Offers, Super_markets, Reactions, Products } = require('../models');
+const uniqueObjects = require('unique-objects');
 
 //get all offers
 router.get('/', async (req, res) => {
@@ -14,7 +15,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-
+// get all aupermarkets that have offers
 router.get('/supermarkets', async (req, res) => {
     try{
         const offers = await Offers.findAll({
@@ -24,7 +25,17 @@ router.get('/supermarkets', async (req, res) => {
                 attributes: ['id', 'name', 'latitude', 'longitude']
             }]
         });
-        const offersWithSupermarkets = offers.map(offer => offer.supermarket);
+        let offersWithSupermarkets = offers.map(offer => offer.supermarket);
+        offersWithSupermarkets = uniqueObjects(offersWithSupermarkets, ['id']);
+
+        // remove supermarkets that are close
+        const { latitude, longitude } = req.query;
+        const radius = 0.004;
+        offersWithSupermarkets = offersWithSupermarkets.filter(supermarket => {
+            return (supermarket.latitude > latitude + radius || supermarket.latitude < latitude - radius) ||
+                (supermarket.longitude > longitude + radius || supermarket.longitude < longitude - radius);
+        });
+
         res.json(offersWithSupermarkets);
     }
     catch(error){
@@ -32,6 +43,40 @@ router.get('/supermarkets', async (req, res) => {
         res.status(500).json({ error: 'Error fetching offers' });
     }
 });
+
+// get all supermarkets that do not have offers
+router.get('/supermarkets/empty', async (req, res) => {
+    try{
+        const offers = await Offers.findAll({
+            include: [{
+                model: Super_markets,
+                as: "supermarket",
+                attributes: ['id', 'name', 'latitude', 'longitude']
+            }]
+        });
+        const offersWithSupermarkets = uniqueObjects(offers.map(offer => offer.supermarket), ['id']);
+
+        let supermarkets = await Super_markets.findAll();
+        supermarkets = uniqueObjects(supermarkets, ['id']);
+        let supermarketsWithoutOffers = supermarkets.filter(supermarket => {
+            return !offersWithSupermarkets.some(offerSupermarket => offerSupermarket.id === supermarket.id);
+        });
+        // remove supermarkets that are close
+        const { latitude, longitude } = req.query;
+        const radius = 0.004;
+        supermarketsWithoutOffers = supermarketsWithoutOffers.filter(supermarket => {
+            return (supermarket.latitude > latitude + radius || supermarket.latitude < latitude - radius) ||
+                (supermarket.longitude > longitude + radius || supermarket.longitude < longitude - radius);
+        });
+
+        res.json(supermarketsWithoutOffers);
+    }
+    catch(error){
+        console.error(`Error fetching offers: ${error}`);
+        res.status(500).json({ error: 'Error fetching offers' });
+    }
+});
+
 
 //get all offers for a product
 router.get('/:product_id', async (req, res) => {
@@ -48,8 +93,20 @@ router.get('/:product_id', async (req, res) => {
 //get all offers for a supermarket
 router.get('/supermarket/:super_market_id', async (req, res) => {
     try{
-        const offers = await Offers.findAll({ where: { super_market_id: req.params.super_market_id } });
-        res.json(offers);
+        const offers = await Offers.findAll({ 
+            where: { supermarket_id: req.params.super_market_id },
+            include: [
+                { model: Reactions, as: "reactions" },
+                { model: Products, as: "product"}
+            ]
+        });
+        const offersWithLikesAndDislikes = offers.map((offer) => {
+            const likes = offer.reactions.filter((reaction) => reaction.reaction === "like").length;
+            const dislikes = offer.reactions.filter((reaction) => reaction.reaction === "dislike").length;
+            const { reactions, product_id, ...offerWithoutReactions } = offer.toJSON();
+            return { ...offerWithoutReactions, likes, dislikes };
+        });
+        res.json(offersWithLikesAndDislikes);
     }
     catch(error){
         console.error(`Error fetching offers: ${error}`);

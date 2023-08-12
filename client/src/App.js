@@ -13,6 +13,8 @@ import BoardUser from "./components/BoardUser";
 import BoardModerator from "./components/BoardModerator";
 import BoardAdmin from "./components/BoardAdmin";
 import Map from "./components/Map";
+import SupermarketOffers from "./components/SupermarketOffers";
+import AddOffer from "./components/addOffer";
 
 import EventBus from "./common/EventBus";
 
@@ -115,6 +117,8 @@ const App = () => {
           <Route path="/mod" element={<BoardModerator/>} />
           <Route path="/admin" element={<BoardAdmin/>} />
           <Route path="/map" element={<Map/>} />
+          <Route path="/supermarketOffers/:supermarket_id" element={<SupermarketOffers/>} />
+          <Route path="/addOffer/:supermarket_id" element={<AddOffer/>} />
         </Routes>
       </div>
 

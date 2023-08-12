@@ -1,11 +1,35 @@
 const express = require('express');
 const router = express.Router();
-const { Super_markets } = require('../models');
+const { Op } = require('sequelize');
+const Sequelize = require('sequelize');
+const { Super_markets, Offers } = require('../models');
 
-//get all supermarkets
 router.get('/', async (req, res) => {
-    const supermarkets = await Super_markets.findAll();
-    res.json(supermarkets);
+    try{
+        const { latitude, longitude } = req.query;
+        const supermarkets = await Super_markets.findAll({
+            include: [{
+                model: Offers,
+                as: "offers",
+                attributes: []
+            }],
+            attributes: {
+                include: [
+                    [Sequelize.fn("COUNT", Sequelize.col("offers.id")), "num_offers"],
+                    [
+                        Sequelize.literal(`ST_Distance_Sphere(point(${longitude}, ${latitude}), point(longitude, latitude)) <= 50`),
+                        "is_near"
+                    ]
+                ]
+            },
+            group: ['Super_markets.id']
+        });
+        res.json(supermarkets);
+    }
+    catch(error){
+        console.error(`Error fetching supermarkets: ${error}`);
+        res.status(500).json({ error: 'Error fetching supermarkets' });
+    }
 });
 
 //get all products for a supermarket
@@ -24,6 +48,30 @@ router.get('/:super_market_id/products', async (req, res) => {
     catch(error){
         console.error(`Error fetching products for supermarket: ${error}`);
         res.status(500).json({ error: 'Error fetching products for supermarket' });
+    }
+});
+
+// get all supermarkets that are close to given position
+router.get('/close', async (req, res) => {
+    try{
+        let {latitude, longitude} = req.query;
+        latitude = 21.76420750;
+        longitude = 38.21043650;
+        const supermarkets = await Super_markets.findAll({
+            where: {
+                latitude: {
+                    [Op.between]: [latitude - 0.004, latitude + 0.004]
+                },
+                longitude: {
+                    [Op.between]: [longitude - 0.004, longitude + 0.004]
+                }
+            }
+        });
+        res.json(supermarkets);
+    }
+    catch(error){
+        console.error(`Error fetching offers: ${error}`);
+        res.status(500).json({ error: 'Error fetching offers' });
     }
 });
 
