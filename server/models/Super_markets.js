@@ -20,6 +20,11 @@ module.exports = (sequelize, DataTypes) => {
             type : DataTypes.DECIMAL(11, 8),
             allowNull: false
         },
+        address:
+        {
+            type : DataTypes.STRING,
+            allowNull: false
+        },
         createdAt: DataTypes.DATE,
         updatedAt: DataTypes.DATE
     }

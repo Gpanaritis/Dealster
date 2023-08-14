@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, createRef } from "react";
 import AuthService from "../services/auth.service";
 import SupermarketService from "../services/supermarket.service";
 import { MapContainer, TileLayer, useMap, Marker, Popup } from 'react-leaflet'
-import { Icon, icon } from "leaflet";
+import { Icon, icon, latLng } from "leaflet";
 import L from "leaflet";
 import "leaflet-easybutton/src/easy-button.js";
 import "leaflet-easybutton/src/easy-button.css";
@@ -73,7 +73,7 @@ const Map = () => {
                     const numOffers = supermarket.num_offers;
                     link = `<a href="${url}">${numOffers} offer${numOffers !== 1 ? 's' : ''} available</a>`;
                 }
-                const marker = L.marker([supermarket.longitude, supermarket.latitude], { icon }).addTo(map);
+                const marker = L.marker([supermarket.latitude, supermarket.longitude], { icon }).addTo(map);
                 marker.bindPopup(`${supermarket.name}<br>${link}`);
             }
         };
@@ -84,13 +84,15 @@ const Map = () => {
 
         L.easyButton("fa-map-marker", () => {
             map.locate().on("locationfound", function (e) {
-                setLocation(e.latlng);
-                map.flyTo(e.latlng, map.getZoom());
+                let latlng = [38.23607290, 21.72835230]
+                setLocation(latLng);
+                map.flyTo(latlng, map.getZoom());
             });
         }).addTo(map);
 
         map.locate().on("locationfound", function (e) {
-            L.marker(e.latlng, { icon: currLocationIcon }).addTo(map).bindPopup("You are here").openPopup();
+            let latlng = [38.23607290, 21.72835230]
+            L.marker(latlng, { icon: currLocationIcon }).addTo(map).bindPopup("You are here").openPopup();
         });
     }, [map]);
 

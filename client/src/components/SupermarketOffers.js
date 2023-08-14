@@ -1,6 +1,9 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import SupermarketService from "../services/supermarket.service";
+import App from "../App";
+import "../styles/SupermarketOffers.css";
+
 
 const SupermarketOffers = () => {
     const { supermarket_id } = useParams();
@@ -15,35 +18,49 @@ const SupermarketOffers = () => {
         fetchOffers();
     }, [supermarket_id]);
 
+    // Inside the SupermarketOffers component
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <h1 style={{ marginBottom: '1rem' }}>{supermarket.name}</h1>
-            {Array.isArray(offers) && offers.length > 0 ? (
-                <table style={{ margin: 'auto'}}>
-                    <thead style={{ textAlign: 'center' }}>
-                        <tr>
-                            <th style={{ padding: '1rem' }}>Description</th>
-                            <th style={{ padding: '1rem' }}>Price</th>
-                            <th style={{ padding: '1rem' }}>Likes</th>
-                            <th style={{ padding: '1rem' }}>Dislikes</th>
-                        </tr>
-                    </thead>
-                    <tbody style={{ textAlign: 'center' }}>
-                        {offers.map((offer) => (
-                            <tr key={offer.id}>
-                                <td style={{ padding: '1rem' }}>{offer.product.name}</td>
-                                <td style={{ padding: '1rem' }}>{offer.price}€</td>
-                                <td style={{ padding: '1rem' }}>{offer.likes}</td>
-                                <td style={{ padding: '1rem' }}>{offer.dislikes}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            ) : (
-                <p>No offers found.</p>
-            )}
+        <div className="supermarket-offers">
+            <h1 className="supermarket-name">{supermarket.name}</h1>
+            <p className="supermarket-address">{supermarket.address}</p>
+            <div className="offer-container">
+                {Array.isArray(offers) && offers.length > 0 ? (
+                    offers.map((offer) => (
+                        <div key={offer.id} className="offer-card">
+                            <h2><a className="offer-link text-black" href={`/product/${offer.product.id}`}>{offer.product.name}</a></h2>
+                            <div className="offer-details">
+                                <p className="price">
+                                    <span> Price: </span>
+                                    <span className="original-price">{offer.product.price}€</span>
+                                    <span className="discount-price"> | {offer.price}€</span>
+                                </p>
+                                <p className="stock-status">
+                                {offer.stock ? (
+                                    <span className="in-stock">
+                                        <i className="fas fa-check-circle"></i> In Stock
+                                    </span>
+                                ) : (
+                                    <span className="out-of-stock">
+                                        <i className="fas fa-times-circle"></i> Out of Stock
+                                    </span>
+                                )}
+                            </p>
+                            </div>
+                            <div className="username">
+                                <p>By: <a href={`/user/${offer.username}`}>{offer.username}</a></p>
+                            </div>
+                            <div className="likes-dislikes">
+                                <p>Likes: {offer.likes} | Dislikes: {offer.dislikes}</p>
+                            </div>
+                        </div>
+                    ))
+                ) : (
+                    <p>No offers found.</p>
+                )}
+            </div>
         </div>
     );
+
 };
 
 export default SupermarketOffers;

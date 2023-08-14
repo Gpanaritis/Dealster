@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { Offers, Super_markets, Reactions, Products } = require('../models');
+const { Offers, Super_markets, Reactions, Products, Users } = require('../models');
 const uniqueObjects = require('unique-objects');
 
 //get all offers
@@ -97,14 +97,16 @@ router.get('/supermarket/:super_market_id', async (req, res) => {
             where: { supermarket_id: req.params.super_market_id },
             include: [
                 { model: Reactions, as: "reactions" },
-                { model: Products, as: "product"}
+                { model: Products, as: "product"},
+                { model: Users, as: "user"}
             ]
         });
         const offersWithLikesAndDislikes = offers.map((offer) => {
             const likes = offer.reactions.filter((reaction) => reaction.reaction === "like").length;
             const dislikes = offer.reactions.filter((reaction) => reaction.reaction === "dislike").length;
+            const username = offer.user.username;
             const { reactions, product_id, ...offerWithoutReactions } = offer.toJSON();
-            return { ...offerWithoutReactions, likes, dislikes };
+            return { ...offerWithoutReactions, username, likes, dislikes };
         });
         res.json(offersWithLikesAndDislikes);
     }

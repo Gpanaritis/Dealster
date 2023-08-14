@@ -3,6 +3,7 @@ const router = express.Router();
 const { Op } = require('sequelize');
 const Sequelize = require('sequelize');
 const { Super_markets, Offers } = require('../models');
+const axios = require('axios');
 
 router.get('/', async (req, res) => {
     try{
@@ -97,10 +98,56 @@ router.post('/geojson', async (req, res) => {
                 latitude: supermarket.geometry.coordinates[0],
                 longitude: supermarket.geometry.coordinates[1],
             }));
-        await Super_markets.bulkCreate(supermarketsData);
+        // await Super_markets.bulkCreate(supermarketsData);
         res.json(supermarkets);
     }
     catch(error){
+        console.error(`Error creating supermarkets: ${error}`);
+        res.status(500).json({ error: 'Error creating supermarkets' });
+    }
+});
+
+router.post('/geo', async (req, res) => {
+    try {
+        const supermarkets = req.body.features;
+        const supermarketsData = [];
+
+        for (const supermarket of supermarkets) {
+            if (supermarket.properties.name) {
+                const latitude = supermarket.geometry.coordinates[1];
+                const longitude = supermarket.geometry.coordinates[0];
+
+                // Make a request to the Nominatim API for reverse geocoding
+                const response = await axios.get(
+                    `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`
+                );
+
+                // Extract address details from the response
+                const addressComponents = response.data.address;
+                const address = addressComponents.road || '';
+                const addressNumber = addressComponents.house_number || '';
+                const postcode = addressComponents.postcode || '';
+
+                // Construct the full address
+                const fullAddressParts = [];
+                if (address) fullAddressParts.push(address);
+                if (addressNumber) fullAddressParts.push(addressNumber);
+                if (postcode) fullAddressParts.push(postcode);
+
+                const fullAddress = fullAddressParts.join(', ');
+
+                supermarketsData.push({
+                    name: supermarket.properties.name,
+                    latitude: latitude,
+                    longitude: longitude,
+                    address: fullAddress,
+                });
+            }
+        }
+
+        await Super_markets.bulkCreate(supermarketsData);
+        res.json(supermarketsData);
+    } catch (error) {
         console.error(`Error creating supermarkets: ${error}`);
         res.status(500).json({ error: 'Error creating supermarkets' });
     }

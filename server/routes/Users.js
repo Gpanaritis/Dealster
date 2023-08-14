@@ -24,10 +24,16 @@ router.post('/register', async (req, res) => {
         res.status(400).send("All input is required");
     }
     //Check if user already exist
-    const old = await Users.findOne({ where: { email: email } });
+    const old_email = await Users.findOne({ where: { email: email } });
 
-    if (old) {
+    if (old_email) {
         return res.status(409).send("User Already Exist. Please Login");
+    }
+
+    const old_username = await Users.findOne({ where: { username: username } });
+
+    if (old_username) {
+        return res.status(409).send("Username is already taken. Please choose another one");
     }
 
     //Encrypt user password

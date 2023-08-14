@@ -86,12 +86,7 @@ const Register = () => {
           setSuccessful(true);
         },
         (error) => {
-          const resMessage =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
+          const resMessage = error.response.data;
 
           setMessage(resMessage);
           setSuccessful(false);
@@ -155,7 +150,7 @@ const Register = () => {
           )}
 
           {message && (
-            <div className="form-group">
+            <div className="form-group text-center">
               <div
                 className={
                   successful ? "alert alert-success" : "alert alert-danger"
