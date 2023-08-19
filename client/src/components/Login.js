@@ -52,12 +52,8 @@ const Login = () => {
           window.location.reload();
         },
         (error) => {
-          const resMessage =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
+          console.log(error.response.data)
+          const resMessage = error.response.data;
 
           setLoading(false);
           setMessage(resMessage);
