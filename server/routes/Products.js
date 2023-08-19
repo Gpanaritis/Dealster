@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const { Products } = require('../models');
+const sequelize = require('sequelize');
+const { Products, Category, Offers } = require('../models');
 const { Subcategory } = require('../models');
 const { Super_markets } = require('../models');
-const e = require('express');
 
 //get all products
 router.get('/', async (req, res) => {
@@ -13,37 +13,82 @@ router.get('/', async (req, res) => {
 
 //get all supermarkets for a product
 router.get('/:product_id/supermarkets', async (req, res) => {
-    try{
+    try {
         const product = await Products.findByPk(req.params.product_id, {
             include: {
                 model: Super_markets,
-                as : 'supermarkets',
+                as: 'supermarkets',
                 attributes: ['id', 'name', 'latitude', 'longitude'],
                 through: { attributes: [] }
             }
         });
         res.json(product.supermarkets);
     }
-    catch(error){
+    catch (error) {
         console.error(`Error fetching supermarkets for product: ${error}`);
         res.status(500).json({ error: 'Error fetching supermarkets for product' });
     }
 });
 
+// get product by id
+router.get('/:product_id', async (req, res) => {
+    try {
+        const product = await Products.findByPk(req.params.product_id, {
+            include: [
+                {
+                    model: Super_markets,
+                    as: 'supermarkets',
+                    attributes: ['id', 'name', 'latitude', 'longitude', 'address'],
+                    through: { attributes: [] },
+                    include: [
+                        {
+                            model: Offers,
+                            as: 'offers',
+                            attributes: ['price'],
+                            order: [['price', 'ASC']], // Order offers by price ascending
+                            limit: 1, // Get only the minimum offer
+                        }
+                    ],
+                },
+                {
+                    model: Subcategory,
+                    as: 'subcategories',
+                    attributes: ['id', 'name'],
+                    through: { attributes: [] },
+                    include: [
+                        {
+                            model: Category,
+                            as: 'category',
+                            attributes: ['id', 'name']
+                        }
+                    ]
+                }
+            ]
+        });
+
+        res.json(product);
+    }
+    catch (error) {
+        console.error(`Error fetching product: ${error}`);
+        res.status(500).json({ error: 'Error fetching product' });
+    }
+});
+
+
 // get all subcategories for a product
 router.get('/:product_id/subcategories', async (req, res) => {
-    try{
+    try {
         const product = await Products.findByPk(req.params.product_id, {
             include: {
                 model: Subcategories,
-                as : 'subcategories',
+                as: 'subcategories',
                 attributes: ['id', 'name'],
                 through: { attributes: [] }
             }
         });
         res.json(product.subcategories);
     }
-    catch(error){
+    catch (error) {
         console.error(`Error fetching subcategories for product: ${error}`);
         res.status(500).json({ error: 'Error fetching subcategories for product' });
     }
@@ -55,40 +100,40 @@ router.post('/', async (req, res) => {
     // create a function
     const createProduct = async (product) => {
         const createdProduct = await Products.create(product);
-        if(product.subcategory_ids){
+        if (product.subcategory_ids) {
             const subcategories = await Subcategory.findAll({ where: { id: product.subcategory_ids } });
             await createdProduct.addSubcategory(subcategories);
         }
-        if(product.supermarket_ids){
+        if (product.supermarket_ids) {
             const supermarkets = await Super_markets.findAll({ where: { id: product.supermarket_ids } });
             await createdProduct.addSupermarkets(supermarkets);
         }
-        if(product.supermarket_names == 'all'){
+        if (product.supermarket_names == 'all') {
             const supermarkets = await Super_markets.findAll();
             await createdProduct.addSupermarkets(supermarkets);
         }
-        else if(product.supermarket_names){
+        else if (product.supermarket_names) {
             const supermarkets = await Super_markets.findAll({ where: { name: product.supermarket_names } });
             await createdProduct.addSupermarkets(supermarkets);
         }
         return createdProduct;
     }
 
-    try{
-        if(Array.isArray(req.body)){
-            for(const product of req.body){
+    try {
+        if (Array.isArray(req.body)) {
+            let createdProduct;
+            for (const product of req.body) {
                 createdProduct = await createProduct(product);
             }
             res.json(createdProduct);
         }
-        else{
-
-            createdProduct = await createProduct(req.body);
+        else {
+            const createdProduct = await createProduct(req.body);
             res.json(createdProduct);
         }
 
     }
-    catch(error){
+    catch (error) {
         console.error(`Error creating products: ${error}`);
         res.status(500).json({ error: 'Error creating products' });
     }
@@ -97,7 +142,7 @@ router.post('/', async (req, res) => {
 
 //add a product to supermarkets
 router.post('/:product_id/supermarkets', async (req, res) => {
-    try{
+    try {
         const product = await Products.findOne({ where: { id: req.params.product_id } });
         const { supermarket_ids } = req.body;
         console.log(supermarket_ids);
@@ -106,7 +151,7 @@ router.post('/:product_id/supermarkets', async (req, res) => {
         await product.addSupermarkets(supermarkets);
         res.json(product);
     }
-    catch(error){
+    catch (error) {
         console.error(`Error creating product: ${error}`);
         res.status(500).json({ error: 'Error creating product' });
     }
@@ -114,13 +159,13 @@ router.post('/:product_id/supermarkets', async (req, res) => {
 
 // add a product to all supermarkets
 router.post("/:product_id/supermarkets/all", async (req, res) => {
-    try{
+    try {
         const product = await Products.findOne({ where: { id: req.params.product_id } });
         const supermarkets = await Super_markets.findAll();
         await product.addSupermarkets(supermarkets);
         res.json(product);
     }
-    catch(error){
+    catch (error) {
         console.error(`Error creating product: ${error}`);
         res.status(500).json({ error: 'Error creating product' });
     }
@@ -128,15 +173,15 @@ router.post("/:product_id/supermarkets/all", async (req, res) => {
 
 // add all products to all supermarkets
 router.post("/all/supermarkets/all", async (req, res) => {
-    try{
+    try {
         const products = await Products.findAll();
         const supermarkets = await Super_markets.findAll();
-        for (const product of products){
+        for (const product of products) {
             await product.addSupermarkets(supermarkets);
         }
         res.json(products);
     }
-    catch(error){
+    catch (error) {
         console.error(`Error creating product: ${error}`);
         res.status(500).json({ error: 'Error creating product' });
     }
@@ -144,13 +189,13 @@ router.post("/all/supermarkets/all", async (req, res) => {
 
 //add a product to a subcategory
 router.post('/:product_id/subcategories', async (req, res) => {
-    try{
+    try {
         const product = await Products.findOne({ where: { id: req.params.product_id } });
         const { subcategory_id } = req.body;
         await product.update({ subcategory_id: subcategory_id });
         res.json(product);
     }
-    catch(error){
+    catch (error) {
         console.error(`Error creating product: ${error}`);
         res.status(500).json({ error: 'Error creating product' });
     }

@@ -46,7 +46,8 @@ db.Price_history = require('./Price_history')(sequelize, Sequelize);
 db.Roles = require('./Roles')(sequelize, Sequelize);
 
 // associations
-db.Category.hasMany(db.Subcategory, { foreignKey: 'category_id', as: 'subcategories' });
+// db.Category.hasMany(db.Subcategory, { foreignKey: 'category_id', as: 'subcategories' });
+db.Subcategory.belongsTo(db.Category, { foreignKey: 'category_id', as: 'category' });
 
 db.Offers.hasMany(db.Reactions, { foreignKey: 'offer_id', as: 'reactions' });
 db.Offers.belongsTo(db.Users, { foreignKey: 'user_id', as: 'user' });

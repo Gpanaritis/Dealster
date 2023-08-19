@@ -24,6 +24,7 @@ import BoardAdmin from "./components/BoardAdmin";
 import Map from "./components/Map";
 import SupermarketOffers from "./components/SupermarketOffers";
 import AddOffer from "./components/addOffer";
+import Product from "./components/Product";
 
 import EventBus from "./common/EventBus";
 
@@ -172,6 +173,7 @@ const App = () => {
           <Route path="/map" element={<Map />} />
           <Route path="/supermarketOffers/:supermarket_id" element={<SupermarketOffers />} />
           <Route path="/addOffer/:supermarket_id" element={<AddOffer />} />
+          <Route path="/product/:product_id" element={<Product />} />
         </Routes>
       </div>
 

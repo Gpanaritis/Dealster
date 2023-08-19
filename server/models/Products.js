@@ -7,13 +7,17 @@ module.exports = (sequelize, DataTypes) => {
         },
         name:
         {
-            type : DataTypes.STRING,
+            type: DataTypes.STRING,
             allowNull: false
         },
         price:
         {
-            type : DataTypes.DECIMAL(10, 2),
+            type: DataTypes.DECIMAL(10, 2),
             allowNull: false
+        },
+        image: {
+            type: DataTypes.STRING,
+            allowNull: true
         },
         createdAt: DataTypes.DATE,
         updatedAt: DataTypes.DATE

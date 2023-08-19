@@ -99,13 +99,14 @@ router.get('/supermarket/:super_market_id', async (req, res) => {
                 { model: Reactions, as: "reactions" },
                 { model: Products, as: "product"},
                 { model: Users, as: "user"}
-            ]
+            ],
+            order: [['createdAt', 'DESC']]
         });
         const offersWithLikesAndDislikes = offers.map((offer) => {
             const likes = offer.reactions.filter((reaction) => reaction.reaction === "like").length;
             const dislikes = offer.reactions.filter((reaction) => reaction.reaction === "dislike").length;
             const username = offer.user.username;
-            const { reactions, product_id, ...offerWithoutReactions } = offer.toJSON();
+            const { reactions, product_id, user, ...offerWithoutReactions } = offer.toJSON();
             return { ...offerWithoutReactions, username, likes, dislikes };
         });
         res.json(offersWithLikesAndDislikes);

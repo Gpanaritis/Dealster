@@ -1,7 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import SupermarketService from "../services/supermarket.service";
-import App from "../App";
 import "../styles/SupermarketOffers.css";
 
 
@@ -26,8 +25,19 @@ const SupermarketOffers = () => {
             <div className="offer-container">
                 {Array.isArray(offers) && offers.length > 0 ? (
                     offers.map((offer) => (
-                        <div key={offer.id} className="offer-card">
-                            <h2><a className="offer-link text-black" href={`/product/${offer.product.id}`}>{offer.product.name}</a></h2>
+                        <div key={offer.id} className={`offer-card ${offer.stock ? '' : 'out-of-stock'}`}>
+                            <a href="https://example.com">
+                                <img
+                                    src={offer.product.image}
+                                    alt={offer.product.name}
+                                    className="offer-image"
+                                />
+                            </a>
+                            <h2>
+                                <a className="offer-link text-black" href={`/product/${offer.product.id}`}>
+                                    {offer.product.name}
+                                </a>
+                            </h2>
                             <div className="offer-details">
                                 <p className="price">
                                     <span> Price: </span>
@@ -35,16 +45,16 @@ const SupermarketOffers = () => {
                                     <span className="discount-price"> | {offer.price}€</span>
                                 </p>
                                 <p className="stock-status">
-                                {offer.stock ? (
-                                    <span className="in-stock">
-                                        <i className="fas fa-check-circle"></i> In Stock
-                                    </span>
-                                ) : (
-                                    <span className="out-of-stock">
-                                        <i className="fas fa-times-circle"></i> Out of Stock
-                                    </span>
-                                )}
-                            </p>
+                                    {offer.stock ? (
+                                        <span className="in-stock">
+                                            <i className="fas fa-check-circle"></i> In Stock
+                                        </span>
+                                    ) : (
+                                        <span className="out-of-stock">
+                                            <i className="fas fa-times-circle"></i> Out of Stock
+                                        </span>
+                                    )}
+                                </p>
                             </div>
                             <div className="username">
                                 <p>By: <a href={`/user/${offer.username}`}>{offer.username}</a></p>
@@ -60,6 +70,7 @@ const SupermarketOffers = () => {
             </div>
         </div>
     );
+
 
 };
 
