@@ -82,8 +82,7 @@ const AddOffer = () => {
         price: offerPrice,
         stock: true,
         product_id: productId,
-        supermarket_id: supermarket_id,
-        user_id: user.id
+        supermarket_id: supermarket_id
       }).then(
         (response) => {
           console.log(response);

@@ -2,15 +2,15 @@ const express = require('express');
 const router = express.Router();
 const { Offers, Super_markets, Reactions, Products, Users } = require('../models');
 const uniqueObjects = require('unique-objects');
-const {verifyToken, isAdmin} = require('../middleware/authJwt');
+const { verifyToken, isAdmin, getUserIdFromToken } = require('../middleware/authJwt');
 
 //get all offers
 router.get('/', async (req, res) => {
-    try{
+    try {
         const offers = await Offers.findAll();
         res.json(offers);
     }
-    catch(error){
+    catch (error) {
         console.error(`Error fetching offers: ${error}`);
         res.status(500).json({ error: 'Error fetching offers' });
     }
@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
 
 // get all aupermarkets that have offers
 router.get('/supermarkets', async (req, res) => {
-    try{
+    try {
         const offers = await Offers.findAll({
             include: [{
                 model: Super_markets,
@@ -39,7 +39,7 @@ router.get('/supermarkets', async (req, res) => {
 
         res.json(offersWithSupermarkets);
     }
-    catch(error){
+    catch (error) {
         console.error(`Error fetching offers: ${error}`);
         res.status(500).json({ error: 'Error fetching offers' });
     }
@@ -47,7 +47,7 @@ router.get('/supermarkets', async (req, res) => {
 
 // get all supermarkets that do not have offers
 router.get('/supermarkets/empty', async (req, res) => {
-    try{
+    try {
         const offers = await Offers.findAll({
             include: [{
                 model: Super_markets,
@@ -72,7 +72,7 @@ router.get('/supermarkets/empty', async (req, res) => {
 
         res.json(supermarketsWithoutOffers);
     }
-    catch(error){
+    catch (error) {
         console.error(`Error fetching offers: ${error}`);
         res.status(500).json({ error: 'Error fetching offers' });
     }
@@ -81,11 +81,11 @@ router.get('/supermarkets/empty', async (req, res) => {
 
 //get all offers for a product
 router.get('/:product_id', async (req, res) => {
-    try{
+    try {
         const offers = await Offers.findAll({ where: { product_id: req.params.product_id } });
         res.json(offers);
     }
-    catch(error){
+    catch (error) {
         console.error(`Error fetching offers: ${error}`);
         res.status(500).json({ error: 'Error fetching offers' });
     }
@@ -93,13 +93,13 @@ router.get('/:product_id', async (req, res) => {
 
 //get all offers for a supermarket
 router.get('/supermarket/:super_market_id', async (req, res) => {
-    try{
-        const offers = await Offers.findAll({ 
+    try {
+        const offers = await Offers.findAll({
             where: { supermarket_id: req.params.super_market_id },
             include: [
                 { model: Reactions, as: "reactions" },
-                { model: Products, as: "product"},
-                { model: Users, as: "user"}
+                { model: Products, as: "product" },
+                { model: Users, as: "user" }
             ],
             order: [['createdAt', 'DESC']]
         });
@@ -112,7 +112,7 @@ router.get('/supermarket/:super_market_id', async (req, res) => {
         });
         res.json(offersWithLikesAndDislikes);
     }
-    catch(error){
+    catch (error) {
         console.error(`Error fetching offers: ${error}`);
         res.status(500).json({ error: 'Error fetching offers' });
     }
@@ -120,25 +120,29 @@ router.get('/supermarket/:super_market_id', async (req, res) => {
 
 //post a new offer
 router.post('/', verifyToken, async (req, res) => {
-    try{
+    try {
         // if req.body is an array, use bulkCreate
-        if(Array.isArray(req.body)){
+        if (Array.isArray(req.body)) {
             const offers = await Offers.bulkCreate(req.body);
             res.json(offers);
         }
         // else use create
-        else{
+        else {
             const offerPrice = req.body.price;
             const product = await Products.findByPk(req.body.product_id);
-            if(offerPrice >= product.price){
+            if (offerPrice >= product.price) {
                 res.status(400).json({ message: 'Offer price must be lower than product price' });
                 return;
             }
-            const offer = await Offers.create(req.body);
+            const user_id = getUserIdFromToken(req.headers["x-access-token"]);
+            const offer = await Offers.create({
+                ...req.body,
+                user_id: user_id
+            });
             res.json(offer);
         }
     }
-    catch(error){
+    catch (error) {
         console.error(`Error creating offer: ${error}`);
         res.status(500).json({ message: 'Error creating offer' });
     }
