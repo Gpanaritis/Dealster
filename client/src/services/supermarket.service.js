@@ -40,13 +40,19 @@ const postOffer = async (offer) => {
     return response.data;
 };
 
+const getCategories = async (supermarket_id) => {
+    const response = await axios.get(API_URL + `supermarkets/${supermarket_id}/categories`, { headers: authHeader() });
+    return response.data;
+};
+
 const SupermarketService = {
     fetchAndStoreSupermarkets,
     getStoredSupermarkets,
     getStoredSupermarketById,
     getProducts,
     getOffers,
-    postOffer
+    postOffer,
+    getCategories
 };
 
 export default SupermarketService;

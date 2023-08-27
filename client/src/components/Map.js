@@ -102,7 +102,7 @@ const Map = () => {
     }, [supermarkets]);
 
     return (
-        <MapContainer center={[38.2475, 21.7311]} zoom={16} whenCreated={setMap}>
+        <MapContainer center={[38.2475, 21.7311]} zoom={16} whenCreated={setMap} style={{zIndex: 0}}>
             <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

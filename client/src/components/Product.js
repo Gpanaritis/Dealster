@@ -34,8 +34,8 @@ const Product = () => {
         <div className="product-header">
           <img src={product.image} alt={product.name} className="product-image" />
           <div className="product-details">
-            <p><h3>{product.name}</h3></p>
             <div>
+              <p><h3>{product.name}</h3></p>
               <p>Categories: {product.subcategories && product.subcategories.map((subcategory) => subcategory.category.name).join(', ')}</p>
               <p>Subcategories: {product.subcategories && product.subcategories.map((subcategory) => subcategory.name).join(', ')}</p>
             </div>

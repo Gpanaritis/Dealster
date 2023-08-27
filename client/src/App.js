@@ -90,7 +90,7 @@ const App = () => {
 
   return (
     <div>
-      <nav className="navbar navbar-expand navbar-dark bg-dark">
+      <nav className="navbar navbar-expand navbar-dark bg-dark" style={{zIndex: 1}}>
         <Link to={"/"} className="navbar-brand">
           {/* Insert brand name here */}
         </Link>

@@ -29,23 +29,27 @@ const AddOffer = () => {
 
   const [supermarket, setSupermarket] = useState("");
   const [products, setProduct] = useState("");
+  const [categories, setCategories] = useState("");
+  const [subcategories, setSubcategories] = useState("");
   const [user, setUser] = useState("");
   const [offerPrice, setOfferPrice] = useState("");
   const [productId, setProductId] = useState("");
+  const [categoryId, setCategoryId] = useState("");
+  const [subcategoryId, setSubcategoryId] = useState("");
   const [successful, setSuccessful] = useState(false);
   const [message, setMessage] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
-      try{
+      try {
         const supermarket = await SupermarketService.getStoredSupermarketById(supermarket_id);
-        const products = await SupermarketService.getProducts(supermarket_id);
+        const categories = await SupermarketService.getCategories(supermarket_id);
         const user = AuthService.getCurrentUser();
-        setProduct(products);
+        setCategories(categories);
         setUser(user);
         setSupermarket(supermarket);
       }
-      catch(error){
+      catch (error) {
         console.error(`Error fetching products for supermarket: ${error}`);
       }
     };
@@ -56,6 +60,20 @@ const AddOffer = () => {
   const onChangeOfferPrice = (e) => {
     const offerPrice = e.target.value;
     setOfferPrice(offerPrice);
+  };
+
+  const onChangeCategoryId = (e) => {
+    const categoryId = e.target.value;
+    const subcategories = categories.find((category) => category.id == categoryId).subcategories;
+    setCategoryId(categoryId);
+    setSubcategories(subcategories);
+  };
+
+  const onChangeSubcategoryId = (e) => {
+    const subcategoryId = e.target.value;
+    const products = subcategories.find((subcategory) => subcategory.id == subcategoryId).products;
+    setSubcategoryId(subcategoryId);
+    setProduct(products);
   };
 
   const onChangeProductId = (e) => {
@@ -85,7 +103,6 @@ const AddOffer = () => {
         supermarket_id: supermarket_id
       }).then(
         (response) => {
-          console.log(response);
           setMessage(response.data);
           setSuccessful(true);
         },
@@ -99,17 +116,63 @@ const AddOffer = () => {
 
           setMessage(resMessage);
           setSuccessful(false);
-          console.log(error.response.data.error);
         }
       );
     }
-    console.log(message)
   };
 
   return (
     <div className="card card-container">
       <h1>{supermarket.name}</h1>
       <Form onSubmit={handleAddOffer} ref={form}>
+
+      <div className="form-group">
+          <label htmlFor="category">Select Category</label>
+          <Select
+            className="form-control"
+            name="category"
+            value={categoryId}
+            onChange={onChangeCategoryId}
+            validations={[required]}
+          >
+            {
+              <>
+                <option value="">Select a Category</option>
+                {categories && categories.map((category) => (
+                  <option key={category.id} value={category.id}>
+                    {category.name}
+                  </option>
+                ))}
+              </>
+            }
+          </Select>
+        </div>
+
+      <div className="form-group">
+          <label htmlFor="subcategory">Select Subcategory</label>
+          <Select
+            className="form-control"
+            name="subcategory"
+            value={subcategoryId}
+            onChange={onChangeSubcategoryId}
+            validations={[required]}
+            disabled={!categoryId}
+          >
+            {categoryId ? (
+              <>
+                <option value="">Select a subcategory</option>
+                {subcategories && subcategories.map((subcategory) => (
+                  <option key={subcategory.id} value={subcategory.id}>
+                    {subcategory.name}
+                  </option>
+                ))}
+              </>
+            ) : (
+              <option value="">Select a category first</option>
+            )}
+          </Select>
+        </div>
+
         <div className="form-group">
           <label htmlFor="product">Select Product</label>
           <Select
@@ -118,13 +181,20 @@ const AddOffer = () => {
             value={productId}
             onChange={onChangeProductId}
             validations={[required]}
+            disabled={!subcategoryId}
           >
-            <option value="">Select a product</option>
-            {products && products.map((product) => (
-              <option key={product.id} value={product.id} >
-                {product.name} - ${product.price}
-              </option>
-            ))}
+            {subcategoryId ? (
+              <>
+                <option value="">Select a product</option>
+                {products && products.map((product) => (
+                  <option key={product.id} value={product.id}>
+                    {product.name} - €{product.price}
+                  </option>
+                ))}
+              </>
+            ) : (
+              <option value="">Select a subcategory first</option>
+            )}
           </Select>
         </div>
 
@@ -144,7 +214,7 @@ const AddOffer = () => {
           <button className="btn btn-primary btn-block">Add Offer</button>
         </div>
 
-        { (message || successful) && (
+        {(message || successful) && (
           <div className="form-group text-center">
             <div
               className={
@@ -152,7 +222,7 @@ const AddOffer = () => {
               }
               role="alert"
             >
-              {successful? "Success" : message}
+              {successful ? "Success" : message}
             </div>
           </div>
         )}

@@ -2,12 +2,12 @@ const express = require('express');
 const router = express.Router();
 const { Op } = require('sequelize');
 const Sequelize = require('sequelize');
-const { Super_markets, Offers, Products } = require('../models');
+const { Super_markets, Offers, Products, Subcategory, Category } = require('../models');
 const axios = require('axios');
-const {verifyToken, isAdmin} = require('../middleware/authJwt');
+const { verifyToken, isAdmin } = require('../middleware/authJwt');
 
 router.get('/', async (req, res) => {
-    try{
+    try {
         const { latitude, longitude } = req.query;
         const supermarkets = await Super_markets.findAll({
             include: [{
@@ -28,7 +28,7 @@ router.get('/', async (req, res) => {
         });
         res.json(supermarkets);
     }
-    catch(error){
+    catch (error) {
         console.error(`Error fetching supermarkets: ${error}`);
         res.status(500).json({ error: 'Error fetching supermarkets' });
     }
@@ -36,18 +36,18 @@ router.get('/', async (req, res) => {
 
 //get all products for a supermarket
 router.get('/:super_market_id/products', async (req, res) => {
-    try{
+    try {
         const supermarket = await Super_markets.findByPk(req.params.super_market_id, {
             include: {
                 model: Products,
-                as : 'products',
+                as: 'products',
                 attributes: ['id', 'name', 'price', 'image'],
                 through: { attributes: [] }
             }
         });
         res.json(supermarket.products);
     }
-    catch(error){
+    catch (error) {
         console.error(`Error fetching products for supermarket: ${error}`);
         res.status(500).json({ error: 'Error fetching products for supermarket' });
     }
@@ -55,8 +55,8 @@ router.get('/:super_market_id/products', async (req, res) => {
 
 // get all supermarkets that are close to given position
 router.get('/close', async (req, res) => {
-    try{
-        let {latitude, longitude} = req.query;
+    try {
+        let { latitude, longitude } = req.query;
         latitude = 21.76420750;
         longitude = 38.21043650;
         const supermarkets = await Super_markets.findAll({
@@ -71,26 +71,71 @@ router.get('/close', async (req, res) => {
         });
         res.json(supermarkets);
     }
-    catch(error){
+    catch (error) {
         console.error(`Error fetching offers: ${error}`);
         res.status(500).json({ error: 'Error fetching offers' });
     }
 });
 
+router.get('/:super_market_id/categories', async (req, res) => {
+  try {
+    const categories = await Category.findAll({
+      attributes: ['id', 'name'],
+      include: [
+        {
+          model: Subcategory,
+          as: 'subcategories',
+          attributes: ['id', 'name'],
+          include: [
+            {
+              model: Products,
+              as: 'products',
+              attributes: ['id', 'name', 'price'],
+              through: {
+                attributes: []
+              },
+              include: [
+                {
+                  model: Super_markets,
+                  as: 'supermarkets',
+                  where: {
+                    id: req.params.super_market_id
+                  },
+                  attributes: [],
+                  through: {
+                    attributes: []
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      order: [['name', 'ASC']],
+      distinct: true
+    });
+
+    res.json(categories);
+  } catch (error) {
+    console.error(`Error fetching categories for supermarket: ${error}`);
+    res.status(500).json({ error: 'Error fetching categories for supermarket' });
+  }
+});
+
 //post a new supermarket
 router.post('/', async (req, res) => {
-    try{
+    try {
         const supermarket = await Super_markets.create(req.body);
         res.json(supermarket);
     }
-    catch(error){
+    catch (error) {
         console.error(`Error creating supermarket: ${error}`);
         res.status(500).json({ error: 'Error creating supermarket' });
     }
 });
 
 router.post('/geojson', async (req, res) => {
-    try{
+    try {
         const supermarkets = req.body.features;
         const supermarketsData = supermarkets
             .filter(supermarket => supermarket.properties.name)
@@ -102,7 +147,7 @@ router.post('/geojson', async (req, res) => {
         // await Super_markets.bulkCreate(supermarketsData);
         res.json(supermarkets);
     }
-    catch(error){
+    catch (error) {
         console.error(`Error creating supermarkets: ${error}`);
         res.status(500).json({ error: 'Error creating supermarkets' });
     }
