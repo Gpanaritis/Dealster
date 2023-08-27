@@ -26,7 +26,7 @@ const SupermarketOffers = () => {
                 {Array.isArray(offers) && offers.length > 0 ? (
                     offers.map((offer) => (
                         <div key={offer.id} className={`offer-card ${offer.stock ? '' : 'out-of-stock'}`}>
-                            <a href="https://example.com">
+                            <a href={`/product/${offer.product.id}`}>
                                 <img
                                     src={offer.product.image}
                                     alt={offer.product.name}

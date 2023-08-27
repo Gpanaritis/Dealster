@@ -84,6 +84,7 @@ const Register = () => {
         (response) => {
           setMessage(response.data.message);
           setSuccessful(true);
+          window.location.reload();
         },
         (error) => {
           const resMessage = error.response.data;

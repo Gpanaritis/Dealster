@@ -162,7 +162,7 @@ const App = () => {
 
       <div className="col-md-0">
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Map />} />
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />

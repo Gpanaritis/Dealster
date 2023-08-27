@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { Offers, Super_markets, Reactions, Products, Users } = require('../models');
 const uniqueObjects = require('unique-objects');
+const {verifyToken, isAdmin} = require('../middleware/authJwt');
 
 //get all offers
 router.get('/', async (req, res) => {
@@ -118,7 +119,7 @@ router.get('/supermarket/:super_market_id', async (req, res) => {
 });
 
 //post a new offer
-router.post('/', async (req, res) => {
+router.post('/', verifyToken, async (req, res) => {
     try{
         // if req.body is an array, use bulkCreate
         if(Array.isArray(req.body)){
@@ -127,13 +128,19 @@ router.post('/', async (req, res) => {
         }
         // else use create
         else{
+            const offerPrice = req.body.price;
+            const product = await Products.findByPk(req.body.product_id);
+            if(offerPrice >= product.price){
+                res.status(400).json({ message: 'Offer price must be lower than product price' });
+                return;
+            }
             const offer = await Offers.create(req.body);
             res.json(offer);
         }
     }
     catch(error){
         console.error(`Error creating offer: ${error}`);
-        res.status(500).json({ error: 'Error creating offer' });
+        res.status(500).json({ message: 'Error creating offer' });
     }
 });
 

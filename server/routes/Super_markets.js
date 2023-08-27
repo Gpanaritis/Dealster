@@ -2,8 +2,9 @@ const express = require('express');
 const router = express.Router();
 const { Op } = require('sequelize');
 const Sequelize = require('sequelize');
-const { Super_markets, Offers } = require('../models');
+const { Super_markets, Offers, Products } = require('../models');
 const axios = require('axios');
+const {verifyToken, isAdmin} = require('../middleware/authJwt');
 
 router.get('/', async (req, res) => {
     try{
@@ -40,7 +41,7 @@ router.get('/:super_market_id/products', async (req, res) => {
             include: {
                 model: Products,
                 as : 'products',
-                attributes: ['id', 'name', 'price'],
+                attributes: ['id', 'name', 'price', 'image'],
                 through: { attributes: [] }
             }
         });

@@ -18,38 +18,35 @@ const fetchAndStoreSupermarkets = async () => {
 
 const getStoredSupermarkets = () => {
     return JSON.parse(localStorage.getItem("supermarkets"));
-}
+};
 
 const getStoredSupermarketById = (supermarket_id) => {
     const supermarkets = JSON.parse(localStorage.getItem("supermarkets"));
     return supermarkets.find(supermarket => supermarket.id == supermarket_id);
-}
+};
+
+const getProducts = async (supermarket_id) => {
+    const response = await axios.get(API_URL + `supermarkets/${supermarket_id}/products`, { headers: authHeader() });
+    return response.data;
+};
 
 const getOffers = async (supermarket_id) => {
   const response = await axios.get(API_URL + `offers/supermarket/${supermarket_id}`, { headers: authHeader() });
   return response.data;
 };
 
-const getClosestSupermarkets = async (latitude, longitude) => {
-    const response = await axios.get(API_URL + "supermarkets/close", { headers: authHeader(), params: { latitude, longitude } });
-    return response;
-}
-
-const getSupermarketsWithOffers = async (latitude, longitude) => {
-    const response = await axios.get(API_URL + "offers/supermarkets", { headers: authHeader(), params: { latitude, longitude } });
-    return response;
-}
-
-const getSupermarketsWithoutOffers = async (latitude, longitude) => {
-    const response = await axios.get(API_URL + "offers/supermarkets/empty", { headers: authHeader(), params: { latitude, longitude } });
-    return response;
-}
+const postOffer = async (offer) => {
+    const response = await axios.post(API_URL + "offers", offer, { headers: authHeader() });
+    return response.data;
+};
 
 const SupermarketService = {
     fetchAndStoreSupermarkets,
     getStoredSupermarkets,
     getStoredSupermarketById,
+    getProducts,
     getOffers,
+    postOffer
 };
 
 export default SupermarketService;
