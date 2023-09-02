@@ -25,6 +25,7 @@ import Map from "./components/Map";
 import SupermarketOffers from "./components/SupermarketOffers";
 import AddOffer from "./components/addOffer";
 import Product from "./components/Product";
+import SearchBar from "./components/SearchBar";
 
 import EventBus from "./common/EventBus";
 
@@ -90,16 +91,13 @@ const App = () => {
 
   return (
     <div>
-      <nav className="navbar navbar-expand navbar-dark bg-dark" style={{zIndex: 1}}>
-        <Link to={"/"} className="navbar-brand">
-          {/* Insert brand name here */}
-        </Link>
+      <nav className="navbar navbar-expand navbar-dark bg-dark" style={{ zIndex: 1 }}>
         <div className="navbar-nav mr-auto">
-          <li className="nav-item">
+          {/* <li className="nav-item">
             <Link to={"/home"} className="nav-link">
               Home
             </Link>
-          </li>
+          </li> */}
 
           <li className="nav-item">
             <Link to={"/map"} className="nav-link">
@@ -116,6 +114,10 @@ const App = () => {
           )}
 
         </div>
+
+        <div className="navbar-nav">
+      <SearchBar />
+    </div>
 
         {currentUser ? (
           <div className="navbar-nav ml-auto">
@@ -140,13 +142,13 @@ const App = () => {
 
             <li className="nav-item">
               <Link to={"/register"} className="nav-link">
-                Sign Up
+                Register
               </Link>
             </li>
           </div>
         )}
 
-        <DropdownButton title="Appearance">
+        {/* <DropdownButton title="Appearance">
           <Dropdown.Item onClick={() => AppearanceMode("light")}>
             Light Mode
           </Dropdown.Item>
@@ -156,7 +158,7 @@ const App = () => {
           <Dropdown.Item onClick={() => AppearanceMode("system")}>
             Follow System Theme
           </Dropdown.Item>
-        </DropdownButton>
+        </DropdownButton> */}
 
       </nav>
 

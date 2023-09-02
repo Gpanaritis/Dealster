@@ -36,6 +36,8 @@ label {
   height: calc(100vh - 56px);
 }
 
+input.my-narrow-input {min-width:200px;}
+
 /* .offer-card {
   border: 1px solid #ddd;
   padding: 1rem;

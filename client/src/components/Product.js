@@ -6,7 +6,8 @@ import "../styles/Products.css";
 
 const Product = () => {
   const { product_id } = useParams();
-  const [product, setProduct] = useState({});
+  const [product, setProduct] = useState("");
+  const [supermarketWithPrices, setSupermarketWithPrices] = useState("");
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -26,7 +27,29 @@ const Product = () => {
     };
 
     fetchProduct();
+
   }, [product_id]);
+
+  useEffect(() => {
+    if (product) {
+      const supermarketWithPrices = product.supermarkets.map((supermarket) => {
+        const offerPrices = supermarket.offers.map((offer) => Number(offer.price));
+        const lowestPrice = Math.min(...offerPrices, product.price);
+        const isOfferPrice = offerPrices.includes(lowestPrice);
+
+        return {
+          id: supermarket.id,
+          name: supermarket.name,
+          address: supermarket.address,
+          price: lowestPrice,
+          isOfferPrice: isOfferPrice
+        };
+      });
+      // sort by price asc
+      supermarketWithPrices.sort((a, b) => a.price - b.price);
+      setSupermarketWithPrices(supermarketWithPrices);
+    }
+  }, [product]);
 
   return (
     <div className="container">
@@ -44,19 +67,19 @@ const Product = () => {
       </header>
       <div className="supermarket-offers">
         <div className="offer-container">
-          {product.supermarkets &&
-            product.supermarkets.map((supermarket) => (
+          {supermarketWithPrices &&
+            supermarketWithPrices.map((supermarket) => (
               <div key={supermarket.id} className="product-offer-card">
                 <div className="offer-details">
                   <h2 className="supermarket-name"><a className="offer-link text-black" href={`/supermarketOffers/${supermarket.id}`}>{supermarket.name}</a></h2>
                   <p className="supermarket-address">{supermarket.address}</p>
                   <p className="discount-price">
-                    {supermarket.offers && supermarket.offers.length > 0 ? (
+                    {supermarket.isOfferPrice ? (
                       <span className="bigger-price-green">
-                        {supermarket.offers[0].price}
+                        {supermarket.price.toFixed(2)}
                       </span>
                     ) : (
-                      <span className="bigger-price">{product.price}</span>
+                      <span className="bigger-price">{supermarket.price.toFixed(2)}</span>
                     )}
                   </p>
                 </div>
