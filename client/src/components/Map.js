@@ -8,7 +8,7 @@ import "leaflet-easybutton/src/easy-button.js";
 import "leaflet-easybutton/src/easy-button.css";
 
 
-const Map = () => {
+const Map = ({ selectedSupermarkets }) => {
     const [map, setMap] = useState(null);
     const currentUser = AuthService.getCurrentUser();
     const [supermarkets, setSupermarkets] = useState(null);
@@ -54,6 +54,7 @@ const Map = () => {
     useEffect(() => {
         if (!map) return;
 
+        console.log(selectedSupermarkets);
         const getSupermarkets = async (location) => {
             const response = await SupermarketService.fetchAndStoreSupermarkets(location.lat, location.lng);
             for (let supermarket of response) {
@@ -73,8 +74,14 @@ const Map = () => {
                     const numOffers = supermarket.num_offers;
                     link = `<a href="${url}">${numOffers} offer${numOffers !== 1 ? 's' : ''} available</a>`;
                 }
-                const marker = L.marker([supermarket.latitude, supermarket.longitude], { icon }).addTo(map);
-                marker.bindPopup(`${supermarket.name}<br>${link}`);
+                if(!Array.isArray(selectedSupermarkets)){
+                    const marker = L.marker([supermarket.latitude, supermarket.longitude], { icon }).addTo(map);
+                    marker.bindPopup(`${supermarket.name}<br>${link}`);
+                }
+                else if (selectedSupermarkets.includes(supermarket.id)) {
+                    const marker = L.marker([supermarket.latitude, supermarket.longitude], { icon }).addTo(map);
+                    marker.bindPopup(`${supermarket.name}<br>${link}`);
+                }
             }
         };
 

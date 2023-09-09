@@ -26,6 +26,7 @@ import SupermarketOffers from "./components/SupermarketOffers";
 import AddOffer from "./components/addOffer";
 import Product from "./components/Product";
 import SearchBar from "./components/SearchBar";
+import ProductsMap from "./components/filteredSupermarkets";
 
 import EventBus from "./common/EventBus";
 
@@ -176,6 +177,7 @@ const App = () => {
           <Route path="/supermarketOffers/:supermarket_id" element={<SupermarketOffers />} />
           <Route path="/addOffer/:supermarket_id" element={<AddOffer />} />
           <Route path="/product/:product_id" element={<Product />} />
+          <Route path="/filteredSupermarkets/:supermarket_name" element={<ProductsMap />} />
         </Routes>
       </div>
 
