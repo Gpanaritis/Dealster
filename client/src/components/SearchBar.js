@@ -1,43 +1,16 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Autosuggest from 'react-autosuggest';
+import uniqueObjects from 'unique-objects';
 import '../styles/SearchBar.css'
-// import bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { button } from 'react-validation/build/button';
+import ProductService from "../services/product.service";
+import SupermarketService from "../services/supermarket.service";
 
-const products = [
-  { id: 1, name: 'Product 1' },
-  { id: 2, name: 'Product 2' },
-  { id: 3, name: 'Product 3' },
-  { id: 4, name: 'Product 4' },
-  { id: 5, name: 'Product 5' },
-];
-
-const supermarkets = [
-  { id: 1, name: 'Supermarket 1' },
-  { id: 2, name: 'Supermarket 2' },
-  { id: 3, name: 'Supermarket 3' },
-  { id: 4, name: 'Supermarket 4' },
-  { id: 5, name: 'Supermarket 5' },
-];
-
-const languages = [
-  {
-    title: 'Products',
-    languages: products
-  },
-  {
-    title: 'Supermarkets',
-    languages: supermarkets
-  }
-];
-
-// https://developer.mozilla.org/en/docs/Web/JavaScript/Guide/Regular_Expressions#Using_Special_Characters
-function escapeRegexCharacters(str) {
+const escapeRegexCharacters = (str) => {
   return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-}
+};
 
-function getSuggestions(value) {
+const getSuggestions = (value, languages) => {
   const escapedValue = escapeRegexCharacters(value.trim());
 
   if (escapedValue === '') {
@@ -52,97 +25,129 @@ function getSuggestions(value) {
       };
     })
     .filter(section => section.languages.length > 0);
-}
+};
 
-function getSuggestionValue(suggestion) {
+const getSectionSuggestions = (section) => {
+  return section.languages;
+};
+
+const getSuggestionValue = (suggestion) => {
   return suggestion.name;
-}
+};
 
-function renderSuggestion(suggestion) {
+const renderSuggestion = (suggestion) => {
   return (
     <span>{suggestion.name}</span>
   );
-}
+};
 
-function renderSectionTitle(section) {
+const renderSectionTitle = (section) => {
   return (
     <strong>{section.title}</strong>
   );
-}
+};
 
-function getSectionSuggestions(section) {
-  return section.languages;
-}
+const SearchBar = () => {
+  const [value, setValue] = useState('');
+  const [suggestions, setSuggestions] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [supermarkets, setSupermarkets] = useState([]);
+  const [languages, setLanguages] = useState([]);
 
-class SearchBar extends React.Component {
-  constructor() {
-    super();
-
-    this.state = {
-      value: '',
-      suggestions: []
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await ProductService.getCategories();
+        setCategories(response);
+        return response; // Return the response after it's set in state
+      } catch (error) {
+        console.error(`Error fetching products: ${error}`);
+      }
     };
-  }
+    const fetchSupermarkets = async () => {
+      try {
+        const response = await SupermarketService.fetchAndStoreSupermarkets();
+        setSupermarkets(response);
+        return response; // Return the response after it's set in state
+      } catch (error) {
+        console.error(`Error fetching supermarkets: ${error}`);
+      }
+    };
+    fetchProducts();
+    fetchSupermarkets();
+  }, []);
 
-  onChange = (event, { newValue, method }) => {
-    this.setState({
-      value: newValue
-    });
+  useEffect(() => {
+    setLanguages([
+      {
+        title: 'Supermarkets',
+        languages: uniqueObjects(supermarkets, ['name'])
+      },
+      {
+        title: 'Categories',
+        languages: uniqueObjects(categories, ['name'])
+      }
+    ]);
+  }, [categories, supermarkets]);
+
+
+  const onChange = (event, { newValue, method }) => {
+    setValue(newValue);
   };
 
-  onSuggestionsFetchRequested = ({ value }) => {
-    this.setState({
-      suggestions: getSuggestions(value)
-    });
+  const onSuggestionsFetchRequested = ({ value }) => {
+    setSuggestions(getSuggestions(value, languages));
   };
 
-  onSuggestionsClearRequested = () => {
-    this.setState({
-      suggestions: []
-    });
+  const onSuggestionsClearRequested = () => {
+    setSuggestions([]);
   };
 
-  handleSearch = () => {
-    const { value } = this.state;
+  const handleSearch = () => {
     // Perform search with value
-    console.log(`Searching for "${value}"...`);
+    if (supermarkets.map(supermarket => supermarket.name).includes(value)) {
+      console.log("supermarket");
+      window.location.href = `/filteredSupermarkets/${value}`;
+    } else if (categories.map(category => category.name).includes(value)) {
+      window.location.href = `/productsMap/${value}`;
+      console.log("product");
+    } else {
+      console.log("not found");
+    }
   };
 
-  renderInputComponent = (inputProps) => {
+  const renderInputComponent = (inputProps) => {
     return (
       <div className="input-group">
         <input {...inputProps} />
         <div className="input-group-append">
-          <button className="btn btn-outline-success search-button" type="button" onClick={this.handleSearch}>Search</button>
+          <button className="btn btn-outline-success search-button" type="button" onClick={handleSearch}>Search</button>
         </div>
       </div>
     );
   };
 
-  render() {
-    const { value, suggestions } = this.state;
-    const inputProps = {
-      placeholder: "Type 'c'",
-      value,
-      onChange: this.onChange,
-      className: "form-control"
-    };
+  const inputProps = {
+    placeholder: "Type 'c'",
+    value,
+    onChange,
+    className: "form-control"
+  };
 
-    return (
-      <Autosuggest 
-        multiSection={true}
-        suggestions={suggestions}
-        onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-        onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-        getSuggestionValue={getSuggestionValue}
-        renderSuggestion={renderSuggestion}
-        renderSectionTitle={renderSectionTitle}
-        getSectionSuggestions={getSectionSuggestions}
-        inputProps={inputProps}
-        renderInputComponent={this.renderInputComponent}
-      />
-    );
-  }
-}
+  return (
+    <Autosuggest
+      multiSection={true}
+      suggestions={suggestions}
+      onSuggestionsFetchRequested={onSuggestionsFetchRequested}
+      onSuggestionsClearRequested={onSuggestionsClearRequested}
+      getSuggestionValue={getSuggestionValue}
+      renderSuggestion={renderSuggestion}
+      renderSectionTitle={renderSectionTitle}
+      getSectionSuggestions={getSectionSuggestions}
+      inputProps={inputProps}
+      renderInputComponent={renderInputComponent}
+    />
+  );
+};
 
 export default SearchBar;

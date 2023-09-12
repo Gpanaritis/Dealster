@@ -45,6 +45,17 @@ const getCategories = async (supermarket_id) => {
     return response.data;
 };
 
+const getSupermarketsByProductName = async (product_name) => {
+    const response = await axios.get(API_URL + `supermarkets/product_name/${product_name}`, { headers: authHeader() });
+    return response.data;
+};
+
+const getSupermarketsByCategoryName = async (category_name) => {
+    console.log(category_name);
+    const response = await axios.get(API_URL + `supermarkets/category_name/${category_name}`, { headers: authHeader() });
+    return response.data;
+};
+
 const SupermarketService = {
     fetchAndStoreSupermarkets,
     getStoredSupermarkets,
@@ -52,7 +63,9 @@ const SupermarketService = {
     getProducts,
     getOffers,
     postOffer,
-    getCategories
+    getCategories,
+    getSupermarketsByProductName,
+    getSupermarketsByCategoryName
 };
 
 export default SupermarketService;

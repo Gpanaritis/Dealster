@@ -78,49 +78,122 @@ router.get('/close', async (req, res) => {
 });
 
 router.get('/:super_market_id/categories', async (req, res) => {
-  try {
-    const categories = await Category.findAll({
-      attributes: ['id', 'name'],
-      include: [
-        {
-          model: Subcategory,
-          as: 'subcategories',
-          attributes: ['id', 'name'],
-          include: [
-            {
-              model: Products,
-              as: 'products',
-              attributes: ['id', 'name', 'price'],
-              through: {
-                attributes: []
-              },
-              include: [
+    try {
+        const categories = await Category.findAll({
+            attributes: ['id', 'name'],
+            include: [
                 {
-                  model: Super_markets,
-                  as: 'supermarkets',
-                  where: {
-                    id: req.params.super_market_id
-                  },
-                  attributes: [],
-                  through: {
-                    attributes: []
-                  }
+                    model: Subcategory,
+                    as: 'subcategories',
+                    attributes: ['id', 'name'],
+                    include: [
+                        {
+                            model: Products,
+                            as: 'products',
+                            attributes: ['id', 'name', 'price'],
+                            through: {
+                                attributes: []
+                            },
+                            include: [
+                                {
+                                    model: Super_markets,
+                                    as: 'supermarkets',
+                                    where: {
+                                        id: req.params.super_market_id
+                                    },
+                                    attributes: [],
+                                    through: {
+                                        attributes: []
+                                    }
+                                }
+                            ]
+                        }
+                    ]
                 }
-              ]
-            }
-          ]
-        }
-      ],
-      order: [['name', 'ASC']],
-      distinct: true
-    });
+            ],
+            order: [['name', 'ASC']],
+            distinct: true
+        });
 
-    res.json(categories);
-  } catch (error) {
-    console.error(`Error fetching categories for supermarket: ${error}`);
-    res.status(500).json({ error: 'Error fetching categories for supermarket' });
-  }
+        res.json(categories);
+    } catch (error) {
+        console.error(`Error fetching categories for supermarket: ${error}`);
+        res.status(500).json({ error: 'Error fetching categories for supermarket' });
+    }
 });
+
+router.get('/product_name/:product_name', async (req, res) => {
+    try {
+        const { product_name } = req.params;
+        const supermarkets = await Super_markets.findAll({
+            include: {
+                model: Products,
+                as: 'products',
+                attributes: []
+            },
+            where: {
+                '$products.name$': {
+                    [Op.like]: `%${product_name}%`
+                }
+            },
+            distinct: true
+        });
+        res.json(supermarkets);
+    }
+    catch (error) {
+        console.error(`Error fetching supermarkets: ${error}`);
+        res.status(500).json({ error: 'Error fetching supermarkets' });
+    }
+});
+
+router.get('/category_name/:category_name', async (req, res) => {
+    try {
+        const { category_name } = req.params;
+        const supermarkets = await Super_markets.findAll({
+            include: {
+                model: Offers,
+                as: 'offers',
+                attributes: [],
+                required: true,
+                include: [
+                    {
+                        model: Products,
+                        as: 'product',
+                        attributes: [],
+                        required: true,
+                        include: [
+                            {
+                                model: Subcategory,
+                                as: 'subcategories',
+                                attributes: [],
+                                required: true,
+                                include: [
+                                    {
+                                        model: Category,
+                                        as: 'category',
+                                        attributes: [],
+                                        where: {
+                                            name: category_name
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            // ascending order by supermarket id
+            order: [['id', 'ASC']],
+            distinct: true
+        });
+        res.json(supermarkets);
+    }
+    catch (error) {
+        console.error(`Error fetching supermarkets: ${error}`);
+        res.status(500).json({ error: 'Error fetching supermarkets' });
+    }
+});
+
 
 //post a new supermarket
 router.post('/', async (req, res) => {

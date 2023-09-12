@@ -12,10 +12,21 @@ const SupermarketOffers = () => {
     useEffect(() => {
         const fetchOffers = async () => {
             const response = await SupermarketService.getOffers(supermarket_id);
-            setOffers(response);
+
+            // Sort the offers: true (in stock) first, false (out of stock) next
+            const sortedOffers = response.sort((a, b) => {
+                if (a.stock === b.stock) {
+                    return 0; // Keep the same order for offers with the same stock status
+                }
+                return a.stock ? -1 : 1; // Put true (in stock) before false (out of stock)
+            });
+
+            setOffers(sortedOffers);
         };
+
         fetchOffers();
     }, [supermarket_id]);
+
 
     // Inside the SupermarketOffers component
     return (
@@ -44,23 +55,46 @@ const SupermarketOffers = () => {
                                     <span className="original-price">{offer.product.price}€</span>
                                     <span className="discount-price"> | {offer.price}€</span>
                                 </p>
-                                <p className="stock-status">
-                                    {offer.stock ? (
-                                        <span className="in-stock">
-                                            <i className="fas fa-check-circle"></i> In Stock
+                                <div className="stock-and-updated">
+                                    <button
+                                        className={`stock-button ${offer.stock ? 'in-stock' : 'out-of-stock'}`}
+                                        onClick={() => console.log('Button clicked')}
+                                    >
+                                        {offer.stock ? (
+                                            <span>
+                                                <i className="fas fa-check-circle"></i> In Stock
+                                            </span>
+                                        ) : (
+                                            <span>
+                                                <i className="fas fa-times-circle"></i> Out of Stock
+                                            </span>
+                                        )}
+                                    </button>
+
+                                    {/* Display updatedAt in a friendly format without the year */}
+                                    <p className="updatedAt">
+                                        <span className="updatedAt-icon">
+                                            <i className="far fa-clock"></i>
                                         </span>
-                                    ) : (
-                                        <span className="out-of-stock">
-                                            <i className="fas fa-times-circle"></i> Out of Stock
-                                        </span>
-                                    )}
-                                </p>
+                                        {new Date(offer.updatedAt).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' })}
+                                    </p>
+                                </div>
                             </div>
                             <div className="username">
-                                <p>By: <a href={`/user/${offer.username}`}>{offer.username}</a></p>
+                                By: <a href={`/user/${offer.username}`}>{offer.username}</a>
                             </div>
                             <div className="likes-dislikes">
-                                <p>Likes: {offer.likes} | Dislikes: {offer.dislikes}</p>
+                                {/* Replace "Likes" with a button */}
+                                <button type="button" className="likes-icon" style={{ border: 'none', backgroundColor: 'transparent' }}>
+                                    <i className="fas fa-thumbs-up"></i>
+                                </button>
+                                {offer.likes}
+                                <span className="separator"> | </span>
+                                {/* Replace "Dislikes" with a button */}
+                                <button type="button" className="dislikes-icon" style={{ border: 'none', backgroundColor: 'transparent' }}>
+                                    <i className="fas fa-thumbs-down"></i>
+                                </button>
+                                {offer.dislikes}
                             </div>
                         </div>
                     ))

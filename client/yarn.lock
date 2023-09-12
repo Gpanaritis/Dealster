@@ -4552,6 +4552,11 @@ domhandler@^4.0.0, domhandler@^4.2.0, domhandler@^4.3.1:
   dependencies:
     domelementtype "^2.2.0"
 
+dompurify@^3.0.5:
+  version "3.0.5"
+  resolved "https://registry.npmjs.org/dompurify/-/dompurify-3.0.5.tgz"
+  integrity sha512-F9e6wPGtY+8KNMRAVfxeCOHU0/NPWMSENNq4pQctuXRqqdEPW7q3CrLbR5Nse044WwacyjHGOMlvNsBe1y6z9A==
+
 domutils@^1.7.0:
   version "1.7.0"
   resolved "https://registry.npmjs.org/domutils/-/domutils-1.7.0.tgz"
@@ -11766,6 +11771,11 @@ unique-filename@^1.1.1:
   integrity sha512-Vmp0jIp2ln35UTXuryvjzkjGdRyf9b2lTXuSYUiPmzRcl3FDtYqAwOnTJkAngD9SWhnoJzDbTKwaOrZ+STtxNQ==
   dependencies:
     unique-slug "^2.0.0"
+
+unique-objects@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.npmjs.org/unique-objects/-/unique-objects-1.0.5.tgz"
+  integrity sha512-LzSSM2fsUBQbgD6qspBnKHe3+PjhLy22XMzJtpk4TPZJkwUXU1rQS3cyLnvDU6nXDe2pA8dL2WjT5yG7de1n6Q==
 
 unique-slug@^2.0.0:
   version "2.0.2"

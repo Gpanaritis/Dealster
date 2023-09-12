@@ -9,6 +9,7 @@
     "axios": "^0.26.1",
     "bootstrap": "^4.6.0",
     "darkreader": "^4.9.58",
+    "dompurify": "^3.0.5",
     "leaflet": "^1.9.4",
     "leaflet-easybutton": "^2.4.0",
     "react": "^17.0.2",
@@ -19,6 +20,7 @@
     "react-router-dom": "^6.2.2",
     "react-scripts": "4.0.3",
     "react-validation": "^3.0.7",
+    "unique-objects": "^1.0.5",
     "validator": "^13.0.0"
   },
   "scripts": {

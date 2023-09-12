@@ -15,9 +15,15 @@ const getProducts = async () => {
     return response.data;
 }
 
+const getCategories = async () => {
+    const response = await axios.get(API_URL + "categories", { headers: authHeader() });
+    return response.data;
+}
+
 const ProductService = {
     getProduct,
     getProducts,
+    getCategories
 };
 
 export default ProductService;

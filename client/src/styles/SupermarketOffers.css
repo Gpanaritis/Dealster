@@ -24,7 +24,7 @@
 
 .offer-card {
     border: 1px solid #ddd;
-    padding: 1.5rem 1.5rem 4rem;
+    padding: 1.5rem 1.5rem 3rem;
     margin: 1rem;
     width: 20rem;
     /* width: 300px; */
@@ -141,4 +141,52 @@
 .out-of-stock {
     color: #ff5733;
     /* ... existing styles ... */
+}
+
+.updatedAt {
+    /* Style for the updatedAt section */
+    margin-top: 0.5rem;
+    font-size: 0.7rem;
+    color: #666;
+    /* Adjust color to your preference */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.updatedAt-text {
+    /* Style for the text within updatedAt */
+    margin: 0;
+}
+
+.updatedAt-icon {
+    /* Style for the clock icon */
+    margin-right: 0.3rem;
+    color: #666;
+    /* Adjust color to your preference */
+}
+
+/* Style for the stock button */
+.stock-button {
+    background: transparent;
+    border: 2px solid #3498db;
+    /* Add a border with a different color */
+    border-radius: 5px;
+    /* Add rounded corners */
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    /* Add padding for clickable area */
+    font-size: inherit;
+    display: inline-flex;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+    /* Add smooth transition */
+}
+
+.stock-button:hover {
+    background-color: #3498db;
+    /* Change background color on hover */
+    color: white;
+    /* Change text color on hover */
+    border-color: #3498db;
+    /* Change border color on hover */
 }
