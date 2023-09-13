@@ -1,6 +1,6 @@
 // ProductSection.js
 import React, { useState } from 'react';
-
+import '../styles/AdminProducts.css'; // Import the CSS file
 function ProductSection() {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedSubcategory, setSelectedSubcategory] = useState('');
@@ -8,19 +8,18 @@ function ProductSection() {
   // Fetch categories and subcategories from your data source and populate them in dropdowns
 
   return (
-    <div>
+    <div className="centered-block">
       <h2>Προϊόντα</h2>
-      <div>
-        <label>Κατηγορία:</label>
+      <div  className="category-wrapper">
+        <label className="category-label">Κατηγορία:</label>
         <select
           value={selectedCategory}
           onChange={(e) => setSelectedCategory(e.target.value)}
         >
           {/* Populate categories in the options */}
         </select>
-      </div>
-      <div>
-        <label>Υποκατηγορία:</label>
+      
+        <label className="category-label">Υποκατηγορία:</label>
         <select
           value={selectedSubcategory}
           onChange={(e) => setSelectedSubcategory(e.target.value)}
