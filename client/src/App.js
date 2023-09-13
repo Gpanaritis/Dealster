@@ -32,6 +32,11 @@ import Offers from "./components/Offers";
 
 import EventBus from "./common/EventBus";
 
+//trying to do the thing
+
+import CategoryManagement from "./components/CategoryManagement"; 
+import ProductSection from "./components/ProductSection";
+
 const AppearanceMode = (Theme) => {
   if (Theme === 'light') {
     localStorage.setItem('dark-mode-enabled', 'false');
@@ -182,6 +187,9 @@ const App = () => {
           <Route path="/filteredSupermarkets/:supermarket_name" element={<FilteredSupermarkets />} />
           <Route path="/productsMap/:category_name" element={<ProductsMap />} />
           <Route path="/offers" element={<Offers />} />
+          {/* Include ProductSection */}
+          <Route path="/categories" element={<CategoryManagement />} />
+          <Route path="/products" element={<ProductSection />} />
         </Routes>
       </div>
 
