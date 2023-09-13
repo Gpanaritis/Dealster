@@ -1,35 +1,43 @@
 // ProductSection.js
-import React, { useState } from 'react';
-import '../styles/AdminProducts.css'; // Import the CSS file
-function ProductSection() {
-  const [selectedCategory, setSelectedCategory] = useState('');
-  const [selectedSubcategory, setSelectedSubcategory] = useState('');
+import React, { useState } from "react";
+import "../styles/AdminProducts.css";
+function AdminProductManagement() {
+  const [file, setFile] = useState(null);
 
-  // Fetch categories and subcategories from your data source and populate them in dropdowns
+  const handleFileUpload = (event) => {
+    const selectedFile = event.target.files[0];
+    if (selectedFile) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        try {
+          const jsonData = JSON.parse(e.target.result);
+          // Process the JSON data (update product prices, etc.)
+          // You can call a function to handle the data processing here.
+        } catch (error) {
+          console.error("Error parsing JSON file:", error);
+        }
+      };
+      reader.readAsText(selectedFile);
+    }
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (file) {
+      // Process the uploaded JSON file here
+      // You can call a function to handle the data processing here.
+    }
+  };
 
   return (
     <div className="centered-block">
-      <h2>Προϊόντα</h2>
-      <div  className="category-wrapper">
-        <label className="category-label">Κατηγορία:</label>
-        <select
-          value={selectedCategory}
-          onChange={(e) => setSelectedCategory(e.target.value)}
-        >
-          {/* Populate categories in the options */}
-        </select>
-      
-        <label className="category-label">Υποκατηγορία:</label>
-        <select
-          value={selectedSubcategory}
-          onChange={(e) => setSelectedSubcategory(e.target.value)}
-        >
-          {/* Populate subcategories based on the selected category */}
-        </select>
-      </div>
-      {/* Add buttons or actions for managing products */}
+      <h2>Διαχείριση Προϊόντων</h2>
+      <form onSubmit={handleSubmit}>
+        <input type="file" accept=".json" onChange={handleFileUpload} />
+        <button type="submit">Ανέβασμα JSON</button>
+      </form>
     </div>
   );
 }
 
-export default ProductSection;
+export default AdminProductManagement;
