@@ -126,8 +126,10 @@ const App = () => {
         <div className="navbar-nav">
       <SearchBar />
     </div>
-          {/* trying to do the thing again */}
-        {showAdminBoard && currentUser && (
+
+        {currentUser ? (
+          <div className="navbar-nav ml-auto">
+            {showAdminBoard && currentUser && (
           <div className="navbar-nav ml-auto">
           {/* Render the ProductSection link for admin users */}
             <Link to="/products" className="nav-link">
@@ -135,8 +137,6 @@ const App = () => {
             </Link>
           </div>
         )} 
-        {currentUser ? (
-          <div className="navbar-nav">
             <li className="nav-item">
               <Link to={"/profile"} className="nav-link">
                 {currentUser.username}
@@ -163,7 +163,7 @@ const App = () => {
             </li>
           </div>
         )}
-         
+
         {/* <DropdownButton title="Appearance">
           <Dropdown.Item onClick={() => AppearanceMode("light")}>
             Light Mode

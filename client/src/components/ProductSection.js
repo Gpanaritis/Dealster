@@ -1,9 +1,9 @@
-// ProductSection.js
 import React, { useState } from "react";
 import "../styles/AdminProducts.css";
 function AdminProductManagement() {
   const [file, setFile] = useState(null);
 
+  // Fetch categories and subcategories from your data source and populate them in dropdowns
   const handleFileUpload = (event) => {
     const selectedFile = event.target.files[0];
     if (selectedFile) {
@@ -31,13 +31,11 @@ function AdminProductManagement() {
 
   return (
     <div className="centered-block">
-      <h2>Διαχείριση Προϊόντων</h2>
+              <h2>Διαχείριση Προϊόντων</h2>
       <form onSubmit={handleSubmit}>
         <input type="file" accept=".json" onChange={handleFileUpload} />
         <button type="submit">Ανέβασμα JSON</button>
       </form>
     </div>
   );
-}
-
-export default AdminProductManagement;
+}   export default AdminProductManagement;
