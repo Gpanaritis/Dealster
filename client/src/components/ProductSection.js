@@ -14,6 +14,7 @@ function AdminProductManagement() {
         const response = await JRservice.uploadJSONFile(selectedFile);
         console.log("File upload response:", response);
         // Handle success or display a message to the user
+        alert("Upload successful!");
       } catch (error) {
         console.error("Error uploading JSON file:", error);
         // Handle the error and display an error message
