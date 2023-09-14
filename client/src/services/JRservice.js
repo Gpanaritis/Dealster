@@ -1,13 +1,44 @@
 import axios from "axios";
 import authHeader from "./auth-header";
 
+const API_URL = "http://localhost:3000"; // Replace with your actual backend URL
 
-const API_URL = "http://localhost:3000/";
+// Function to upload a JSON file
+const uploadJSONFile = async (file) => {
+  const formData = new FormData();
+  formData.append("jsonFile", file);
 
-const postJSONtoApi = async (url, data) => { 
-    const response = await axios.post(API_URL + url, data, { headers: authHeader() });
-    return response;
-}
+  try {
+    const response = await axios.post(`${API_URL}/upload-json`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
 
+    return response.data;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
 
-export default postJSONtoApi;
+// Function to update JSON data (you can customize this)
+const updateJSONData = async (jsonData) => {
+  try {
+    const response = await axios.put(`${API_URL}/update-json`, jsonData, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    return response.data;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+const JRservice = {
+  uploadJSONFile,
+  updateJSONData,
+};
+
+export default JRservice;

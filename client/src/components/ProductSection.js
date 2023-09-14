@@ -1,41 +1,48 @@
+// ProductSection.js
+
 import React, { useState } from "react";
 import "../styles/AdminProducts.css";
+import JRservice from "../services/JRservice";
+
 function AdminProductManagement() {
   const [file, setFile] = useState(null);
 
-  // Fetch categories and subcategories from your data source and populate them in dropdowns
-  const handleFileUpload = (event) => {
+  const handleFileUpload = async (event) => {
     const selectedFile = event.target.files[0];
     if (selectedFile) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        try {
-          const jsonData = JSON.parse(e.target.result);
-          // Process the JSON data (update product prices, etc.)
-          // You can call a function to handle the data processing here.
-        } catch (error) {
-          console.error("Error parsing JSON file:", error);
-        }
-      };
-      reader.readAsText(selectedFile);
+      try {
+        const response = await JRservice.uploadJSONFile(selectedFile);
+        console.log("File upload response:", response);
+        // Handle success or display a message to the user
+      } catch (error) {
+        console.error("Error uploading JSON file:", error);
+        // Handle the error and display an error message
+      }
     }
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    if (file) {
-      // Process the uploaded JSON file here
-      // You can call a function to handle the data processing here.
+  const handleUpdateData = async () => {
+    // Prepare the JSON data you want to update
+    const jsonData = { /* Your JSON data here */ };
+    try {
+      const response = await JRservice.updateJSONData(jsonData);
+      console.log("Data update response:", response);
+      // Handle success or display a message to the user
+    } catch (error) {
+      console.error("Error updating JSON data:", error);
+      // Handle the error and display an error message
     }
   };
 
   return (
     <div className="centered-block">
-              <h2>Διαχείριση Προϊόντων</h2>
-      <form onSubmit={handleSubmit}>
+      <h2>Διαχείριση Προϊόντων</h2>
+      <form>
         <input type="file" accept=".json" onChange={handleFileUpload} />
-        <button type="submit">Ανέβασμα JSON</button>
+        <button type="button" onClick={handleUpdateData}>upload JSON</button>
       </form>
     </div>
   );
-}   export default AdminProductManagement;
+}
+
+export default AdminProductManagement;
