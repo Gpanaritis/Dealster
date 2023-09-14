@@ -40,7 +40,7 @@ const Offers = ({ supermarket_id, link }) => {
             <div className="offer-container">
                 {Array.isArray(offers) && offers.length > 0 ? (
                     offers.map((offer) => (
-                        <div key={offer.id} className={`offer-card-map ${offer.stock ? '' : 'out-of-stock'}`}>
+                        <div key={offer.id} className={`offer-card-map ${offer.stock ? '' : 'out-of-stock-gray'}`}>
                             <h5>
                                 <a className="offer-link text-black" href={`/product/${offer.product.id}`}>
                                     {offer.product.name}
@@ -55,11 +55,11 @@ const Offers = ({ supermarket_id, link }) => {
                                 <div className="stock-and-updated">
                                     <p className="stock-status">
                                         {offer.stock ? (
-                                            <span className="in-stock">
+                                            <span className="in-stock-map">
                                                 <i className="fas fa-check-circle"></i> In Stock
                                             </span>
                                         ) : (
-                                            <span className="out-of-stock">
+                                            <span className="out-of-stock-map">
                                                 <i className="fas fa-times-circle"></i> Out of Stock
                                             </span>
                                         )}
@@ -73,10 +73,10 @@ const Offers = ({ supermarket_id, link }) => {
                                     </p>
                                 </div>
                             </div>
-                            <div className="username">
+                            <div className="username" style={{pointerEvents: "none"}}>
                                 By: <a href={`/user/${offer.username}`}>{offer.username}</a>
                             </div>
-                            <div className="likes-dislikes">
+                            <div className="likes-dislikes" style={{pointerEvents: "none"}}>
                                 {/* Replace "Likes" with thumbs-up icon */}
                                 <span className="likes-icon">
                                     <i className="fas fa-thumbs-up"></i>

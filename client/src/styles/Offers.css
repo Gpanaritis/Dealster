@@ -56,3 +56,13 @@
     /* Add padding to the bottom of the offer card */
     padding-bottom: 2rem;
 }
+
+.in-stock-map {
+    color: #4caf50;
+    /* ... existing styles ... */
+}
+
+.out-of-stock-map {
+    color: #ff5733;
+    /* ... existing styles ... */
+}

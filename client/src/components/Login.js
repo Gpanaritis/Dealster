@@ -48,7 +48,8 @@ const Login = () => {
     if (checkBtn.current.context._errors.length === 0) {
       AuthService.login(email, password).then(
         () => {
-          navigate("/profile");
+          const currentUser = AuthService.getCurrentUser();
+          navigate(`/profile/${currentUser.username}`);
           window.location.reload();
         },
         (error) => {

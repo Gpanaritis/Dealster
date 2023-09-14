@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, createRef } from "react";
+import React, { useState, useEffect} from "react";
 import ReactDOM from "react-dom";
 import AuthService from "../services/auth.service";
 import SupermarketService from "../services/supermarket.service";
@@ -13,7 +13,6 @@ import Offers from "./Offers";
 
 const Map = ({ selectedSupermarkets, filterType, activeFilter }) => {
     const [map, setMap] = useState(null);
-    const currentUser = AuthService.getCurrentUser();
     const [supermarkets, setSupermarkets] = useState(null);
     const [location, setLocation] = useState(null);
 
@@ -75,7 +74,7 @@ const Map = ({ selectedSupermarkets, filterType, activeFilter }) => {
                     const numOffers = supermarket.num_offers;
                     link = `<a href="${url}">${numOffers} offer${numOffers !== 1 ? 's' : ''} available</a>`;
                 }
-                if (!Array.isArray(selectedSupermarkets)) {
+                if (!Array.isArray(selectedSupermarkets) || selectedSupermarkets?.includes(supermarket.id)) {
                     const marker = L.marker([supermarket.latitude, supermarket.longitude], { icon }).addTo(map);
                     // marker.bindPopup(`${supermarket.name}<br>${link}`);
                     marker.bindPopup(function (layer) {
@@ -93,10 +92,6 @@ const Map = ({ selectedSupermarkets, filterType, activeFilter }) => {
                         return container;
                       });
                       
-                }
-                else if (selectedSupermarkets.includes(supermarket.id)) {
-                    const marker = L.marker([supermarket.latitude, supermarket.longitude], { icon }).addTo(map);
-                    marker.bindPopup(`${supermarket.name}<br>${link}`);
                 }
             }
         };

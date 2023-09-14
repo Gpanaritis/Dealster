@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const {verifyToken} = require('./middleware/authJwt');
+const schedule = require('./cronJobs/cronJob');
 
 app.use(express.json());
 app.use(cors());
@@ -28,6 +29,8 @@ app.use('/supermarkets', supermarketsRouter);
 app.use('/reactions', ReactionsRouter);
 app.use('/roles', rolesRouter);
 
+
+// schedule.start();
 
 db.sequelize.sync().then(() => {
     app.listen(3000, () => {

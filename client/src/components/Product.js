@@ -71,7 +71,7 @@ const Product = () => {
             supermarketWithPrices.map((supermarket) => (
               <div key={supermarket.id} className="product-offer-card">
                 <div className="offer-details">
-                  <h2 className="supermarket-name"><a className="offer-link text-black" href={`/supermarketOffers/${supermarket.id}`}>{supermarket.name}</a></h2>
+                  <h2 className="supermarket-name"><a className="offer-link text-black" href={`/filteredSupermarkets/${supermarket.name}`}>{supermarket.name}</a></h2>
                   <p className="supermarket-address">{supermarket.address}</p>
                   <p className="discount-price">
                     {supermarket.isOfferPrice ? (

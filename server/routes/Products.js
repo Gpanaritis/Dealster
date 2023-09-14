@@ -80,7 +80,7 @@ router.get('/:product_id/subcategories', async (req, res) => {
     try {
         const product = await Products.findByPk(req.params.product_id, {
             include: {
-                model: Subcategories,
+                model: Subcategory,
                 as: 'subcategories',
                 attributes: ['id', 'name'],
                 through: { attributes: [] }

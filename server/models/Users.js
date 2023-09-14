@@ -26,6 +26,24 @@ module.exports = (sequelize, DataTypes) => {
             type : DataTypes.STRING,
             allowNull: true
         },
+        points:
+        {
+            type : DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 0,
+            validate: {
+                min: 0
+            }
+        },
+        monthly_points:
+        {
+            type : DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 0,
+            validate: {
+                min: 0
+            }
+        },
         createdAt: DataTypes.DATE,
         updatedAt: DataTypes.DATE
     }

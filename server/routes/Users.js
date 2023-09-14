@@ -3,7 +3,7 @@ const router = express.Router();
 const db = require('../models');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const {verifyToken, isAdmin} = require('../middleware/authJwt');
+const {verifyToken, isAdmin, getUserFromToken, getUserIdFromToken} = require('../middleware/authJwt');
 // const op = require('sequelize').Op;
 
 const Users = db.Users;
@@ -122,11 +122,67 @@ router.get('/me', async (req, res) => {
     }
 
     try {
-        const decoded = jwt.verify(token, process.env.TOKEN_KEY);
-        req.user = decoded;
-        res.json(req.user);
+        const userId = getUserIdFromToken(token);
+        const user = await Users.findByPk(userId);
+        let authorities = [];
+        const roles = await user.getRoles();
+        for (let i = 0; i < roles.length; i++) {
+            authorities.push("ROLE_" + roles[i].name.toUpperCase());
+        }
+        res.status(200).send({
+            id: user.id,
+            username: user.username,
+            email: user.email,
+            roles: authorities,
+            accessToken: token
+        });
     } catch (ex) {
         res.status(400).send("Invalid token.");
+    }
+});
+
+router.put('/changeUsername/:username', verifyToken, async (req, res) => {
+    const {username} = req.params;
+    // Check if user exist
+    const old_username = await Users.findOne({ where: { username: username } });
+    if (old_username) {
+        return res.status(409).send("Username is already taken. Please choose another one");
+    }
+
+    const token = req.headers['x-access-token'];
+    const userId = getUserIdFromToken(token)
+    const user = await Users.findByPk(userId);
+    if (user) {
+        user.username = username;
+        await user.save();
+        res.status(200).send({
+            id: user.id,
+            username: user.username,
+            email: user.email,
+            accessToken: token
+        });
+    } else {
+        res.status(400).send("User not found");
+    }
+});
+
+// add also the change password route
+router.put('/changePassword', verifyToken, async (req, res) => {
+    const { oldPassword, newPassword } = req.body;
+    const userId = getUserIdFromToken(req.headers["x-access-token"]);
+    const user = await Users.findByPk(userId);
+    if (user) {
+        const isOldPasswordValid = await bcrypt.compare(oldPassword, user.password);
+        if (isOldPasswordValid) {
+            const encryptedPassword = await bcrypt.hash(newPassword, 10);
+            user.password = encryptedPassword;
+            await user.save();
+            res.status(200).send("Password changed successfully");
+        } else {
+            res.status(400).send("Old password is incorrect");
+        }
+    } else {
+        res.status(400).send("User not found");
     }
 });
 
