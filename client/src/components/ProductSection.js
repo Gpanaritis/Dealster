@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import "../styles/AdminProducts.css";
-import JRservice from "../services/JRservice";
+import JRservice from "../services/JR.service";
 
 function AdminProductManagement() {
   const [jsonData, setJsonData] = useState(null);
