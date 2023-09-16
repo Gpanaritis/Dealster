@@ -5,16 +5,22 @@ import "../styles/AdminProducts.css";
 import JRservice from "../services/JRservice";
 
 function AdminProductManagement() {
-  const [file, setFile] = useState(null);
+  const [jsonData, setJsonData] = useState(null);
 
   const handleFileUpload = async (event) => {
     const selectedFile = event.target.files[0];
     if (selectedFile) {
       try {
-        const response = await JRservice.uploadJSONFile(selectedFile);
-        console.log("File upload response:", response);
-        // Handle success or display a message to the user
-        alert("Upload successful!");
+        const fileReader = new FileReader();
+        fileReader.readAsText(selectedFile, "UTF-8");
+        fileReader.onload = (event) => {
+          const jsonData = JSON.parse(event.target.result);
+          setJsonData(jsonData);
+        };
+        fileReader.onerror = (event) => {
+          console.error("Error reading file:", event.target.error);
+          // Handle the error and display an error message
+        };
       } catch (error) {
         console.error("Error uploading JSON file:", error);
         // Handle the error and display an error message
@@ -24,8 +30,8 @@ function AdminProductManagement() {
 
   const handleUpdateData = async () => {
     // Prepare the JSON data you want to update
-    const jsonData = { /* Your JSON data here */ };
     try {
+      console.log("Data to update:", jsonData);
       const response = await JRservice.updateJSONData(jsonData);
       console.log("Data update response:", response);
       // Handle success or display a message to the user

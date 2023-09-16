@@ -24,9 +24,10 @@ const uploadJSONFile = async (file) => {
 // Function to update JSON data (you can customize this)
 const updateJSONData = async (jsonData) => {
   try {
-    const response = await axios.put(`${API_URL}/update-json`, jsonData, {
+    const response = await axios.post(`${API_URL}/products`, jsonData, {
       headers: {
         "Content-Type": "application/json",
+        ...authHeader()
       },
     });
 

@@ -29,13 +29,10 @@ import SearchBar from "./components/SearchBar";
 import ProductsMap from "./components/productsMap";
 import FilteredSupermarkets from "./components/filteredSupermarkets";
 import Offers from "./components/Offers";
+import CategoryManagement from "./components/CategoryManagement";
+import ProductSection from "./components/ProductSection";
 
 import EventBus from "./common/EventBus";
-
-//trying to do the thing
-
-import CategoryManagement from "./components/CategoryManagement"; 
-import ProductSection from "./components/ProductSection";
 
 const AppearanceMode = (Theme) => {
   if (Theme === 'light') {
