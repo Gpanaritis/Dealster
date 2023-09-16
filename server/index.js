@@ -19,6 +19,8 @@ const offersRouter = require('./routes/Offers');
 const supermarketsRouter = require('./routes/Super_markets');
 const ReactionsRouter = require('./routes/Reactions');
 const rolesRouter = require('./routes/Roles');
+const pointsRouter = require('./routes/Points');
+const tokensRouter = require('./routes/Tokens');
 
 app.use('/auth', usersRouter);
 app.use('/categories', categoriesRouter);
@@ -28,6 +30,9 @@ app.use('/offers', offersRouter);
 app.use('/supermarkets', supermarketsRouter);
 app.use('/reactions', ReactionsRouter);
 app.use('/roles', rolesRouter);
+app.use('/points', pointsRouter);
+app.use('/tokens', tokensRouter);
+
 
 
 // schedule.start();

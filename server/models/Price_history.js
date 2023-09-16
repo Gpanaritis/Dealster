@@ -1,15 +1,12 @@
 module.exports = (sequelize, DataTypes) => {
     const Price_history = sequelize.define('Price_history', {
-        date:
-        {
-            type : DataTypes.DATE,
-            allowNull: false
-        },
         price:
         {
             type : DataTypes.DECIMAL(10, 2),
             allowNull: false
         },
+        createdAt: DataTypes.DATE,
+        updatedAt: DataTypes.DATE
     }
     );
 

@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { Reactions } = require('../models');
 const {getUserIdFromToken} = require('../middleware/authJwt');
-const { Offers, Users } = require('../models');
+const { Offers, Users, Points } = require('../models');
 
 //get all reactions for an offer
 router.get('/offer/:offerId', async (req, res) => {
@@ -40,17 +40,21 @@ router.put('/like/:offerId', async (req, res) => {
             if(reaction.reaction === "like"){
                 // remove reaction
                 await reaction.destroy();
-                // remove points
-                user.monthly_points -= 5;
-                await user.save();
+                const pointsEntry = await Points.create({
+                    points: -5,
+                    user_id: userId
+                });
+
             }
             else{
                 // change reaction
                 reaction.reaction = "like";
                 await reaction.save();
                 // add points
-                user.monthly_points += 6;
-                await user.save();
+                const pointsEntry = await Points.create({
+                    points: 6,
+                    user_id: userId
+                });
 
             }
             res.json(reaction);
@@ -58,8 +62,10 @@ router.put('/like/:offerId', async (req, res) => {
         else{
             const reaction = await Reactions.create({ offer_id: req.params.offerId, user_id: userId, reaction: "like" });
             // add points
-            user.monthly_points += 5;
-            await user.save();
+            const pointsEntry = await Points.create({
+                points: 5,
+                user_id: userId
+            });
             res.json(reaction);
         }
     } catch (error) {
@@ -83,8 +89,10 @@ router.put('/dislike/:offerId', async (req, res) => {
                 // remove reaction
                 await reaction.destroy();
                 // add points
-                user.monthly_points += 1;
-                await user.save();
+                const pointsEntry = await Points.create({
+                    points: 1,
+                    user_id: userId
+                });
                 
             }
             else{
@@ -93,16 +101,20 @@ router.put('/dislike/:offerId', async (req, res) => {
                 await reaction.save();
                 console.log(reaction);
                 // remove points
-                user.monthly_points -= 6;
-                await user.save();
+                const pointsEntry = await Points.create({
+                    points: -6,
+                    user_id: userId
+                });
             }
             res.json(reaction);
         }
         else{
             const reaction = await Reactions.create({ offer_id: req.params.offerId, user_id: userId, reaction: "dislike" });
             // remove points
-            user.monthly_points -= 1;
-            await user.save();
+            const pointsEntry = await Points.create({
+                points: -1,
+                user_id: userId
+            });
             res.json(reaction);
         }
     } catch (error) {

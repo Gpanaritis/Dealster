@@ -8,7 +8,6 @@ import "../../styles/SupermarketOffers.css";
 const ReactionsAdded = ({ username }) => {
     const [offers, setOffers] = useState([]);
     const currentUser = AuthService.getCurrentUser();
-    console.log(currentUser);
 
     const likeClickHandler = async (offerId) => {
         if (!username) {
@@ -136,7 +135,7 @@ const ReactionsAdded = ({ username }) => {
                             </div>
                             <div 
                                 className={`likes-dislikes ${offer.stock ? '' : 'out-of-stock-gray'}`}
-                                style={{pointerEvents: currentUser.username !== username ? 'none' : 'auto'}}>
+                                style={{pointerEvents: currentUser.username !== username ? 'none' : ''}}>
                                 {/* Replace "Likes" with a button */}
                                 <button
                                     type="button"

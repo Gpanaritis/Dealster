@@ -1,50 +1,89 @@
 const express = require('express');
 const router = express.Router();
 const { Op } = require('sequelize');
-const { Offers, Super_markets, Reactions, Products, Users } = require('../models');
+const { Offers, Super_markets, Reactions, Products, Users, Points, Price_history } = require('../models');
 const uniqueObjects = require('unique-objects');
 const { verifyToken, isAdmin, getUserIdFromToken } = require('../middleware/authJwt');
 
-const findMeanPriceYesterday = (offerId) => {
+// const findMeanPriceYesterday = (offerId) => {
+//     return new Promise(async (resolve, reject) => {
+//         try {
+//             const offers = await Offers.findAll({ where: { product_id: offerId, stock: true } });
+//             const product = await Products.findByPk(offerId);
+
+//             // Convert the offer prices to numeric values
+//             const numericPrices = offers.map((offer) => parseFloat(offer.price));
+
+//             // Sum of numeric prices
+//             const sum = numericPrices.reduce((acc, price) => acc + price, 0);
+
+//             // Calculate mean price
+//             const meanPrice = offers.length > 0 ? (sum + parseFloat(product.price)) / (offers.length + 1) : parseFloat(product.price);
+
+//             console.log(meanPrice);
+//             console.log(product.price);
+
+//             resolve(meanPrice);
+//         } catch (error) {
+//             reject(error);
+//         }
+//     });
+// };
+
+const findMeanPriceYesterday = (productId) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const offers = await Offers.findAll({ where: { product_id: offerId, stock: true } });
-            const product = await Products.findByPk(offerId);
-
-            // Convert the offer prices to numeric values
-            const numericPrices = offers.map((offer) => parseFloat(offer.price));
-
-            // Sum of numeric prices
-            const sum = numericPrices.reduce((acc, price) => acc + price, 0);
-
-            // Calculate mean price
-            const meanPrice = offers.length > 0 ? (sum + parseFloat(product.price)) / (offers.length + 1) : parseFloat(product.price);
-
-            console.log(meanPrice);
-            console.log(product.price);
-
-            resolve(meanPrice);
+            const today = new Date();
+            const startOfDay = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 0, 0, 0, 0);
+            const endOfDay = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 23, 59, 59, 999);
+            const priceHistory = await Price_history.findOne({
+                where: {
+                    product_id: productId,
+                    createdAt: { [Op.between]: [startOfDay, endOfDay] }
+                }
+            });
+            resolve(priceHistory.price);
         } catch (error) {
             reject(error);
         }
     });
 };
+            
 
+// const findMeanPriceWeek = (offerId) => {
+//     return new Promise(async (resolve, reject) => {
+//         try {
+//             const oneWeekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+//             const offers = await Offers.findAll({
+//                 where: {
+//                     product_id: offerId,
+//                     updatedAt: { [Op.lt]: oneWeekAgo }
+//                 }
+//             });
+//             const product = await Products.findByPk(offerId);
+//             const sum = offers.reduce((acc, offer) => acc + offer.price, 0);
+//             const meanPrice = (sum + product.price) / (offers.length + 1);
+//             resolve(meanPrice);
+//         } catch (error) {
+//             reject(error);
+//         }
+//     });
+// };
 
-const findMeanPriceWeek = (offerId) => {
+const findMeanPriceWeek = (productId) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const oneWeekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
-            const offers = await Offers.findAll({
+            const today = new Date();
+            const oneWeekAgo = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7, 0, 0, 0, 0);
+            const priceHistory = await Price_history.findAll({
                 where: {
-                    product_id: offerId,
-                    updatedAt: { [Op.lt]: oneWeekAgo }
+                    product_id: productId,
+                    createdAt: { [Op.gte]: oneWeekAgo }
                 }
             });
-            const product = await Products.findByPk(offerId);
-            const sum = offers.reduce((acc, offer) => acc + offer.price, 0);
-            const meanPrice = (sum + product.price) / (offers.length + 1);
-            resolve(meanPrice);
+
+            const prices = priceHistory.map(price => parseFloat(price.price));
+            const meanPrice = prices.length > 0 ? prices.reduce((sum, price) => sum + price, 0) / prices.length : 0;            resolve(meanPrice);
         } catch (error) {
             reject(error);
         }
@@ -143,10 +182,10 @@ router.get('/supermarkets/empty', async (req, res) => {
 router.get('/supermarket/:super_market_id', async (req, res) => {
     try {
         let userId;
-        try{
+        try {
             userId = getUserIdFromToken(req.headers["x-access-token"]);
         }
-        catch(error){
+        catch (error) {
             console.log("no token");
         }
         const offers = await Offers.findAll({
@@ -300,7 +339,7 @@ router.post('/', verifyToken, async (req, res) => {
             }
             // find offer with the same product_id and supermarket_id and user_id
             const user_offer = await Offers.findOne({ where: { product_id: req.body.product_id, supermarket_id: req.body.supermarket_id, user_id: user_id } });
-            if (0.8*user_offer?.price < offerPrice) {
+            if (0.8 * user_offer?.price < offerPrice) {
                 res.status(400).json({ message: 'Offer already exists. (And is not 20% less than previous)' });
                 return;
             }
@@ -312,17 +351,19 @@ router.post('/', verifyToken, async (req, res) => {
                 return;
             }
             const meanPriceWeek = await findMeanPriceWeek(req.body.product_id);
-            if (offerPrice < 0.8*meanPrice) {
+            if (offerPrice < 0.8 * meanPrice) {
                 points += 50;
             }
-            if (offerPrice < 0.8*meanPriceWeek) {
+            if (offerPrice < 0.8 * meanPriceWeek) {
                 points += 20;
             }
-
-            // update user monthly points
-            const user = await Users.findByPk(user_id);
-            user.monthly_points += points;
-            await user.save();
+            if (points > 0) {
+                // create a new points entry
+                const pointsEntry = await Points.create({
+                    points: points,
+                    user_id: user_id
+                });
+            }
 
             const offer = await Offers.create({
                 ...req.body,

@@ -6,6 +6,7 @@ import ChangeUsername from "./ChangeUserDetails/ChangeUsername";
 import ChangePassword from "./ChangeUserDetails/ChangePassword";
 import OffersAdded from "./ChangeUserDetails/OffersAdded";
 import ReactionsAdded from "./ChangeUserDetails/ReactionsAdded";
+import PointsDetails from "./ChangeUserDetails/PointsDetails";
 
 import "../styles/Profile.css"; // Import your CSS file for styling
 
@@ -29,6 +30,9 @@ const Profile = () => {
         </h3>
       </header>
       <Tabs activeKey={activeTab} onSelect={handleTabSelect}>
+        <Tab eventKey="points" title="Points">
+          <PointsDetails username={username} />
+        </Tab>
         <Tab eventKey="offers" title="Past Offers">
           <OffersAdded username={username} />
         </Tab>

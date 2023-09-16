@@ -44,6 +44,8 @@ db.Super_markets = require('./Super_markets')(sequelize, Sequelize);
 db.Reactions = require('./Reactions')(sequelize, Sequelize);
 db.Price_history = require('./Price_history')(sequelize, Sequelize);
 db.Roles = require('./Roles')(sequelize, Sequelize);
+db.Points = require('./Points')(sequelize, Sequelize);
+db.Tokens = require('./Tokens')(sequelize, Sequelize);
 
 // associations
 db.Category.hasMany(db.Subcategory, { foreignKey: 'category_id', as: 'subcategories' });
@@ -70,6 +72,10 @@ db.Users.hasMany(db.Reactions, { foreignKey: 'user_id', as: 'reactions' });
 
 db.Roles.belongsToMany(db.Users, { through: 'Users_Roles', as: 'users', foreignKey: 'role_id', otherKey: 'user_id' });
 db.Users.belongsToMany(db.Roles, { through: 'Users_Roles', as: 'roles', foreignKey: 'user_id', otherKey: 'role_id' });
+
+db.Users.hasMany(db.Points, { foreignKey: 'user_id', as: 'points' });
+
+db.Users.hasMany(db.Tokens, { foreignKey: 'user_id', as: 'tokens' } );
 
 
 module.exports = db;
