@@ -1,0 +1,48 @@
+/* Style the products link */
+.nav-link.products-link {
+    color: #fff; /* Text color */
+    background-color: #007bff; /* Background color */
+    padding: 10px 15px; /* Padding */
+    margin-right: 10px; /* Right margin */
+    border-radius: 5px; /* Rounded corners */
+    text-decoration: none; /* Remove underlines */
+    transition: background-color 0.3s ease; /* Smooth transition */
+  }
+  
+  /* Hover effect for the products link */
+  .nav-link.products-link:hover {
+    background-color: #0056b3; /* Change background color on hover */
+  }
+  
+  /* Style the section container */
+  .products-section {
+    padding: 20px; /* Add some padding to the section */
+  }
+  /*again try sth*/
+  /* AdminProducts.css */
+.centered-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center horizontally */
+    justify-content: center; /* Center vertically */
+    text-align: center; /* Center text within the block */
+    margin-top: 50px;
+  }
+  
+  .product-section-title {
+    font-size: 24px; /* Adjust the font size as needed */
+    margin-bottom: 16px; /* Add spacing between title and categories */
+  }
+  
+  /* Add additional styling for your categories here */
+  /* Horizontal layout for category and subcategory */
+.category-wrapper {
+    display: flex;
+    flex-direction: row; /* Display items side by side */
+    justify-content: center; /* Center horizontally within the wrapper */
+    align-items: center; /* Center vertically within the wrapper */
+  }
+  
+  .category-label {
+    margin: 0 15px; /* Add spacing between labels */
+  }
