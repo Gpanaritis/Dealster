@@ -15,6 +15,7 @@ const Map = ({ selectedSupermarkets, filterType, activeFilter }) => {
     const [map, setMap] = useState(null);
     const [supermarkets, setSupermarkets] = useState(null);
     const [location, setLocation] = useState(null);
+    const [showAdminBoard, setShowAdminBoard] = useState(false);
 
     const greenIcon = icon({
         iconUrl: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png",
@@ -52,6 +53,23 @@ const Map = ({ selectedSupermarkets, filterType, activeFilter }) => {
         shadowSize: [41, 41]
     });
 
+    useEffect(() => {
+        const getUser = async () => {
+            try{
+                const user = await AuthService.getCurrentUser();
+                if(user){
+                    setShowAdminBoard(user.roles.includes("ROLE_ADMIN"));
+                }
+            }
+            catch(error){
+                console.error(error);
+            }
+        }
+
+        getUser();
+            
+    }, []);
+
 
     useEffect(() => {
         if (!map) return;
@@ -60,8 +78,8 @@ const Map = ({ selectedSupermarkets, filterType, activeFilter }) => {
             for (let supermarket of response) {
                 let icon;
                 let link;
-                if (supermarket.is_near === 1) {
-                    icon = greenIcon;
+                if (supermarket.is_near === 1 ||showAdminBoard) {
+                    icon = showAdminBoard? supermarket.num_offers === 0 ? redIcon : blueIcon : greenIcon;
                     const numOffers = supermarket.num_offers;
                     const addOfferUrl = `/addOffer/${supermarket.id}`;
                     const addOfferLink = `<a href="${addOfferUrl}">Add offer</a>`;
@@ -70,9 +88,9 @@ const Map = ({ selectedSupermarkets, filterType, activeFilter }) => {
                     link = `${addOfferLink} | ${supermarketOffersLink}`;
                 } else {
                     icon = supermarket.num_offers === 0 ? redIcon : blueIcon;
-                    const url = `/supermarketOffers/${supermarket.id}`;
-                    const numOffers = supermarket.num_offers;
-                    link = `<a href="${url}">${numOffers} offer${numOffers !== 1 ? 's' : ''} available</a>`;
+                    // const url = `/supermarketOffers/${supermarket.id}`;
+                    // const numOffers = supermarket.num_offers;
+                    // link = `<a href="${url}">${numOffers} offer${numOffers !== 1 ? 's' : ''} available</a>`;
                 }
                 if (!Array.isArray(selectedSupermarkets) || selectedSupermarkets?.includes(supermarket.id)) {
                     const marker = L.marker([supermarket.latitude, supermarket.longitude], { icon }).addTo(map);

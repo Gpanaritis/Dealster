@@ -42,7 +42,13 @@ const findMeanPriceYesterday = (productId) => {
                     createdAt: { [Op.between]: [startOfDay, endOfDay] }
                 }
             });
-            resolve(priceHistory.price);
+            // return big number if no price history
+            if (!priceHistory) {
+                resolve(1000000);
+                return;
+            }
+            const meanPrice = parseFloat(priceHistory.price);
+            resolve(meanPrice);
         } catch (error) {
             reject(error);
         }
@@ -83,7 +89,8 @@ const findMeanPriceWeek = (productId) => {
             });
 
             const prices = priceHistory.map(price => parseFloat(price.price));
-            const meanPrice = prices.length > 0 ? prices.reduce((sum, price) => sum + price, 0) / prices.length : 0;            resolve(meanPrice);
+            const meanPrice = prices.length > 0 ? prices.reduce((sum, price) => sum + price, 0) / prices.length : 0;
+            resolve(meanPrice);
         } catch (error) {
             reject(error);
         }
@@ -346,6 +353,7 @@ router.post('/', verifyToken, async (req, res) => {
 
             // calculate mean price
             const meanPrice = await findMeanPriceYesterday(req.body.product_id);
+            console.log(meanPrice, "HERE");
             if (offerPrice >= meanPrice) {
                 res.status(400).json({ message: 'Offer price must be lower than mean price' });
                 return;
@@ -375,6 +383,19 @@ router.post('/', verifyToken, async (req, res) => {
     catch (error) {
         console.error(`Error creating offer: ${error}`);
         res.status(500).json({ message: 'Error creating offer' });
+    }
+});
+
+// delete an offer
+router.delete('/:offerId', [verifyToken, isAdmin], async (req, res) => {
+    try {
+        const offer = await Offers.findByPk(req.params.offerId);
+        await offer.destroy();
+        res.json({ message: 'Offer deleted successfully' });
+    }
+    catch (error) {
+        console.error(`Error deleting offer: ${error}`);
+        res.status(500).json({ message: 'Error deleting offer' });
     }
 });
 

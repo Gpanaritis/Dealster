@@ -196,7 +196,7 @@ router.get('/category_name/:category_name', async (req, res) => {
 
 
 //post a new supermarket
-router.post('/', async (req, res) => {
+router.post('/one', async (req, res) => {
     try {
         const supermarket = await Super_markets.create(req.body);
         res.json(supermarket);
@@ -226,7 +226,7 @@ router.post('/geojson', async (req, res) => {
     }
 });
 
-router.post('/geo', async (req, res) => {
+router.post('/', async (req, res) => {
     try {
         const supermarkets = req.body.features;
         const supermarketsData = [];
@@ -235,6 +235,15 @@ router.post('/geo', async (req, res) => {
             if (supermarket.properties.name) {
                 const latitude = supermarket.geometry.coordinates[1];
                 const longitude = supermarket.geometry.coordinates[0];
+
+                // check to see if the supermarket already exists
+                const existingSupermarket = await Super_markets.findOne({
+                    where: {
+                        latitude: latitude,
+                        longitude: longitude
+                    }
+                });
+                if (existingSupermarket) continue;
 
                 // Make a request to the Nominatim API for reverse geocoding
                 const response = await axios.get(
@@ -264,7 +273,7 @@ router.post('/geo', async (req, res) => {
             }
         }
 
-        await Super_markets.bulkCreate(supermarketsData);
+        await Super_markets.bulkCreate(supermarketsData, { ignoreDuplicates: true });
         res.json(supermarketsData);
     } catch (error) {
         console.error(`Error creating supermarkets: ${error}`);

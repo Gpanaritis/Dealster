@@ -20,10 +20,16 @@ const getCategories = async () => {
     return response.data;
 }
 
+const removeOffer = async (offerId) => {
+    const response = await axios.delete(API_URL + `offers/${offerId}`, { headers: authHeader() });
+    return response.data;
+}
+
 const ProductService = {
     getProduct,
     getProducts,
-    getCategories
+    getCategories,
+    removeOffer
 };
 
 export default ProductService;

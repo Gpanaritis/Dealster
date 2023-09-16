@@ -5,8 +5,11 @@ module.exports = (sequelize, DataTypes) => {
             type : DataTypes.DECIMAL(10, 2),
             allowNull: false
         },
-        createdAt: DataTypes.DATE,
-        updatedAt: DataTypes.DATE
+        date: {
+            type: DataTypes.DATEONLY,
+            allowNull: false,
+            defaultValue: sequelize.literal('CURRENT_DATE')
+        }
     }
     );
 

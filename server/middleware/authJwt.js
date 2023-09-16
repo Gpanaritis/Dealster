@@ -21,7 +21,6 @@ verifyToken = (req, res, next) => {
 };
 
 isAdmin = async (req, res, next) => {
-
   const user = await Users.findOne({ where: { id: req.user.user_id } });
   const roles = await user.getRoles();
   for (let i = 0; i < roles.length; i++) {

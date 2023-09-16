@@ -25,13 +25,13 @@ router.get('/:category_id/subcategories', async (req, res) => {
 router.post('/', async (req, res) => {
     try{
         // if category already exists, return error
-        const existingCategory = await Category.findOne({ where: { name: req.body.name } });
-        if(existingCategory){
-            return res.status(409).json({ error: 'Category already exists' });
-        }
+        // const existingCategory = await Category.findOne({ where: { name: req.body.name } });
+        // if(existingCategory){
+        //     return res.status(409).json({ error: 'Category already exists' });
+        // }
 
-        if(Array.isArray(req.body)){
-            const categories = await Category.bulkCreate(req.body);
+        if (Array.isArray(req.body)) {
+            const categories = await Category.bulkCreate(req.body, { ignoreDuplicates: true });
             return res.json(categories);
         }
         // else create new category

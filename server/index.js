@@ -21,6 +21,7 @@ const ReactionsRouter = require('./routes/Reactions');
 const rolesRouter = require('./routes/Roles');
 const pointsRouter = require('./routes/Points');
 const tokensRouter = require('./routes/Tokens');
+const priceHistoryRouter = require('./routes/Price_history');
 
 app.use('/auth', usersRouter);
 app.use('/categories', categoriesRouter);
@@ -32,6 +33,7 @@ app.use('/reactions', ReactionsRouter);
 app.use('/roles', rolesRouter);
 app.use('/points', pointsRouter);
 app.use('/tokens', tokensRouter);
+app.use('/price_history', priceHistoryRouter);
 
 
 

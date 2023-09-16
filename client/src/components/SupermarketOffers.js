@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import SupermarketService from "../services/supermarket.service";
 import UserService from "../services/user.service";
+import ProductService from "../services/product.service";
 import "../styles/SupermarketOffers.css";
 
 
@@ -83,6 +84,14 @@ const SupermarketOffers = () => {
 
     };
 
+    const removeOffer = async (offerId) => {
+        if (!userId) {
+            return;
+        }
+        ProductService.removeOffer(offerId);
+        setOffers(offers.filter(offer => offer.id !== offerId));
+    };
+
     useEffect(() => {
         const fetchOffers = async () => {
             const response = await SupermarketService.getOffers(supermarket_id);
@@ -112,6 +121,13 @@ const SupermarketOffers = () => {
                 {Array.isArray(offers) && offers.length > 0 ? (
                     offers.map((offer) => (
                         <div key={offer.id} className={`offer-card`}>
+                            <button
+                                type="button"
+                                className="close-button"
+                                onClick={() => removeOffer(offer.id)}
+                            >
+                                &times;
+                            </button>
                             <a href={`/product/${offer.product.id}`} className={`${offer.stock ? '' : 'out-of-stock-gray'}`}>
                                 <img
                                     src={offer.product.image}

@@ -1,55 +1,43 @@
-// ProductSection.js
-
 import React, { useState } from "react";
 import "../styles/AdminProducts.css";
-import JRservice from "../services/JR.service";
+import UploadProducts from "./UploadJsonData/UploadProducts";
 
-function AdminProductManagement() {
-  const [jsonData, setJsonData] = useState(null);
-
-  const handleFileUpload = async (event) => {
-    const selectedFile = event.target.files[0];
-    if (selectedFile) {
-      try {
-        const fileReader = new FileReader();
-        fileReader.readAsText(selectedFile, "UTF-8");
-        fileReader.onload = (event) => {
-          const jsonData = JSON.parse(event.target.result);
-          setJsonData(jsonData);
-        };
-        fileReader.onerror = (event) => {
-          console.error("Error reading file:", event.target.error);
-          // Handle the error and display an error message
-        };
-      } catch (error) {
-        console.error("Error uploading JSON file:", error);
-        // Handle the error and display an error message
-      }
-    }
-  };
-
-  const handleUpdateData = async () => {
-    // Prepare the JSON data you want to update
-    try {
-      console.log("Data to update:", jsonData);
-      const response = await JRservice.updateJSONData(jsonData);
-      console.log("Data update response:", response);
-      // Handle success or display a message to the user
-    } catch (error) {
-      console.error("Error updating JSON data:", error);
-      // Handle the error and display an error message
-    }
-  };
+const AdminProductManagement = () => {
 
   return (
-    <div className="centered-block">
-      <h2>Διαχείριση Προϊόντων</h2>
-      <form>
-        <input type="file" accept=".json" onChange={handleFileUpload} />
-        <button type="button" onClick={handleUpdateData}>upload JSON</button>
-      </form>
+    <div className="container my-4">
+      <div className="card">
+        <div className="card-header bg-light">
+          <h2 className="text-center">Upload Files</h2>
+        </div>
+        <div className="card-body">
+          <div className="row justify-content-center">
+            <div className="col-md-6 col-lg-4 text-center mb-3">
+              <h3>Categories</h3>
+              <UploadProducts typeOfData="categories" />
+            </div>
+            <div className="col-md-6 col-lg-4 text-center mb-3">
+              <h3>Subcategories</h3>
+              <UploadProducts typeOfData="subcategories" />
+            </div>
+            <div className="col-md-6 col-lg-4 text-center mb-3">
+              <h3>Products</h3>
+              <UploadProducts typeOfData="products" />
+            </div>
+            <div className="col-md-6 col-lg-4 text-center mb-3">
+              <h3>Prices</h3>
+              <UploadProducts typeOfData="price_history" />
+            </div>
+            <div className="col-md-6 col-lg-4 text-center mb-3">
+              <h3>Supermarkets</h3>
+              <UploadProducts typeOfData="supermarkets" />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
+
 }
 
 export default AdminProductManagement;

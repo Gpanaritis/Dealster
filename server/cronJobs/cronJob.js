@@ -92,7 +92,7 @@ const job2 = schedule.scheduleJob('0 2 * * *', async () => {
 
 // remove offers that are older than 14 days
 // remove offers that are older than 7 days if they are not good offers
-const job3 = schedule.scheduleJob('0 0 * * *', async () => {
+const job3 = schedule.scheduleJob('0 2 * * *', async () => {
   const offers = await Offers.findAll();
   const today = new Date();
   const oneWeekAgo = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7);

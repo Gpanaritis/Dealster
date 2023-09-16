@@ -31,7 +31,7 @@ router.get('/:subcategory_id/products', async (req, res) => {
 router.post('/', async (req, res) => {
     try{
         if(Array.isArray(req.body)){
-            const subcategories = await Subcategory.bulkCreate(req.body);
+            const subcategories = await Subcategory.bulkCreate(req.body, { ignoreDuplicates: true });
             res.json(subcategories);
         }
         else{

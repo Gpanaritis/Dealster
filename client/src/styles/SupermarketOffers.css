@@ -56,6 +56,16 @@
     font-size: 1.3rem;
 }
 
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+  }
+
 .offer-details {
     margin-top: auto;
     /* Push details to the bottom */
