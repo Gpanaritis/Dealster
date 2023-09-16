@@ -42,14 +42,25 @@ getUserIdFromToken = (token) => {
     return decoded.user_id;
   } catch (err) {
     // Here I want to throw an error
-    throw new Error('Invalid Token');
+    throw new Error(err);
   }
 };
+
+getUserFromToken = (token) => {
+  try {
+    const decoded = jwt.verify(token, config.TOKEN_KEY);
+    return decoded;
+  } catch (err) {
+    // Here I want to throw an error
+    throw new Error(err);
+  }
+}
 
 const authJwt = {
   verifyToken: verifyToken,
   isAdmin: isAdmin,
-  getUserIdFromToken: getUserIdFromToken
+  getUserIdFromToken: getUserIdFromToken,
+  getUserFromToken: getUserFromToken
 };
 
 module.exports = authJwt;

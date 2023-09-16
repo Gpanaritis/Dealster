@@ -1,31 +1,55 @@
-import React from "react";
+import React, { useState } from "react";
+import { useParams } from "react-router-dom";
+import { Tab, Tabs } from "react-bootstrap";
 import AuthService from "../services/auth.service";
+import ChangeUsername from "./ChangeUserDetails/ChangeUsername";
+import ChangePassword from "./ChangeUserDetails/ChangePassword";
+import OffersAdded from "./ChangeUserDetails/OffersAdded";
+import ReactionsAdded from "./ChangeUserDetails/ReactionsAdded";
+import PointsDetails from "./ChangeUserDetails/PointsDetails";
+
+import "../styles/Profile.css"; // Import your CSS file for styling
 
 const Profile = () => {
+  const { username } = useParams();
   const currentUser = AuthService.getCurrentUser();
 
+  if (!currentUser) window.location.replace("/login");
+
+  const [activeTab, setActiveTab] = useState("offers");
+
+  const handleTabSelect = (tab) => {
+    setActiveTab(tab);
+  };
+
   return (
-    <div className="container">
-      <header className="jumbotron">
+    <div className="profile-container">
+      <header className="profile-header">
         <h3>
-          <strong>{currentUser.username}</strong> Profile
+          <strong>{username}</strong> Profile
         </h3>
       </header>
-      <p>
-        <strong>Token:</strong> {currentUser.accessToken.substring(0, 20)} ...{" "}
-        {currentUser.accessToken.substr(currentUser.accessToken.length - 20)}
-      </p>
-      <p>
-        <strong>Id:</strong> {currentUser.id}
-      </p>
-      <p>
-        <strong>Email:</strong> {currentUser.email}
-      </p>
-      <strong>Authorities:</strong>
-      <ul>
-        {currentUser.roles &&
-          currentUser.roles.map((role, index) => <li key={index}>{role}</li>)}
-      </ul>
+      <Tabs activeKey={activeTab} onSelect={handleTabSelect}>
+        <Tab eventKey="points" title="Points">
+          <PointsDetails username={username} />
+        </Tab>
+        <Tab eventKey="offers" title="Past Offers">
+          <OffersAdded username={username} />
+        </Tab>
+        <Tab eventKey="reactions" title="Past Reactions">
+          <ReactionsAdded username={username} />
+        </Tab>
+        {username === currentUser.username && (
+          <Tab eventKey="username" title="Change Username">
+            <ChangeUsername />
+          </Tab>
+        )}
+        {username === currentUser.username && (
+          <Tab eventKey="password" title="Change Password">
+            <ChangePassword />
+          </Tab>
+        )}
+      </Tabs>
     </div>
   );
 };

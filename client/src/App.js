@@ -29,10 +29,13 @@ import SearchBar from "./components/SearchBar";
 import ProductsMap from "./components/productsMap";
 import FilteredSupermarkets from "./components/filteredSupermarkets";
 import Offers from "./components/Offers";
-import CategoryManagement from "./components/CategoryManagement";
-import ProductSection from "./components/ProductSection";
+
+import ChangeUsername from "./components/ChangeUserDetails/ChangeUsername";
 
 import EventBus from "./common/EventBus";
+
+import CategoryManagement from "./components/CategoryManagement";
+import ProductSection from "./components/ProductSection";
 
 const AppearanceMode = (Theme) => {
   if (Theme === 'light') {
@@ -70,13 +73,21 @@ const App = () => {
 
 
   useEffect(() => {
-    const user = AuthService.getCurrentUser();
+    const getUser = async () => {
+      try {
+        const user = await AuthService.getUserSecure();
 
-    if (user) {
-      setCurrentUser(user);
-      setShowModeratorBoard(user.roles.includes("ROLE_MODERATOR"));
-      setShowAdminBoard(user.roles.includes("ROLE_ADMIN"));
-    }
+        if (user) {
+          setCurrentUser(user);
+          setShowModeratorBoard(user.roles.includes("ROLE_MODERATOR"));
+          setShowAdminBoard(user.roles.includes("ROLE_ADMIN"));
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    getUser();
 
     EventBus.on("logout", () => {
       logOut();
@@ -121,8 +132,8 @@ const App = () => {
         </div>
 
         <div className="navbar-nav">
-      <SearchBar />
-    </div>
+          <SearchBar />
+        </div>
 
         {currentUser ? (
           <div className="navbar-nav ml-auto">
@@ -135,13 +146,13 @@ const App = () => {
           </div>
         )} 
             <li className="nav-item">
-              <Link to={"/profile"} className="nav-link">
+              <Link to={`/profile/${currentUser.username}`} className="nav-link">
                 {currentUser.username}
               </Link>
             </li>
             <li className="nav-item">
               <a href="/login" className="nav-link" onClick={logOut}>
-                LogOut
+                <i className="fas fa-power-off"></i>
               </a>
             </li>
           </div>
@@ -181,7 +192,7 @@ const App = () => {
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile/:username" element={<Profile />} />
           <Route path="/user" element={<BoardUser />} />
           <Route path="/mod" element={<BoardModerator />} />
           <Route path="/admin" element={<BoardAdmin />} />
@@ -195,6 +206,7 @@ const App = () => {
           {/* Include ProductSection */}
           <Route path="/categories" element={<CategoryManagement />} />
           <Route path="/products" element={<ProductSection />} />
+          <Route path="/changeUserDetails" element={<ChangeUsername />} />
         </Routes>
       </div>
 

@@ -40,7 +40,7 @@
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.out-of-stock {
+.out-of-stock-gray {
     opacity: 0.5;
     pointer-events: none;
     filter: grayscale(100%);
@@ -169,7 +169,7 @@
 /* Style for the stock button */
 .stock-button {
     background: transparent;
-    border: 2px solid #3498db;
+    border: 1px solid #666;
     /* Add a border with a different color */
     border-radius: 5px;
     /* Add rounded corners */
@@ -178,15 +178,93 @@
     /* Add padding for clickable area */
     font-size: inherit;
     display: inline-flex;
-    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+    transition: background-color 0.6s, color 1.0s, border-color 0.8s;
     /* Add smooth transition */
 }
 
-.stock-button:hover {
-    background-color: #3498db;
+.in-stock:hover {
+    background-color: #ff5733;
+    border: 1px solid #666;
     /* Change background color on hover */
     color: white;
     /* Change text color on hover */
-    border-color: #3498db;
+    border-color: #ff5733;
     /* Change border color on hover */
+}
+
+.in-stock:hover span {
+    /* Change text color on hover */
+    display: none;
+    color: white;
+}
+
+.in-stock:hover::before {
+    /* Change text color on hover */
+    content: "\f057  Report as out of stock";
+    display: inline-block;
+    font-family: "Font Awesome 5 Free";
+    color: white;
+}
+
+.out-of-stock:hover {
+    background-color: #4caf50;
+    border: 1px solid #666;
+    /* Change background color on hover */
+    color: white;
+    /* Change text color on hover */
+    border-color: #4caf50;
+    /* Change border color on hover */
+}
+
+.out-of-stock:hover span {
+    /* Change text color on hover */
+    display: none;
+}
+
+.out-of-stock:hover::before {
+    /* Change text color on hover */
+    content: "\f058  Report as in stock";
+    display: inline-block;
+    font-family: "Font Awesome 5 Free";
+    color: white;
+}
+
+.likes-icon {
+    color: #666;
+    /* Adjust color to your preference */
+}
+
+.likes-icon:hover {
+    color: #3498db;
+    /* Adjust color to your preference */
+}
+
+.likes-icon.liked {
+    color: #3498db;
+    /* Adjust color to your preference */
+}
+
+.likes-icon.liked:hover {
+    color: #666;
+    /* Adjust color to your preference */
+}
+
+.dislikes-icon {
+    color: #666;
+    /* Adjust color to your preference */
+}
+
+.dislikes-icon:hover {
+    color: #ff5733;
+    /* Adjust color to your preference */
+}
+
+.dislikes-icon.disliked {
+    color: #ff5733;
+    /* Adjust color to your preference */
+}
+
+.dislikes-icon.disliked:hover {
+    color: #666;
+    /* Adjust color to your preference */
 }

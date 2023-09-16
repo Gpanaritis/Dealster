@@ -12,7 +12,6 @@ const ProductsMap = () => {
                 const fetchSupermarkets = async () => {
                     try {
                         const response = await SupermarketService.getSupermarketsByCategoryName(category_name);
-                        console.log(response);
                         setSupermarkets(response);
                         return response; // Return the response after it's set in state
                     } catch (error) {
