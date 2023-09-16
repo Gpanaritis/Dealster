@@ -1,952 +1,402 @@
 [
     {
         "id": "1",
-        "name": "Ψωμί διπλοζυμωτό",
-        "price": "1.68",
+        "name": "Noxzema Αποσμ Rollon Classic 50ml",
+        "price": "2.27",
         "subcategory_ids": [
             "1"
         ],
-        "supermarket_names": [
-            "Ena Cash And Carry",
-            "Super Market ΚΡΟΝΟΣ",
-            "Ανδρικόπουλος",
-            "ΑΒ Βασιλόπουλος",
-            "Markoulas",
-            "ΚΡΟΝΟΣ - (Σκαγιοπουλείου)",
-            "Ρουμελιώτης SUPER Market",
-            "MyMarket",
-            "Lidl",
-            "My market",
-            "ΑΒ Shop & Go",
-            "Ανδρικόπουλος - Supermarket",
-            "Spar",
-            "Μασούτης",
-            "Σκλαβενίτης"
-        ],
-        "image": "https://static.ab.gr/medias/sys_master/had/hee/9578224517150.jpg?buildNumber=a8713418d89b16fd7400b418496712194ea4f19ee1bac2ddf10d99a9aa14c643"
+        "supermarket_names": "all",
+        "image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/%CE%91%CF%80%CE%BF%CF%83%CE%BC_Noxzema_Rollon_Classic_50ml.jpg"
     },
     {
         "id": "2",
-        "name": "Ψωμί hamburger",
-        "price": "2.35",
+        "name": "Axe Αποσμητικό Σπρέυ Africa 150ml",
+        "price": "4.90",
         "subcategory_ids": [
             "1"
         ],
-        "supermarket_names": [
-            "ΑΒ Shop & Go",
-            "Lidl",
-            "Ρουμελιώτης SUPER Market",
-            "Ανδρικόπουλος - Supermarket",
-            "Σκλαβενίτης",
-            "ΚΡΟΝΟΣ - (Σκαγιοπουλείου)",
-            "Γαλαξίας",
-            "Ανδρικόπουλος Super Market",
-            "Ena Cash And Carry",
-            "My market",
-            "Σουπερμάρκετ Ανδρικόπουλος",
-            "Super Market Θεοδωρόπουλος",
-            "3A",
-            "Kronos",
-            "Markoulas",
-            "3Α Αράπης",
-            "Ανδρικόπουλος",
-            "MyMarket",
-            "Spar",
-            "The Mart"
-        ],
-        "image": "https://static.ab.gr/medias/sys_master/h58/h3b/9359064367134.jpg?buildNumber=a8713418d89b16fd7400b418496712194ea4f19ee1bac2ddf10d99a9aa14c643"
+        "supermarket_names": "all",
+        "image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/%CE%91%CF%80%CE%BF%CF%83%CE%BC%CE%B7%CF%84%CE%B9%CE%BA%CF%8C_Axe_%CE%A3%CF%80%CF%81%CE%AD%CF%85_Africa_150ml.jpg"
     },
     {
         "id": "3",
-        "name": "Ψωμί τόστ χωριάτικο",
-        "price": "4.02",
+        "name": "Nivea Black/White Invisible 48h Rollon 50ml",
+        "price": "2.36",
         "subcategory_ids": [
             "1"
         ],
         "supermarket_names": "all",
-        "image": "https://static.ab.gr/medias/sys_master/h9f/h9c/9421921255454.jpg?buildNumber=a8713418d89b16fd7400b418496712194ea4f19ee1bac2ddf10d99a9aa14c643"
+        "image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/NIVEA_INV_BkaiWH_PWR_MEN_RON50M82245.jpg"
     },
     {
         "id": "4",
-        "name": "Αρτοσκεύασμα σίκαλης",
-        "price": "4.07",
+        "name": "Dove Deodorant Κρέμα Rollon 50ml",
+        "price": "2.46",
         "subcategory_ids": [
             "1"
-        ],
-        "supermarket_names": [
-            "Ρουμελιώτης SUPER Market",
-            "Kronos",
-            "Lidl",
-            "ΑΒ Βασιλόπουλος",
-            "Ανδρικόπουλος",
-            "MyMarket",
-            "Μασούτης",
-            "Super Market ΚΡΟΝΟΣ",
-            "My market",
-            "Spar",
-            "Σουπερμάρκετ Ανδρικόπουλος",
-            "Ena Cash And Carry",
-            "ΚΡΟΝΟΣ - (Σκαγιοπουλείου)",
-            "3A ARAPIS",
-            "Markoulas",
-            "Super Market Θεοδωρόπουλος",
-            "ΑΒ Shop & Go",
-            "3Α Αράπης",
-            "The Mart",
-            "3A",
-            "Σκλαβενίτης",
-            "Ανδρικόπουλος - Supermarket",
-            "Γαλαξίας",
-            "Ανδρικόπουλος Super Market"
-        ],
-        "image": "https://static.ab.gr/medias/sys_master/h3e/h0c/8809080619038.jpg?buildNumber=a8713418d89b16fd7400b418496712194ea4f19ee1bac2ddf10d99a9aa14c643"
+        ]
+        "supermarket_names": "all",
+        "image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/DEO_%CE%9A%CE%A1%CE%95%CE%9C%CE%91_DOVE_50%CE%9C.jpg"
     },
     {
         "id": "5",
-        "name": "Ψωμί χωρίς γλουτένη",
-        "price": "5.28",
+        "name": "Dove Αποσμ Σπρέυ 150ml",
+        "price": "2.51",
         "subcategory_ids": [
             "1"
         ],
-        "supermarket_names": [
-            "3Α Αράπης",
-            "Ανδρικόπουλος - Supermarket",
-            "Lidl",
-            "Spar",
-            "Kronos",
-            "Ανδρικόπουλος",
-            "3A",
-            "Σουπερμάρκετ Ανδρικόπουλος",
-            "Σκλαβενίτης",
-            "ΑΒ Βασιλόπουλος",
-            "ΚΡΟΝΟΣ - (Σκαγιοπουλείου)",
-            "Super Market Θεοδωρόπουλος",
-            "MyMarket",
-            "ΑΒ Shop & Go",
-            "Ρουμελιώτης SUPER Market",
-            "Markoulas",
-            "The Mart",
-            "3A ARAPIS",
-            "Μασούτης",
-            "Ena Cash And Carry",
-            "Super Market ΚΡΟΝΟΣ",
-            "My market"
-        ],
-        "image": "https://static.ab.gr/medias/sys_master/hb2/h71/9775737831454.jpg?buildNumber=a8713418d89b16fd7400b418496712194ea4f19ee1bac2ddf10d99a9aa14c643"
+        "supermarket_names": "all",
+        "image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/%CE%91%CF%80%CE%BF%CF%83%CE%BC_Dove_%CE%A3%CF%80%CF%81%CE%AD%CF%85_150ml.jpg"
     },
     {
         "id": "6",
-        "name": "Strudel μήλο κανέλα",
-        "price": "2.77",
+        "name": "Παπουτσάνη Σαπούνι Πρασ Παραδ 125γρ",
+        "price": "0.47",
         "subcategory_ids": [
             "2"
         ],
-        "supermarket_names": [
-            "ΑΒ Βασιλόπουλος",
-            "MyMarket",
-            "3Α Αράπης",
-            "Lidl",
-            "Ανδρικόπουλος",
-            "Σουπερμάρκετ Ανδρικόπουλος",
-            "Ρουμελιώτης SUPER Market",
-            "3A ARAPIS",
-            "Spar",
-            "Ανδρικόπουλος Super Market",
-            "Kronos",
-            "ΑΒ Shop & Go",
-            "Σκλαβενίτης",
-            "The Mart",
-            "Markoulas",
-            "ΚΡΟΝΟΣ - (Σκαγιοπουλείου)",
-            "Super Market Θεοδωρόπουλος",
-            "My market",
-            "Γαλαξίας",
-            "Μασούτης",
-            "Super Market ΚΡΟΝΟΣ",
-            "Ena Cash And Carry",
-            "3A",
-            "Ανδρικόπουλος - Supermarket"
-        ],
-        "image": "https://static.ab.gr/medias/sys_master/hec/h1d/9490990825502.jpg?buildNumber=a8713418d89b16fd7400b418496712194ea4f19ee1bac2ddf10d99a9aa14c643"
+        "supermarket_names": "all",
+        "image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/sapouni_pras_parad_papoutsani_125gr.jpg"
     },
     {
         "id": "7",
-        "name": "Κείκ Ανάμικτο Ατομικό 80g",
-        "price": "1.12",
+        "name": "Lux Σαπούνι Soft/Creamy 125γρ",
+        "price": "0.66",
         "subcategory_ids": [
             "2"
         ],
-        "supermarket_names": [
-            "Super Market ΚΡΟΝΟΣ"
-        ],
-        "image": "https://static.ab.gr/medias/sys_master/h16/hb0/9681123147806.jpg?buildNumber=a8713418d89b16fd7400b418496712194ea4f19ee1bac2ddf10d99a9aa14c643"
+        "supermarket_names": "all",
+        "image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/%CE%A3%CE%91%CE%A0%CE%9F%CE%A5%CE%9D%CE%99_SOFT%26CREAMY_LUX_125%CE%93%CE%A1.jpg"
     },
     {
         "id": "8",
-        "name": "Κείκ Ανάμικτο Ατομικό 80g",
-        "price": "1.12",
+        "name": "Κλεοπάτρα Σαπούνι 125γρ",
+        "price": "0.78",
         "subcategory_ids": [
             "2"
         ],
-        "supermarket_names": [
-            "My market",
-            "Μασούτης",
-            "Lidl",
-            "Ανδρικόπουλος",
-            "Super Market ΚΡΟΝΟΣ",
-            "ΑΒ Βασιλόπουλος",
-            "MyMarket",
-            "Super Market Θεοδωρόπουλος",
-            "Σουπερμάρκετ Ανδρικόπουλος",
-            "3Α Αράπης",
-            "ΚΡΟΝΟΣ - (Σκαγιοπουλείου)"
-        ],
-        "image": "https://static.ab.gr/medias/sys_master/h5a/hf5/9681153425438.jpg?buildNumber=a8713418d89b16fd7400b418496712194ea4f19ee1bac2ddf10d99a9aa14c643"
+        "supermarket_names": "all",
+        "image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/%CE%A3%CE%91%CE%A0%CE%9F%CE%A5%CE%9D%CE%99_%CE%9A%CE%9B%CE%95%CE%9F%CE%A0%CE%91%CE%A4%CE%A1%CE%91_125_%CE%93%CE%A1.jpg"
     },
     {
         "id": "9",
-        "name": "Κέικ Βανίλια Κακάο 375g",
-        "price": "3.33",
+        "name": "Dove Σαπούνι 100γρ",
+        "price": "0.90",
         "subcategory_ids": [
             "2"
         ],
-        "supermarket_names": [
-            "Σκλαβενίτης",
-            "Ανδρικόπουλος Super Market",
-            "Γαλαξίας",
-            "The Mart",
-            "Lidl",
-            "Spar"
-        ],
-        "image": "https://static.ab.gr/medias/sys_master/h02/hee/9722679656478.jpg?buildNumber=a8713418d89b16fd7400b418496712194ea4f19ee1bac2ddf10d99a9aa14c643"
+        "supermarket_names": "all",
+        "image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/%CE%A3%CE%B1%CF%80_Dove_100%CE%B3%CF%81.jpg"
     },
     {
         "id": "10",
-        "name": "Κέικ Black Forest 400g",
-        "price": "4.98",
+        "name": "Dettol Κρεμοσάπουνο 250ml",
+        "price": "1.56",
         "subcategory_ids": [
             "2"
         ],
-        "supermarket_names": [
-            "Ανδρικόπουλος Super Market",
-            "Γαλαξίας",
-            "ΑΒ Shop & Go",
-            "Σκλαβενίτης",
-            "ΑΒ Βασιλόπουλος",
-            "Super Market Θεοδωρόπουλος",
-            "Ρουμελιώτης SUPER Market"
-        ],
-        "image": "https://static.ab.gr/medias/sys_master/h16/ha7/9283701211166.jpg?buildNumber=a8713418d89b16fd7400b418496712194ea4f19ee1bac2ddf10d99a9aa14c643"
+        "supermarket_names": "all",
+        "image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/Dettol_%CE%9A%CF%81%CE%B5%CE%BC%CE%BF%CF%83%CE%AC%CF%80%CE%BF%CF%85%CE%BD%CE%BF_250ml.jpg"
     },
     {
         "id": "11",
-        "name": "Αρακάς Βιολογικός Κατεψυγμένος 450gr",
-        "price": "4.26",
+        "name": "Καραμολέγκος Ψωμί Τοστ Σταρένιο Μίνι 340g",
+        "price": "1.05",
         "subcategory_ids": [
             "3"
         ],
-        "supermarket_names": [
-            "Super Market Θεοδωρόπουλος",
-            "Spar",
-            "Γαλαξίας",
-            "3A",
-            "Kronos",
-            "Ανδρικόπουλος",
-            "Σουπερμάρκετ Ανδρικόπουλος",
-            "ΑΒ Βασιλόπουλος",
-            "Markoulas",
-            "ΚΡΟΝΟΣ - (Σκαγιοπουλείου)",
-            "3Α Αράπης",
-            "Ena Cash And Carry",
-            "The Mart",
-            "Σκλαβενίτης",
-            "3A ARAPIS"
-        ],
-        "image": "https://static.ab.gr/medias/sys_master/hdf/hd0/9626051575838.jpg?buildNumber=a8713418d89b16fd7400b418496712194ea4f19ee1bac2ddf10d99a9aa14c643"
+        "supermarket_names": "all",
+        "image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/%CE%91%CE%A1%CE%A4%CE%A3%CE%9C%CE%91_%CE%9A%CE%91%CE%A1%CE%91%CE%9C%CE%9F%CE%9B%CE%95%CE%93%CE%9A%CE%A3%CE%99%CE%A4%CE%9F%CE%A5_%CE%9C%CE%99%CE%9D%CE%99_340G.jpg"
     },
     {
         "id": "12",
-        "name": "Παγωτό Mini Sandwich Βανίλια Κακάο 4X80gr",
-        "price": "3.64",
+        "name": "Παπαδοπούλου Ψωμί Τόστ Plus Σίτου 700γρ",
+        "price": "1.32",
         "subcategory_ids": [
             "3"
         ],
-        "supermarket_names": [
-            "The Mart",
-            "MyMarket",
-            "Ανδρικόπουλος",
-            "ΚΡΟΝΟΣ - (Σκαγιοπουλείου)",
-            "ΑΒ Shop & Go",
-            "Ανδρικόπουλος Super Market",
-            "Σουπερμάρκετ Ανδρικόπουλος",
-            "Ρουμελιώτης SUPER Market",
-            "My market",
-            "Markoulas",
-            "3A ARAPIS",
-            "Σκλαβενίτης",
-            "3A",
-            "Ανδρικόπουλος - Supermarket",
-            "Spar",
-            "Μασούτης",
-            "Super Market ΚΡΟΝΟΣ",
-            "3Α Αράπης",
-            "Kronos",
-            "Γαλαξίας",
-            "ΑΒ Βασιλόπουλος"
-        ],
-        "image": "https://static.ab.gr/medias/sys_master/h41/h79/9772081348638.jpg?buildNumber=a8713418d89b16fd7400b418496712194ea4f19ee1bac2ddf10d99a9aa14c643"
+        "supermarket_names": "all",
+        "image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/%CE%A0%CE%B1%CF%80%CE%B1%CE%B4%CE%BF%CF%80%CE%BF%CF%8D%CE%BB%CE%BF%CF%85_%CE%A8%CF%89%CE%BC%CE%AF_%CE%A4%CF%8C%CF%83%CF%84_Plus_%CE%A3%CE%AF%CF%84%CE%BF%CF%85_700%CE%B3%CF%81.jpg"
     },
     {
         "id": "13",
-        "name": "Κρεμμύδι Ψιλοκομμένο Κατεψυγμένο 250gr",
-        "price": "2.36",
+        "name": "Κρίς Κρίς Ψωμί Τόστ Μπρίος 400γρ",
+        "price": "1.36",
         "subcategory_ids": [
             "3"
         ],
-        "supermarket_names": [
-            "The Mart",
-            "Σουπερμάρκετ Ανδρικόπουλος",
-            "Super Market ΚΡΟΝΟΣ",
-            "ΑΒ Βασιλόπουλος",
-            "Ρουμελιώτης SUPER Market",
-            "3A ARAPIS",
-            "Ανδρικόπουλος - Supermarket",
-            "ΚΡΟΝΟΣ - (Σκαγιοπουλείου)",
-            "ΑΒ Shop & Go",
-            "MyMarket",
-            "Ανδρικόπουλος Super Market",
-            "Markoulas",
-            "3A",
-            "Spar",
-            "Ανδρικόπουλος",
-            "Σκλαβενίτης",
-            "Γαλαξίας",
-            "Kronos",
-            "3Α Αράπης",
-            "My market"
-        ],
-        "image": "https://static.ab.gr/medias/sys_master/hca/hc7/9393490001950.jpg?buildNumber=a8713418d89b16fd7400b418496712194ea4f19ee1bac2ddf10d99a9aa14c643"
+        "supermarket_names": "all",
+        "image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/%CE%9A%CF%81%CE%AF%CF%82_%CE%9A%CF%81%CE%AF%CF%82%CE%A8%CF%89%CE%BC%CE%AF_%CE%A4%CF%8C%CF%83%CF%84_%CE%9C%CF%80%CF%81%CE%AF%CE%BF%CF%82_400%CE%B3%CF%81.jpg"
     },
     {
         "id": "14",
-        "name": "Κοτομπουκιές Παναρισμένες 400gr",
-        "price": "7.25",
+        "name": "Κρίς Κρίς Τόστιμο Ψωμί Τόστ Ολικής Άλεσης 400γρ",
+        "price": "1.36",
         "subcategory_ids": [
             "3"
         ],
         "supermarket_names": "all",
-        "image": "https://static.ab.gr/medias/sys_master/hff/h8b/9660374646814.jpg?buildNumber=a8713418d89b16fd7400b418496712194ea4f19ee1bac2ddf10d99a9aa14c643"
+        "image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/%CE%9A%CF%81%CE%AF%CF%82_%CE%9A%CF%81%CE%AF%CF%82_%CE%A4%CF%8C%CF%83%CF%84%CE%B9%CE%BC%CE%BF_%CE%A8%CF%89%CE%BC%CE%AF_%CE%A4%CF%8C%CF%83%CF%84_%CE%9F%CE%BB%CE%B9%CE%BA%CE%AE%CF%82_%CE%86%CE%BB%CE%B5%CF%83%CE%B7%CF%82_400%CE%B3%CF%81.jpg"
     },
     {
         "id": "15",
-        "name": "Ψαροκροκέτες 450g",
-        "price": "3.47",
+        "name": "Καραμολέγκος Ψωμί Τόστ Δέκα Χωριάτικο 500γρ",
+        "price": "1.53",
         "subcategory_ids": [
             "3"
         ],
-        "supermarket_names": [
-            "3A",
-            "The Mart",
-            "Μασούτης",
-            "Markoulas",
-            "Ανδρικόπουλος Super Market",
-            "Super Market Θεοδωρόπουλος",
-            "Kronos",
-            "Σκλαβενίτης",
-            "ΑΒ Shop & Go",
-            "Γαλαξίας",
-            "Super Market ΚΡΟΝΟΣ",
-            "Ena Cash And Carry",
-            "Ανδρικόπουλος",
-            "My market",
-            "Lidl",
-            "Spar",
-            "Ρουμελιώτης SUPER Market",
-            "MyMarket",
-            "Σουπερμάρκετ Ανδρικόπουλος",
-            "ΚΡΟΝΟΣ - (Σκαγιοπουλείου)",
-            "3Α Αράπης",
-            "Ανδρικόπουλος - Supermarket",
-            "ΑΒ Βασιλόπουλος"
-        ],
-        "image": "https://static.ab.gr/medias/sys_master/h7c/h5a/9771976097822.jpg?buildNumber=a8713418d89b16fd7400b418496712194ea4f19ee1bac2ddf10d99a9aa14c643"
+        "supermarket_names": "all",
+        "image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/%CE%9A%CE%B1%CF%81%CE%B1%CE%BC%CE%BF%CE%BB%CE%AD%CE%B3%CE%BA%CE%BF%CF%82_%CE%A8%CF%89%CE%BC%CE%AF_%CE%A4%CF%8C%CF%83%CF%84_%CE%94%CE%AD%CE%BA%CE%B1_%CF%89%CF%81%CE%B9%CE%AC%CF%84%CE%B9%CE%BA%CE%BF_500%CE%B3%CF%81.jpg"
     },
     {
         "id": "16",
-        "name": "Πατάτες Χονδρές Συσκευασμένες",
-        "price": "4.11",
+        "name": "Ferrero Kinder Delice Κέικ 39γρ",
+        "price": "0.52",
         "subcategory_ids": [
             "4"
         ],
-        "supermarket_names": [
-            "Super Market Θεοδωρόπουλος",
-            "Ρουμελιώτης SUPER Market",
-            "The Mart",
-            "ΑΒ Shop & Go",
-            "Γαλαξίας",
-            "Kronos",
-            "Ανδρικόπουλος Super Market",
-            "Super Market ΚΡΟΝΟΣ",
-            "ΚΡΟΝΟΣ - (Σκαγιοπουλείου)",
-            "Spar",
-            "Ανδρικόπουλος",
-            "3A",
-            "MyMarket",
-            "Lidl",
-            "3Α Αράπης",
-            "My market",
-            "Μασούτης",
-            "Σκλαβενίτης",
-            "Σουπερμάρκετ Ανδρικόπουλος",
-            "Markoulas",
-            "3A ARAPIS",
-            "Ena Cash And Carry",
-            "ΑΒ Βασιλόπουλος"
-        ],
-        "image": "https://static.ab.gr/medias/sys_master/h7d/h44/9281392246814.jpg?buildNumber=a8713418d89b16fd7400b418496712194ea4f19ee1bac2ddf10d99a9aa14c643"
+        "supermarket_names": "all",
+        "image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/%CE%9A%CE%95%CE%99%CE%9A_FERRERO_KINDER_DELICE_39%CE%93%CE%A1.png"
     },
     {
         "id": "17",
-        "name": "Πατάτες Baby Πλυμένες Κύπρου 750 gr",
-        "price": "2.18",
+        "name": "7 Days Swiss Roll Κακάο 200γρ",
+        "price": "0.97",
         "subcategory_ids": [
             "4"
         ],
-        "supermarket_names": [
-            "Ena Cash And Carry",
-            "Ανδρικόπουλος",
-            "Σουπερμάρκετ Ανδρικόπουλος",
-            "MyMarket",
-            "Σκλαβενίτης",
-            "Ρουμελιώτης SUPER Market",
-            "3A",
-            "Γαλαξίας",
-            "The Mart",
-            "3A ARAPIS",
-            "Μασούτης",
-            "ΚΡΟΝΟΣ - (Σκαγιοπουλείου)",
-            "Ανδρικόπουλος - Supermarket",
-            "3Α Αράπης",
-            "Markoulas",
-            "Kronos",
-            "Lidl",
-            "ΑΒ Βασιλόπουλος",
-            "ΑΒ Shop & Go",
-            "Super Market Θεοδωρόπουλος"
-        ],
-        "image": "https://static.ab.gr/medias/sys_master/h45/h59/8927117148190.jpg?buildNumber=a8713418d89b16fd7400b418496712194ea4f19ee1bac2ddf10d99a9aa14c643"
+        "supermarket_names": "all",
+        "image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/7_Days_Swiss_Roll_%CE%9A%CE%B1%CE%BA%CE%AC%CE%BF_200%CE%B3%CF%81.jpg"
     },
     {
         "id": "18",
-        "name": "Καρότα Ελληνικά",
-        "price": "2.02",
+        "name": "7 Days Κέικ Bar Κακάο 5Χ30γρ",
+        "price": "1.01",
         "subcategory_ids": [
             "4"
         ],
-        "supermarket_names": [
-            "Ρουμελιώτης SUPER Market",
-            "My market",
-            "Markoulas",
-            "3A",
-            "3A ARAPIS",
-            "MyMarket",
-            "Super Market ΚΡΟΝΟΣ",
-            "Γαλαξίας",
-            "Ανδρικόπουλος Super Market",
-            "Ανδρικόπουλος - Supermarket",
-            "Μασούτης",
-            "Σουπερμάρκετ Ανδρικόπουλος",
-            "3Α Αράπης",
-            "Lidl",
-            "Ena Cash And Carry",
-            "Σκλαβενίτης",
-            "Ανδρικόπουλος",
-            "ΑΒ Shop & Go",
-            "The Mart"
-        ],
-        "image": "https://static.ab.gr/medias/sys_master/h97/hf2/9303845699614.jpg?buildNumber=a8713418d89b16fd7400b418496712194ea4f19ee1bac2ddf10d99a9aa14c643"
+        "supermarket_names": "all",
+        "image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/%CE%9A%CE%95%CE%99%CE%9A_BAR_7DAYS_KAK_5x30%CE%93_%CE%95%CE%A4%CE%99%CE%9C%CE%97.jpg"
     },
     {
         "id": "19",
-        "name": "Κολοκύθια Συσκευασμένα Ελληνικά",
-        "price": "1.39",
+        "name": "Στεργίου Κέικ Ανάμεικτο 80γρ",
+        "price": "1.01",
         "subcategory_ids": [
             "4"
         ],
-        "supermarket_names": [
-            "3A",
-            "Markoulas",
-            "Lidl",
-            "Spar",
-            "Ena Cash And Carry",
-            "My market",
-            "Super Market ΚΡΟΝΟΣ",
-            "ΑΒ Βασιλόπουλος",
-            "3Α Αράπης",
-            "Μασούτης",
-            "ΑΒ Shop & Go",
-            "3A ARAPIS",
-            "The Mart",
-            "MyMarket",
-            "Ανδρικόπουλος",
-            "Super Market Θεοδωρόπουλος",
-            "Σκλαβενίτης",
-            "Σουπερμάρκετ Ανδρικόπουλος",
-            "Kronos",
-            "Γαλαξίας",
-            "Ανδρικόπουλος - Supermarket"
-        ],
-        "image": "https://static.ab.gr/medias/sys_master/h41/h7d/9281512112158.jpg?buildNumber=a8713418d89b16fd7400b418496712194ea4f19ee1bac2ddf10d99a9aa14c643"
+        "supermarket_names": "all",
+        "image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/%CE%9A%CE%95%CE%99%CE%9A_%CE%91%CE%9D%CE%91%CE%9C%CE%95%CE%99%CE%9A%CE%A4%CE%9F_80%CE%93%CE%A1.jpg"
     },
     {
         "id": "20",
-        "name": "Κρεμμυδάκια Χλωρά 140g",
-        "price": "0.95",
+        "name": "Αλλατίνη Κέικ Κακάο Με Κομμάτια Σοκολάτας 400γρ",
+        "price": "3.05",
         "subcategory_ids": [
             "4"
         ],
-        "supermarket_names": [
-            "Σκλαβενίτης",
-            "Ανδρικόπουλος Super Market",
-            "3Α Αράπης",
-            "Kronos",
-            "Ena Cash And Carry",
-            "MyMarket",
-            "Γαλαξίας",
-            "Markoulas",
-            "Lidl",
-            "ΚΡΟΝΟΣ - (Σκαγιοπουλείου)",
-            "3A ARAPIS",
-            "Super Market ΚΡΟΝΟΣ",
-            "ΑΒ Βασιλόπουλος",
-            "The Mart",
-            "Super Market Θεοδωρόπουλος",
-            "Ανδρικόπουλος",
-            "3A",
-            "Ανδρικόπουλος - Supermarket",
-            "Spar",
-            "ΑΒ Shop & Go",
-            "My market",
-            "Ρουμελιώτης SUPER Market"
-        ],
-        "image": "https://static.ab.gr/medias/sys_master/hc8/h72/9281396572190.jpg?buildNumber=a8713418d89b16fd7400b418496712194ea4f19ee1bac2ddf10d99a9aa14c643"
+        "supermarket_names": "all",
+        "image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/%CE%91%CE%BB%CE%BB%CE%B1%CF%84%CE%AF%CE%BD%CE%B7_%CE%9A%CE%AD%CE%B9%CE%BA_%CE%A3%CE%BF%CE%BA%CE%BF%CE%BB%CE%AC%CF%84%CE%B1%CF%82_%CE%9C%CE%B5_%CE%9A%CE%BF%CE%BC%CE%BC%CE%AC%CF%84%CE%B9%CE%B1_%CE%A3%CE%BF%CE%BA%CE%BF%CE%BB%CE%AC%CF%84%CE%B1%CF%82_430%CE%B3%CF%81.jpg"
     },
     {
         "id": "21",
-        "name": "Αναψυκτικό Cola Zero Κουτί 6x330ml",
-        "price": "4.32",
+        "name": "Έψα Λεμοναδα 232ml",
+        "price": "0.26",
         "subcategory_ids": [
             "5"
         ],
-        "supermarket_names": [
-            "3Α Αράπης",
-            "Lidl"
-        ],
-        "image": "https://static.ab.gr/medias/sys_master/h0f/hfc/9507844063262.jpg?buildNumber=a8713418d89b16fd7400b418496712194ea4f19ee1bac2ddf10d99a9aa14c643"
+        "supermarket_names": "all",
+        "image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/%CE%9B%CE%B5%CE%BC%CE%BF%CE%BD%CE%B1%CE%B4%CE%B1_%CE%95%CF%88%CE%B1_232ML_%CE%93%CF%85%CE%B1%CE%BB%CE%B9.jpg"
     },
     {
         "id": "22",
-        "name": "Ice Tea Green Χωρίς Ζάχαρη 500ml",
-        "price": "1.27",
+        "name": "Tuborg Σόδα 330ml",
+        "price": "0.38",
         "subcategory_ids": [
             "5"
         ],
-        "supermarket_names": [
-            "ΚΡΟΝΟΣ - (Σκαγιοπουλείου)",
-            "Ena Cash And Carry",
-            "Spar",
-            "Ανδρικόπουλος - Supermarket",
-            "Μασούτης",
-            "3A ARAPIS",
-            "Σουπερμάρκετ Ανδρικόπουλος",
-            "3A",
-            "Γαλαξίας",
-            "Kronos",
-            "Markoulas"
-        ],
-        "image": "https://static.ab.gr/medias/sys_master/h19/he4/9765021909022.jpg?buildNumber=a8713418d89b16fd7400b418496712194ea4f19ee1bac2ddf10d99a9aa14c643"
+        "supermarket_names": "all",
+        "image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/Tuborg_%CE%A3%CE%BF%CE%B4%CE%B1_%CE%9A%CE%BF%CF%85%CF%84%CE%B9_330ML.jpg"
     },
     {
         "id": "23",
-        "name": "Αναψυκτικό Cola Στέβια Φιάλη 1lt",
-        "price": "0.75",
+        "name": "Coca Cola 250ml",
+        "price": "0.47",
         "subcategory_ids": [
             "5"
         ],
-        "supermarket_names": [
-            "Γαλαξίας",
-            "Μασούτης"
-        ],
-        "image": "https://static.ab.gr/medias/sys_master/h02/ha3/9720953995294.jpg?buildNumber=a8713418d89b16fd7400b418496712194ea4f19ee1bac2ddf10d99a9aa14c643"
+        "supermarket_names": "all",
+        "image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/Coca_Cola_250ML_%CE%9C%CF%80%CE%BF%CF%85%CE%BA_%CE%A0%CE%B5%CF%81%CE%B9%CE%B5%CF%87%CE%BF%CE%BC%CE%B5%CE%BD%CE%BF.png"
     },
     {
         "id": "24",
-        "name": "Σόδα Κουτί 6x330ml",
-        "price": "1.47",
+        "name": "Λουξ Σόδα 330ml",
+        "price": "0.52",
         "subcategory_ids": [
             "5"
         ],
-        "supermarket_names": [
-            "Ena Cash And Carry",
-            "Σκλαβενίτης",
-            "Super Market ΚΡΟΝΟΣ",
-            "ΑΒ Shop & Go",
-            "3A",
-            "Lidl",
-            "Ανδρικόπουλος - Supermarket",
-            "My market",
-            "ΚΡΟΝΟΣ - (Σκαγιοπουλείου)",
-            "ΑΒ Βασιλόπουλος",
-            "Super Market Θεοδωρόπουλος",
-            "Markoulas",
-            "Ανδρικόπουλος",
-            "Ρουμελιώτης SUPER Market",
-            "Kronos",
-            "Ανδρικόπουλος Super Market",
-            "Γαλαξίας",
-            "The Mart",
-            "MyMarket",
-            "Μασούτης",
-            "Spar"
-        ],
-        "image": "https://static.ab.gr/medias/sys_master/h4e/hf1/9639091109918.jpg?buildNumber=a8713418d89b16fd7400b418496712194ea4f19ee1bac2ddf10d99a9aa14c643"
+        "supermarket_names": "all",
+        "image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/%CE%91%CE%BD%CE%B1%CF%88%CF%85%CE%BA%CF%84_%CE%A3%CE%BF%CE%B4%CE%B1_%CE%9B%CE%BF%CF%85%CE%BE_330ML_Pet.jpg"
     },
     {
         "id": "25",
-        "name": "Αναψυκτικό Pink Grapefruit Κουτί 330ml",
-        "price": "0.88",
+        "name": "Green Cola 330ml",
+        "price": "0.61",
         "subcategory_ids": [
             "5"
         ],
-        "supermarket_names": [
-            "ΑΒ Βασιλόπουλος",
-            "Ανδρικόπουλος Super Market",
-            "Ανδρικόπουλος",
-            "Σουπερμάρκετ Ανδρικόπουλος"
-        ],
-        "image": "https://static.ab.gr/medias/sys_master/h15/h47/9639103234078.jpg?buildNumber=a8713418d89b16fd7400b418496712194ea4f19ee1bac2ddf10d99a9aa14c643"
+        "supermarket_names": "all",
+        "image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/Green_Cola_%CE%9A%CE%BF%CF%85%CF%84%CE%B9_330ML.jpg"
     },
     {
         "id": "26",
-        "name": "Μπύρα Ζύθος ΒΑΠ Κουτί 6x500ml 4+2 Δώρο",
-        "price": "5.73",
-        "subcategory_ids": [
-            "6"
-        ],
-        "supermarket_names": [
-            "3A ARAPIS",
-            "Σκλαβενίτης",
-            "Ρουμελιώτης SUPER Market",
-            "MyMarket",
-            "Ανδρικόπουλος",
-            "Ανδρικόπουλος - Supermarket",
-            "ΑΒ Βασιλόπουλος",
-            "Γαλαξίας",
-            "My market",
-            "Kronos",
-            "Markoulas",
-            "Super Market ΚΡΟΝΟΣ",
-            "ΚΡΟΝΟΣ - (Σκαγιοπουλείου)",
-            "The Mart",
-            "3A",
-            "ΑΒ Shop & Go",
-            "Ena Cash And Carry"
-        ],
-        "image": "https://static.ab.gr/medias/sys_master/h2d/hb3/9771956109342.jpg?buildNumber=a8713418d89b16fd7400b418496712194ea4f19ee1bac2ddf10d99a9aa14c643"
-    },
-    {
-        "id": "27",
-        "name": "Μπύρα Pilsner Κουτί 8x330ml 6+2 Δώρο",
-        "price": "6.99",
-        "subcategory_ids": [
-            "6"
-        ],
-        "supermarket_names": [
-            "3A ARAPIS",
-            "Lidl",
-            "ΚΡΟΝΟΣ - (Σκαγιοπουλείου)",
-            "Ανδρικόπουλος - Supermarket",
-            "Super Market Θεοδωρόπουλος",
-            "Ανδρικόπουλος Super Market",
-            "Σουπερμάρκετ Ανδρικόπουλος",
-            "MyMarket",
-            "Super Market ΚΡΟΝΟΣ",
-            "3A",
-            "Σκλαβενίτης",
-            "Kronos",
-            "ΑΒ Βασιλόπουλος",
-            "Γαλαξίας",
-            "The Mart",
-            "3Α Αράπης",
-            "Markoulas"
-        ],
-        "image": "https://static.ab.gr/medias/sys_master/h2c/h81/9772263538718.jpg?buildNumber=a8713418d89b16fd7400b418496712194ea4f19ee1bac2ddf10d99a9aa14c643"
-    },
-    {
-        "id": "28",
-        "name": "PILS HELLAS | Μπύρα Κουτί 6x330ml 5+1 Δώρο",
-        "price": "4.83",
+        "name": "Βεργίνα Μπύρα 500ml",
+        "price": "0.72",
         "subcategory_ids": [
             "6"
         ],
         "supermarket_names": "all",
-        "image": "https://static.ab.gr/medias/sys_master/h5b/h7a/9772166479902.jpg?buildNumber=a8713418d89b16fd7400b418496712194ea4f19ee1bac2ddf10d99a9aa14c643"
+        "image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/%CE%9C%CE%A0%CE%99%CE%A1%CE%91_%CE%92%CE%95%CE%A1%CE%93%CE%99%CE%9D%CE%91_%CE%A6%CE%99%CE%91%CE%9B%CE%97_0%2C50l.jpg"
+    },
+    {
+        "id": "27",
+        "name": "Μηλοκλέφτης Μηλίτης 330ml",
+        "price": "0.92",
+        "subcategory_ids": [
+            "6"
+        ],
+        "supermarket_names": "all",
+        "image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/%CE%9C%CE%B7%CE%BB%CE%B9%CF%84%CE%B7%CF%83_%CE%9C%CE%B7%CE%BB%CE%BF%CE%BA%CE%BB%CE%B5%CF%86%CF%84%CE%B7%CF%83_%CE%A6%CE%B9%CE%B1%CE%BB%CE%B7_330ML.jpg     "
+    },
+    {
+        "id": "28",
+        "name": "Fix Hellas Mπύρα 330ml",
+        "price": "0.99",
+        "subcategory_ids": [
+            "6"
+        ],
+        "supermarket_names": "all",
+        "image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/M%CF%80%CE%B9%CF%81%CE%B1_Fix_Hellas_330ML_%CE%9A%CE%BF%CF%85%CF%84%CE%B9.jpg"
     },
     {
         "id": "29",
-        "name": "KAISER | Μπύρα Κουτί 4x500ml",
-        "price": "5.82",
+        "name": "Amstel Μπύρα 330ml",
+        "price": "0.99",
         "subcategory_ids": [
             "6"
         ],
-        "supermarket_names": [
-            "Kronos",
-            "The Mart",
-            "Γαλαξίας",
-            "Markoulas",
-            "Lidl",
-            "Ρουμελιώτης SUPER Market",
-            "Spar"
-        ],
-        "image": "https://static.ab.gr/medias/sys_master/h48/h79/9771961417758.jpg?buildNumber=a8713418d89b16fd7400b418496712194ea4f19ee1bac2ddf10d99a9aa14c643"
+        "supermarket_names": "all",
+        "image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/%CE%9C%CF%80%CF%8D%CF%81%CE%B1_Amstel_%CE%9A%CE%BF%CF%85%CF%84%CE%AF_1.jpg"
     },
     {
         "id": "30",
-        "name": "Μπύρα Peroni Nastro Φιάλη 330ml",
-        "price": "2.09",
+        "name": "Mythos Μπύρα 330ml",
+        "price": "1.07",
         "subcategory_ids": [
             "6"
         ],
-        "supermarket_names": [
-            "Ανδρικόπουλος Super Market",
-            "Markoulas",
-            "3A ARAPIS",
-            "MyMarket",
-            "Ρουμελιώτης SUPER Market",
-            "Σκλαβενίτης",
-            "Ena Cash And Carry",
-            "Μασούτης",
-            "3A",
-            "ΑΒ Shop & Go",
-            "Lidl",
-            "3Α Αράπης",
-            "Super Market Θεοδωρόπουλος"
-        ],
-        "image": "https://static.ab.gr/medias/sys_master/h06/haf/9772011749406.jpg?buildNumber=a8713418d89b16fd7400b418496712194ea4f19ee1bac2ddf10d99a9aa14c643"
+        "supermarket_names": "all",
+        "image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/%CE%9C%CF%80%CE%B9%CF%81%CE%B1_Mythos_Can_330%CE%9C.jpg"
     },
     {
         "id": "31",
-        "name": "FAIRY | Υγρό Απορρυπαντικό Πιάτων Ultra 900ml",
-        "price": "2.99",
+        "name": "Svelto Gel Υγρό Πιάτων Λεμόνι 500ml",
+        "price": "1.19",
         "subcategory_ids": [
             "7"
         ],
-        "supermarket_names": [
-            "Kronos",
-            "Ανδρικόπουλος - Supermarket",
-            "ΑΒ Shop & Go",
-            "Σουπερμάρκετ Ανδρικόπουλος",
-            "Γαλαξίας",
-            "Ena Cash And Carry",
-            "3A ARAPIS",
-            "Ρουμελιώτης SUPER Market",
-            "Σκλαβενίτης",
-            "Lidl",
-            "Markoulas",
-            "Super Market Θεοδωρόπουλος",
-            "Ανδρικόπουλος",
-            "The Mart"
-        ],
-        "image": "https://static.ab.gr/medias/sys_master/ha3/h88/9706627891230.jpg?buildNumber=a8713418d89b16fd7400b418496712194ea4f19ee1bac2ddf10d99a9aa14c643"
+        "supermarket_names": "all",
+        "image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/%CE%A5%CE%B3%CF%81%CE%BF_%CE%A0%CE%B9%CE%B1%CF%84_%CE%9B%CE%B5%CE%BC_%CE%95%CE%BD%CE%B5%CF%81%CE%B3%CE%BF_Gel_Svelto500m.jpg"
     },
     {
         "id": "32",
-        "name": "FINISH | Υγρό Εκθαμβωτικό Πλυντηρίου Πιάτων Λεμόνι 400ml",
-        "price": "4.06",
+        "name": "Svelto Gel Υγρό Πιάτων Λεμόνι 500ml",
+        "price": "1.20",
         "subcategory_ids": [
             "7"
         ],
-        "supermarket_names": [
-            "3Α Αράπης",
-            "Ρουμελιώτης SUPER Market"
-        ],
-        "image": "https://static.ab.gr/medias/sys_master/h5e/h10/9459678347294.jpg?buildNumber=a8713418d89b16fd7400b418496712194ea4f19ee1bac2ddf10d99a9aa14c643"
+        "supermarket_names": "all",
+        "image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/Palmolive_%CE%A0%CE%B9%CE%AC%CF%84%CF%89%CE%BD_Regular.jpg"
     },
     {
         "id": "33",
-        "name": "ΑΒ | Υγρό Πιάτων Λεμόνι 500ml",
-        "price": "0.95",
+        "name": "Fairy Υγρό Πιάτων Ultra Classic 400ml",
+        "price": "1.45",
         "subcategory_ids": [
             "7"
         ],
-        "supermarket_names": [
-            "ΚΡΟΝΟΣ - (Σκαγιοπουλείου)",
-            "Ena Cash And Carry",
-            "Σκλαβενίτης",
-            "ΑΒ Shop & Go",
-            "3A ARAPIS",
-            "Spar",
-            "Kronos",
-            "3Α Αράπης",
-            "Markoulas",
-            "Ανδρικόπουλος Super Market",
-            "Μασούτης",
-            "ΑΒ Βασιλόπουλος",
-            "Ανδρικόπουλος"
-        ],
-        "image": "https://static.ab.gr/medias/sys_master/h39/h98/9687646568478.jpg?buildNumber=a8713418d89b16fd7400b418496712194ea4f19ee1bac2ddf10d99a9aa14c643"
+        "supermarket_names": "all",
+        "image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/Fairy_Ultra_Classic.jpg"
     },
     {
         "id": "34",
-        "name": "Υγρό Πιάτων Action Λευκό Ξύδι & Πράσινο Μήλο Αντλία 650ml",
-        "price": "2.01",
+        "name": "Rol Σκόνη Για Πλυσ Στο Χέρι 380γρ",
+        "price": "1.54",
         "subcategory_ids": [
             "7"
         ],
-        "supermarket_names": [
-            "3A",
-            "Spar",
-            "ΑΒ Shop & Go",
-            "Ena Cash And Carry",
-            "Γαλαξίας",
-            "ΚΡΟΝΟΣ - (Σκαγιοπουλείου)",
-            "Lidl",
-            "The Mart",
-            "Σκλαβενίτης",
-            "Σουπερμάρκετ Ανδρικόπουλος",
-            "Markoulas",
-            "Kronos",
-            "3Α Αράπης",
-            "Ρουμελιώτης SUPER Market"
-        ],
-        "image": ""
+        "supermarket_names": "all",
+        "image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/%CE%A3%CE%BA%CE%BF%CE%BD%CE%B7_%CE%93%CE%B9%CE%B1_%CE%A0%CE%BB%CF%85%CF%82_%CE%A3%CF%84%CE%BF_%CE%A7%CE%B5%CF%81%CE%B9_Rol_380%CE%93%CE%A1.jpg"
     },
     {
         "id": "35",
-        "name": "Κάψουλες Πλυντηρίου Πιάτων Power All in 1 Λεμόνι 85 Tεμάχια",
-        "price": "22.29",
+        "name": "Ava Υγρό Πιάτων Perle Σύμπλεγμα Βιταμινών 430ml",
+        "price": "1.59",
         "subcategory_ids": [
             "7"
         ],
-        "supermarket_names": [
-            "Μασούτης",
-            "Γαλαξίας",
-            "3A ARAPIS"
-        ],
-        "image": "https://static.ab.gr/medias/sys_master/hef/h37/9487945728030.jpg?buildNumber=a8713418d89b16fd7400b418496712194ea4f19ee1bac2ddf10d99a9aa14c643"
+        "supermarket_names": "all",
+        "image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/Ava_%CE%A5%CE%B3%CF%81%CF%8C_%CE%A0%CE%B9%CE%AC%CF%84%CF%89%CE%BD_Perle_%CE%A3%CF%8D%CE%BC%CF%80%CE%BB%CE%B5%CE%B3%CE%BC%CE%B1_%CE%92%CE%B9%CF%84%CE%B1%CE%BC%CE%B9%CE%BD%CF%8E%CE%BD_430ml.jpg"
     },
     {
         "id": "36",
-        "name": "Συμπυκνωμένο Μαλακτικό Indulge Gold Orchid 55 Μεζούρες",
-        "price": "5.04",
+        "name": "Softex Χαρτοπετσέτες Λευκές 30x30 56τεμ",
+        "price": "0.66",
         "subcategory_ids": [
             "8"
         ],
-        "supermarket_names": [
-            "ΑΒ Shop & Go",
-            "Ρουμελιώτης SUPER Market",
-            "ΚΡΟΝΟΣ - (Σκαγιοπουλείου)",
-            "3A ARAPIS",
-            "Super Market ΚΡΟΝΟΣ",
-            "Lidl",
-            "Markoulas",
-            "The Mart",
-            "Kronos",
-            "Ανδρικόπουλος - Supermarket",
-            "Σκλαβενίτης",
-            "ΑΒ Βασιλόπουλος",
-            "Σουπερμάρκετ Ανδρικόπουλος",
-            "Ena Cash And Carry",
-            "Γαλαξίας",
-            "3A",
-            "Super Market Θεοδωρόπουλος",
-            "My market",
-            "3Α Αράπης",
-            "MyMarket",
-            "Ανδρικόπουλος",
-            "Spar",
-            "Ανδρικόπουλος Super Market",
-            "Μασούτης"
-        ],
-        "image": "https://static.ab.gr/medias/sys_master/h97/h38/9668570644510.jpg?buildNumber=a8713418d89b16fd7400b418496712194ea4f19ee1bac2ddf10d99a9aa14c643"
+        "supermarket_names": "all",
+        "image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/Softex_%CE%A7%CE%B1%CF%81%CF%84%CE%BF%CF%80%CE%B5%CF%84%CF%83%CE%AD%CF%84%CE%B5%CF%82_%CE%9B%CE%B5%CF%85%CE%BA%CE%AD%CF%82_30X30_56%CE%A4%CE%B5%CE%BC.jpg"
     },
     {
         "id": "37",
-        "name": "Συμπυκνωμένο Μαλακτικό Mistral 77 Μεζούρες",
-        "price": "4.80",
+        "name": "Delica Χαρτομάντηλα Αυτοκινήτου Λευκά Big 150τεμ",
+        "price": "2.08",
         "subcategory_ids": [
             "8"
         ],
-        "supermarket_names": [
-            "Γαλαξίας",
-            "Μασούτης",
-            "Kronos",
-            "Ανδρικόπουλος - Supermarket",
-            "Ρουμελιώτης SUPER Market",
-            "3Α Αράπης",
-            "Lidl",
-            "3A",
-            "Super Market Θεοδωρόπουλος",
-            "ΚΡΟΝΟΣ - (Σκαγιοπουλείου)",
-            "Spar",
-            "Ανδρικόπουλος Super Market",
-            "The Mart",
-            "Markoulas"
-        ],
-        "image": "https://static.ab.gr/medias/sys_master/h2c/h5f/9673405562910.jpg?buildNumber=a8713418d89b16fd7400b418496712194ea4f19ee1bac2ddf10d99a9aa14c643"
+        "supermarket_names": "all",
+        "image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/X%CE%B1%CF%81%CF%84%CE%BF%CE%BC_Facial_Big_%CE%9B%CE%B5%CF%85%CE%BA_Delica_203%CE%93.jpg"
     },
     {
         "id": "38",
-        "name": "Συμπυκνωμένο Μαλακτικό Fresh Ocean Escape 55 Μεζούρες",
-        "price": "5.04",
+        "name": "Zewa Χαρτί Κουζίνας Με Σχέδια 2τεμ",
+        "price": "3.60",
         "subcategory_ids": [
             "8"
         ],
-        "supermarket_names": [
-            "ΑΒ Βασιλόπουλος",
-            "Σκλαβενίτης",
-            "Super Market Θεοδωρόπουλος",
-            "Super Market ΚΡΟΝΟΣ",
-            "MyMarket",
-            "Kronos",
-            "Ανδρικόπουλος - Supermarket"
-        ],
-        "image": "https://static.ab.gr/medias/sys_master/hcf/hbc/9668624416798.jpg?buildNumber=a8713418d89b16fd7400b418496712194ea4f19ee1bac2ddf10d99a9aa14c643"
+        "supermarket_names": "all",
+        "image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/%CE%A7%CE%B1%CF%81%CF%84%CE%B9_%CE%9A%CE%BF%CF%85%CE%B6%CE%B9%CE%BD%CE%B1%CF%82_%CE%9C%CE%B5_%CE%A3%CF%87%CE%B5%CE%B4%CE%B9%CE%B1_Zewa_2TEM.jpg"
     },
     {
         "id": "39",
-        "name": "Συμπυκνωμένο Μαλακτικό Bizantium 38 Μεζούρες",
-        "price": "3.39",
+        "name": "Zewa Deluxe Χαρτί Υγείας 3 Φύλλα 8τεμ",
+        "price": "3.97",
         "subcategory_ids": [
             "8"
         ],
-        "supermarket_names": [
-            "Ena Cash And Carry",
-            "Σκλαβενίτης",
-            "The Mart",
-            "Markoulas",
-            "ΑΒ Shop & Go",
-            "ΑΒ Βασιλόπουλος",
-            "MyMarket",
-            "Ανδρικόπουλος",
-            "Lidl",
-            "3A",
-            "Μασούτης",
-            "Σουπερμάρκετ Ανδρικόπουλος"
-        ],
-        "image": "https://static.ab.gr/medias/sys_master/hc1/h92/9645048954910.jpg?buildNumber=a8713418d89b16fd7400b418496712194ea4f19ee1bac2ddf10d99a9aa14c643"
+        "supermarket_names": "all",
+        "image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/%CE%A7%CE%91%CE%A1%CE%A4%CE%99_%CE%A5%CE%93%CE%95%CE%99%CE%91%CE%A3_DELUXE_DELICATE_CARE_3%CE%A6%CE%A5%CE%9B%CE%9B%CE%91_8%CE%A4%CE%95%CE%9C.jpg"
     },
     {
         "id": "40",
-        "name": "Συμπυκνωμένο Μαλακτικό Aroma Βανίλια και Μανταρίνι 77 Μεζούρες",
-        "price": "4.80",
+        "name": "Zewa Χαρτί Υγείας Ultra Soft 8τεμ 912γρ",
+        "price": "4.64",
         "subcategory_ids": [
             "8"
         ],
-        "supermarket_names": [
-            "3A ARAPIS",
-            "Spar"
-        ],
-        "image": "https://static.ab.gr/medias/sys_master/hf6/h85/9673254895646.jpg?buildNumber=a8713418d89b16fd7400b418496712194ea4f19ee1bac2ddf10d99a9aa14c643"
+        "supermarket_names": "all",
+        "image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/ZEWA_%CE%A5%CE%93EXCLUSULTRA_SOFT_8%CE%A4_912%CE%93%CE%A1.jpg"
     }
 ]

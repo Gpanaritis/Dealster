@@ -29,11 +29,10 @@ import SearchBar from "./components/SearchBar";
 import ProductsMap from "./components/productsMap";
 import FilteredSupermarkets from "./components/filteredSupermarkets";
 import Offers from "./components/Offers";
+
 import ChangeUsername from "./components/ChangeUserDetails/ChangeUsername";
 
 import EventBus from "./common/EventBus";
-
-//trying to do the thing
 
 import CategoryManagement from "./components/CategoryManagement";
 import ProductSection from "./components/ProductSection";
@@ -138,6 +137,14 @@ const App = () => {
 
         {currentUser ? (
           <div className="navbar-nav ml-auto">
+            {showAdminBoard && currentUser && (
+          <div className="navbar-nav ml-auto">
+          {/* Render the ProductSection link for admin users */}
+            <Link to="/products" className="nav-link">
+              Products
+            </Link>
+          </div>
+        )} 
             <li className="nav-item">
               <Link to={`/profile/${currentUser.username}`} className="nav-link">
                 {currentUser.username}

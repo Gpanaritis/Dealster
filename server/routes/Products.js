@@ -99,24 +99,31 @@ router.get('/:product_id/subcategories', async (req, res) => {
 router.post('/', async (req, res) => {
     // create a function
     const createProduct = async (product) => {
-        const createdProduct = await Products.create(product);
-        if (product.subcategory_ids) {
-            const subcategories = await Subcategory.findAll({ where: { id: product.subcategory_ids } });
-            await createdProduct.addSubcategory(subcategories);
+        try {
+            const createdProduct = await Products.create(product);
+            if (product.subcategory_ids) {
+                const subcategories = await Subcategory.findAll({ where: { id: product.subcategory_ids } });
+                await createdProduct.addSubcategory(subcategories);
+            }
+            if (product.supermarket_ids) {
+                const supermarkets = await Super_markets.findAll({ where: { id: product.supermarket_ids } });
+                await createdProduct.addSupermarkets(supermarkets);
+            }
+            if (product.supermarket_names == 'all') {
+                const supermarkets = await Super_markets.findAll();
+                await createdProduct.addSupermarkets(supermarkets);
+            }
+            else if (product.supermarket_names) {
+                const supermarkets = await Super_markets.findAll({ where: { name: product.supermarket_names } });
+                await createdProduct.addSupermarkets(supermarkets);
+            }
+            return createdProduct;
+        } catch (error) {
+            if (error instanceof sequelize.UniqueConstraintError) {
+                console.error(`Error creating product: ${error}`);
+                return null;
+            }
         }
-        if (product.supermarket_ids) {
-            const supermarkets = await Super_markets.findAll({ where: { id: product.supermarket_ids } });
-            await createdProduct.addSupermarkets(supermarkets);
-        }
-        if (product.supermarket_names == 'all') {
-            const supermarkets = await Super_markets.findAll();
-            await createdProduct.addSupermarkets(supermarkets);
-        }
-        else if (product.supermarket_names) {
-            const supermarkets = await Super_markets.findAll({ where: { name: product.supermarket_names } });
-            await createdProduct.addSupermarkets(supermarkets);
-        }
-        return createdProduct;
     }
 
     try {
