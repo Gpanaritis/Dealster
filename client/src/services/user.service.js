@@ -66,6 +66,11 @@ const getReactionsAdded = async (username) => {
   return response.data;
 }
 
+const getLeaderboard = async () => {
+  const response = await axios.get(API_URL + `auth/leaderboard`, { headers: authHeader() });
+  return response.data;
+}
+
 const UserService = {
   getPublicContent,
   getUserBoard,
@@ -78,7 +83,8 @@ const UserService = {
   changePassword,
   getOffersAddedByMe,
   getOffersAdded,
-  getReactionsAdded
+  getReactionsAdded,
+  getLeaderboard
 };
 
 export default UserService;

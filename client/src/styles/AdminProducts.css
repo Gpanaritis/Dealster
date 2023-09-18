@@ -62,4 +62,64 @@
   align-items: center;
 }
 
-/* You can further customize the styles as needed */
+/* Add this CSS to style your enhanced leaderboard component */
+
+/* Container for the entire leaderboard */
+.container {
+  background-color: #f8f9fa; /* Light gray background color */
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Header style */
+.leaderboard-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Individual leaderboard item */
+.leaderboard-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  border: 1px solid #e9ecef; /* Light gray border */
+  padding: 10px;
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Rank style */
+.leaderboard-rank {
+  flex: 0 0 50px;
+  text-align: center;
+  font-size: 24px;
+  color: #343a40; /* Dark text color */
+}
+
+/* User details style */
+.leaderboard-details {
+  flex-grow: 1;
+  padding-left: 20px;
+}
+
+/* Username style */
+.leaderboard-details h4 {
+  margin: 0;
+  font-size: 18px;
+  color: #343a40; /* Dark text color */
+}
+
+/* Points and Tokens style */
+.leaderboard-details p {
+  margin: 5px 0;
+  color: #6c757d; /* Gray text color */
+}
+
+/* Hover effect */
+.leaderboard-item:hover {
+  background-color: #f0f0f0; /* Lighter background color on hover */
+  transition: background-color 0.3s ease;
+}
+

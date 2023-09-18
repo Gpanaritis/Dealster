@@ -3,7 +3,8 @@ const router = express.Router();
 const db = require('../models');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const {verifyToken, isAdmin, getUserFromToken, getUserIdFromToken} = require('../middleware/authJwt');
+const { verifyToken, isAdmin, getUserFromToken, getUserIdFromToken } = require('../middleware/authJwt');
+const { Op } = require('sequelize');
 // const op = require('sequelize').Op;
 
 const Users = db.Users;
@@ -18,7 +19,7 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/register', async (req, res) => {
-    const {username, password, email} = req.body;
+    const { username, password, email } = req.body;
     //Validate user input
     if (!(email && password && username)) {
         res.status(400).send("All input is required");
@@ -72,7 +73,7 @@ router.post('/register', async (req, res) => {
 });
 
 router.post('/login', async (req, res) => {
-    const {email, password} = req.body;
+    const { email, password } = req.body;
     //Validate user input
     if (!(email && password)) {
         res.status(400).send("All input is required");
@@ -110,7 +111,7 @@ router.post('/login', async (req, res) => {
             accessToken: token
         });
     }
-    else{
+    else {
         res.status(400).send("Invalid Credentials");
     }
 });
@@ -141,8 +142,66 @@ router.get('/me', async (req, res) => {
     }
 });
 
+// get leaderboard
+router.get('/leaderboard', [verifyToken, isAdmin], async (req, res) => {
+    try {
+        const lastMonthStartDate = new Date();
+        lastMonthStartDate.setMonth(lastMonthStartDate.getMonth() - 1);
+        lastMonthStartDate.setHours(0, 0, 0, 0);
+
+        const leaderboard = await Users.findAll({
+            attributes: ['username', 'id'],
+            include: [
+                {
+                    model: db.Points,
+                    as: 'points',
+                    attributes: [
+                        [db.sequelize.fn('sum', db.sequelize.col('points')), 'totalPoints'],
+                    ],
+                },
+                {
+                    model: db.Tokens,
+                    as: 'tokens',
+                    attributes: [
+                        [db.sequelize.fn('sum', db.sequelize.col('tokens')), 'totalTokens'],
+                    ],
+                },
+            ],
+            group: ['Users.id'], // Group by user ID to get distinct users
+            order: [[db.sequelize.fn('sum', db.sequelize.col('points.points')), 'DESC']],
+            separate: true, // Retrieve the associations separately
+        });
+
+        const tokensLastMonth = await db.Tokens.findAll({
+            attributes: ['user_id', [db.sequelize.fn('sum', db.sequelize.col('tokens')), 'tokens']],
+            where: {
+                createdAt: {
+                    [Op.gte]: lastMonthStartDate,
+                },
+            },
+            group: ['user_id'],
+        });
+
+        // Map the result to get the desired format
+        const formattedLeaderboard = leaderboard.map(user => ({
+            username: user.username,
+            id: user.id,
+            points: user.points.length > 0 ? user.points[0].dataValues.totalPoints : 0,
+            tokens: user.tokens.length > 0 ? user.tokens[0].dataValues.totalTokens : 0,
+            tokensLastMonth: tokensLastMonth.find(tokens => tokens.user_id === user.id)?.dataValues.tokens || 0,
+        }));
+
+        res.json(formattedLeaderboard);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+
+
 router.put('/changeUsername/:username', verifyToken, async (req, res) => {
-    const {username} = req.params;
+    const { username } = req.params;
     // Check if user exist
     const old_username = await Users.findOne({ where: { username: username } });
     if (old_username) {

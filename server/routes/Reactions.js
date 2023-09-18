@@ -42,7 +42,7 @@ router.put('/like/:offerId', async (req, res) => {
                 await reaction.destroy();
                 const pointsEntry = await Points.create({
                     points: -5,
-                    user_id: userId
+                    user_id: offer.user_id
                 });
 
             }
@@ -53,7 +53,7 @@ router.put('/like/:offerId', async (req, res) => {
                 // add points
                 const pointsEntry = await Points.create({
                     points: 6,
-                    user_id: userId
+                    user_id: offer.user_id
                 });
 
             }
@@ -64,7 +64,7 @@ router.put('/like/:offerId', async (req, res) => {
             // add points
             const pointsEntry = await Points.create({
                 points: 5,
-                user_id: userId
+                user_id: offer.user_id
             });
             res.json(reaction);
         }
@@ -91,7 +91,7 @@ router.put('/dislike/:offerId', async (req, res) => {
                 // add points
                 const pointsEntry = await Points.create({
                     points: 1,
-                    user_id: userId
+                    user_id: offer.user_id
                 });
                 
             }
@@ -103,7 +103,7 @@ router.put('/dislike/:offerId', async (req, res) => {
                 // remove points
                 const pointsEntry = await Points.create({
                     points: -6,
-                    user_id: userId
+                    user_id: offer.user_id
                 });
             }
             res.json(reaction);
@@ -113,7 +113,7 @@ router.put('/dislike/:offerId', async (req, res) => {
             // remove points
             const pointsEntry = await Points.create({
                 points: -1,
-                user_id: userId
+                user_id: offer.user_id
             });
             res.json(reaction);
         }

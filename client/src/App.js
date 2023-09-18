@@ -29,6 +29,7 @@ import SearchBar from "./components/SearchBar";
 import ProductsMap from "./components/productsMap";
 import FilteredSupermarkets from "./components/filteredSupermarkets";
 import Offers from "./components/Offers";
+import Leaderboard from "./components/Leaderboard";
 
 import ChangeUsername from "./components/ChangeUserDetails/ChangeUsername";
 
@@ -207,6 +208,7 @@ const App = () => {
           <Route path="/categories" element={<CategoryManagement />} />
           <Route path="/products" element={<ProductSection />} />
           <Route path="/changeUserDetails" element={<ChangeUsername />} />
+          <Route path="/leaderboard" element={<Leaderboard />} />
         </Routes>
       </div>
 
