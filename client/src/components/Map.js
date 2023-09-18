@@ -84,7 +84,7 @@ const Map = ({ selectedSupermarkets, filterType, activeFilter }) => {
                     const addOfferUrl = `/addOffer/${supermarket.id}`;
                     const addOfferLink = `<a href="${addOfferUrl}">Add offer</a>`;
                     const supermarketOffersUrl = `/supermarketOffers/${supermarket.id}`;
-                    const supermarketOffersLink = `<a href="${supermarketOffersUrl}">${numOffers} offer${numOffers !== 1 ? 's' : ''} available</a>`;
+                    const supermarketOffersLink = `<a href="${supermarketOffersUrl}"> Rate offers</a>`;
                     link = `${addOfferLink} | ${supermarketOffersLink}`;
                 } else {
                     icon = supermarket.num_offers === 0 ? redIcon : blueIcon;
