@@ -6,8 +6,8 @@ const API_URL = "http://localhost:3000/";
 // const fetchAndStoreSupermarkets = async (latitude, longitude) => {
 
 const fetchAndStoreSupermarkets = async () => {
-    const longitude = 21.72831230;
-    const latitude = 38.23601290;
+    const longitude = 21.712840;
+    const latitude = 38.208024;
 
     const response = await axios.get(API_URL + "supermarkets", { headers: authHeader(), params: { latitude, longitude}});
     if (response.data) {
