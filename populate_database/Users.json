@@ -3,11 +3,61 @@
         "username": "Gpanaritis",
         "email": "jpanaritis2003@gmail.com",
         "password": "qwerty492",
-        "roles": ["1","2"]
+        "roles": ["1", "2"]
     },
     {
         "username": "Ioannis",
         "email": "up1072632@upnet.gr",
         "password": "qwerty492"
+    },
+    {
+        "username": "User1",
+        "email": "randomuser1@example.com",
+        "password": "P@ssw0rd1"
+    },
+    {
+        "username": "User2",
+        "email": "testaccount42@gmail.com",
+        "password": "Secure123!"
+    },
+    {
+        "username": "User3",
+        "email": "user345@hotmail.com",
+        "password": "RandomPass789"
+    },
+    {
+        "username": "User4",
+        "email": "newmember@emailprovider.net",
+        "password": "SecretCode55"
+    },
+    {
+        "username": "User5",
+        "email": "sampleuser23@domain.org",
+        "password": "7F&9a$Pz"
+    },
+    {
+        "username": "User6",
+        "email": "anonymous_user57@xyz.com",
+        "password": "R3@lLy$tr0ngP@ss"
+    },
+    {
+        "username": "User7",
+        "email": "random1234@yahoo.com",
+        "password": "Th3P@ssw0rd"
+    },
+    {
+        "username": "User8",
+        "email": "user5678@emailservice.com",
+        "password": "C0mpl3xP@ssword"
+    },
+    {
+        "username": "User9",
+        "email": "exampleuser12@emailhosting.org",
+        "password": "Myp@ssw0rd2023"
+    },
+    {
+        "username": "User10",
+        "email": "tempuser99@emailprovider.net",
+        "password": "$ecureP@ss!"
     }
 ]

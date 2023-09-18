@@ -29,15 +29,9 @@ import SearchBar from "./components/SearchBar";
 import ProductsMap from "./components/productsMap";
 import FilteredSupermarkets from "./components/filteredSupermarkets";
 import Offers from "./components/Offers";
-import Leaderboard from "./components/Leaderboard";
-import OffersCountChart from "./components/Admin/OffersCountChart";
-
-import ChangeUsername from "./components/ChangeUserDetails/ChangeUsername";
+import Admin from "./components/Admin";
 
 import EventBus from "./common/EventBus";
-
-import CategoryManagement from "./components/CategoryManagement";
-import ProductSection from "./components/ProductSection";
 
 const AppearanceMode = (Theme) => {
   if (Theme === 'light') {
@@ -142,8 +136,8 @@ const App = () => {
             {showAdminBoard && currentUser && (
           <div className="navbar-nav ml-auto">
           {/* Render the ProductSection link for admin users */}
-            <Link to="/products" className="nav-link">
-              Products
+            <Link to="/admin" className="nav-link">
+              Admin
             </Link>
           </div>
         )} 
@@ -197,7 +191,6 @@ const App = () => {
           <Route path="/profile/:username" element={<Profile />} />
           <Route path="/user" element={<BoardUser />} />
           <Route path="/mod" element={<BoardModerator />} />
-          <Route path="/admin" element={<BoardAdmin />} />
           <Route path="/map" element={<Map />} />
           <Route path="/supermarketOffers/:supermarket_id" element={<SupermarketOffers />} />
           <Route path="/addOffer/:supermarket_id" element={<AddOffer />} />
@@ -206,11 +199,7 @@ const App = () => {
           <Route path="/productsMap/:category_name" element={<ProductsMap />} />
           <Route path="/offers" element={<Offers />} />
           {/* Include ProductSection */}
-          <Route path="/categories" element={<CategoryManagement />} />
-          <Route path="/products" element={<ProductSection />} />
-          <Route path="/changeUserDetails" element={<ChangeUsername />} />
-          <Route path="/leaderboard" element={<Leaderboard />} />
-          <Route path="/offersCountChart" element={<OffersCountChart />} />
+          <Route path="/admin" element={<Admin />} />
         </Routes>
       </div>
 

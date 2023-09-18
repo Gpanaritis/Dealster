@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import "../styles/AdminProducts.css";
-import UploadProducts from "./UploadJsonData/UploadProducts";
+import "../../styles/AdminProducts.css";
+import UploadProducts from "./UploadProducts";
 
 const AdminProductManagement = () => {
 
