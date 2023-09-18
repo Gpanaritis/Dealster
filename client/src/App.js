@@ -30,6 +30,7 @@ import ProductsMap from "./components/productsMap";
 import FilteredSupermarkets from "./components/filteredSupermarkets";
 import Offers from "./components/Offers";
 import Leaderboard from "./components/Leaderboard";
+import OffersCountChart from "./components/Admin/OffersCountChart";
 
 import ChangeUsername from "./components/ChangeUserDetails/ChangeUsername";
 
@@ -209,6 +210,7 @@ const App = () => {
           <Route path="/products" element={<ProductSection />} />
           <Route path="/changeUserDetails" element={<ChangeUsername />} />
           <Route path="/leaderboard" element={<Leaderboard />} />
+          <Route path="/offersCountChart" element={<OffersCountChart />} />
         </Routes>
       </div>
 
