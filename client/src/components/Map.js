@@ -174,14 +174,14 @@ const Map = ({ selectedSupermarkets, filterType, activeFilter }) => {
 
         L.easyButton("fa-map-marker", () => {
             map.locate().on("locationfound", function (e) {
-                let latlng = [38.208024, 21.712840]
+                let latlng = [38.263539, 21.743435]
                 setLocation(latLng);
                 map.flyTo(latlng, map.getZoom());
             });
         }).addTo(map);
 
         map.locate().on("locationfound", function (e) {
-            let latlng = [38.208024, 21.712840]
+            let latlng = [38.263539, 21.743435]
             L.marker(latlng, { icon: currLocationIcon }).addTo(map).bindPopup("You are here").openPopup();
         });
     }, [map]);
