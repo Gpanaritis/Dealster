@@ -56,17 +56,17 @@ const App = () => {
   const [currentUser, setCurrentUser] = useState(undefined);
 
   setFetchMethodForDarkReader(window.fetch);
-  followSystemColorScheme();
-  // const DarkMode = localStorage.getItem('dark-mode-enabled');
-  // if (typeof DarkMode == 'undefined') {
-  //   AppearanceMode('system');
-  // } else if (DarkMode === 'true') {
-  //   AppearanceMode('dark');
-  // } else if (DarkMode === 'false') {
-  //   AppearanceMode('light');
-  // } else if (DarkMode === 'auto') {
-  //   AppearanceMode('system');
-  // }
+  // followSystemColorScheme();
+  const DarkMode = localStorage.getItem('dark-mode-enabled');
+  if (typeof DarkMode == 'undefined') {
+    AppearanceMode('system');
+  } else if (DarkMode === 'true') {
+    AppearanceMode('dark');
+  } else if (DarkMode === 'false') {
+    AppearanceMode('light');
+  } else if (DarkMode === 'auto') {
+    AppearanceMode('system');
+  }
 
 
   useEffect(() => {

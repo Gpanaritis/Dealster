@@ -65,4 +65,16 @@
     font-weight: bold;
     margin: 0;
   }
+
+  .appearance-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.dropdown-item.active {
+  background-color: #007bff;
+  color: white;
+}
   

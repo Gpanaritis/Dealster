@@ -7,6 +7,7 @@ import ChangePassword from "./ChangeUserDetails/ChangePassword";
 import OffersAdded from "./ChangeUserDetails/OffersAdded";
 import ReactionsAdded from "./ChangeUserDetails/ReactionsAdded";
 import PointsDetails from "./ChangeUserDetails/PointsDetails";
+import Appearance from "./ChangeUserDetails/Appearance";
 
 import "../styles/Profile.css"; // Import your CSS file for styling
 
@@ -49,6 +50,9 @@ const Profile = () => {
             <ChangePassword />
           </Tab>
         )}
+        <Tab eventKey="appearance" title="Appearance">
+          <Appearance />
+        </Tab>
       </Tabs>
     </div>
   );
