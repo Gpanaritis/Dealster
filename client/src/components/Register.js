@@ -37,10 +37,38 @@ const vusername = (value) => {
 };
 
 const vpassword = (value) => {
-  if (value.length < 6 || value.length > 40) {
+  if (value.length < 8 || value.length > 40) {
     return (
       <div className="alert alert-danger" role="alert">
-        The password must be between 6 and 40 characters.
+        The password must be between 8 and 40 characters.
+      </div>
+    );
+  }
+  else if (!value.match(/[a-z]/g)) {
+    return (
+      <div className="alert alert-danger" role="alert">
+        The password must contain at least one lowercase letter.
+      </div>
+    );
+  }
+  else if (!value.match(/[A-Z]/g)) {
+    return (
+      <div className="alert alert-danger" role="alert">
+        The password must contain at least one uppercase letter.
+      </div>
+    );
+  }
+  else if (!value.match(/[0-9]/g)) {
+    return (
+      <div className="alert alert-danger" role="alert">
+        The password must contain at least one number.
+      </div>
+    );
+  }
+  else if (!value.match(/[^a-zA-Z\d]/g)) {
+    return (
+      <div className="alert alert-danger" role="alert">
+        The password must contain at least one special character.
       </div>
     );
   }
