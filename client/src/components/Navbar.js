@@ -12,7 +12,7 @@ const YourNavbarComponent = ({ currentUser, showAdminBoard, logOut }) => {
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <a className="navbar-brand" href="/">
-                <img src="/logo512.png" alt="Logo" width="40" height="40" className="d-inline-block align-top" />
+                <img src="/logo512.png" alt="Logo" width="30" height="30" className="d-inline-block align-top" />
                 {' '}Dealster
             </a>
             <button
