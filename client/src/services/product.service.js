@@ -25,11 +25,17 @@ const removeOffer = async (offerId) => {
     return response.data;
 }
 
+const getOffersGroupedByDate = async () => {
+    const response = await axios.get(API_URL + "offers/count", { headers: authHeader() });
+    return response.data;
+}
+
 const ProductService = {
     getProduct,
     getProducts,
     getCategories,
-    removeOffer
+    removeOffer,
+    getOffersGroupedByDate
 };
 
 export default ProductService;

@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { Op } = require('sequelize');
 const { Offers, Super_markets, Reactions, Products, Users, Points, Price_history } = require('../models');
+const db = require('../models');
 const uniqueObjects = require('unique-objects');
 const { verifyToken, isAdmin, getUserIdFromToken } = require('../middleware/authJwt');
 
@@ -312,6 +313,25 @@ router.get('/reactions/user/:username', async (req, res) => {
         res.status(500).json({ error: "Error fetching offers" });
     }
 });
+
+// Get count of offers per day
+router.get('/count', async (req, res) => {
+    try {
+        const offers = await Offers.findAll({
+            attributes: [
+                [db.sequelize.fn('DATE', db.sequelize.col('createdAt')), 'date'], // Extract date portion
+                [db.sequelize.fn('count', db.sequelize.col('id')), 'count']
+            ],
+            group: [db.sequelize.fn('DATE', db.sequelize.col('createdAt'))], // Group by date
+            order: [[db.sequelize.fn('DATE', db.sequelize.col('createdAt')), 'DESC']], // Order by date
+        });
+        res.json(offers);
+    } catch (error) {
+        console.error(`Error fetching offers: ${error}`);
+        res.status(500).json({ error: "Error fetching offers" });
+    }
+});
+
 
 // toggle stock status
 router.put('/stock/:offerId', verifyToken, async (req, res) => {
