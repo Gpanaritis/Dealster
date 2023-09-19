@@ -5,6 +5,7 @@ import AuthService from "../services/auth.service";
 import Leaderboard from "./Admin/Leaderboard";
 import OffersCountChart from "./Admin/OffersCountChart";
 import AdminProductManagement from "./Admin/ProductSection";
+import DiscountChart from "./Admin/DiscountChart";
 
 import "../styles/Profile.css"; // Import your CSS file for styling
 
@@ -35,7 +36,7 @@ const Admin = () => {
             <OffersCountChart />
         </Tab>
         <Tab eventKey="discount" title="Mean Discount Per Week">
-            <AdminProductManagement />
+            <DiscountChart />
         </Tab>
         <Tab eventKey="reactions" title="Upload Files">
             <AdminProductManagement />

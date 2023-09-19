@@ -58,13 +58,13 @@ const UploadProducts = ({ typeOfData }) => {
                 </div>
             )}
             <form className="file-upload-form">
-                <label htmlFor="jsonFileInput" className="file-upload-label">
+                <label htmlFor={`jsonFileInput-${typeOfData}`} className="file-upload-label">
                     <span className="file-upload-icon">📂</span>
                     {file}
                 </label>
                 <input
                     type="file"
-                    id="jsonFileInput"
+                    id= {`jsonFileInput-${typeOfData}`}
                     accept=".json"
                     onChange={handleFileUpload}
                     className="file-upload-input"

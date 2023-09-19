@@ -57,6 +57,7 @@ db.Offers.belongsTo(db.Products, { foreignKey: 'product_id', as: 'product' });
 db.Offers.belongsTo(db.Super_markets, { foreignKey: 'supermarket_id', as: 'supermarket' });
 
 db.Products.hasMany(db.Price_history, { foreignKey: 'product_id', as: 'price_history' });
+db.Price_history.belongsTo(db.Products, { foreignKey: 'product_id', as: 'product' });
 db.Products.hasMany(db.Offers, { foreignKey: 'product_id', as: 'offers' });
 
 db.Products.belongsToMany(db.Subcategory, { through: 'Products_Subcategory', as: 'subcategories', foreignKey: 'product_id' });

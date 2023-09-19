@@ -16,7 +16,7 @@ router.get('/', async (req, res) => {
 });
 
 //get all subcategories for a category
-router.get('/:category_id/subcategories', async (req, res) => {
+router.get('/subcategories/:category_id', async (req, res) => {
     const subcategories = await Subcategory.findAll({ where: { category_id: req.params.category_id } });
     res.json(subcategories);
 });

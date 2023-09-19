@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { Op } = require('sequelize');
-const { Offers, Super_markets, Reactions, Products, Users, Points, Price_history } = require('../models');
+const { Offers, Super_markets, Reactions, Products, Users, Points, Price_history, Subcategory } = require('../models');
 const db = require('../models');
 const uniqueObjects = require('unique-objects');
 const { verifyToken, isAdmin, getUserIdFromToken } = require('../middleware/authJwt');
@@ -55,7 +55,7 @@ const findMeanPriceYesterday = (productId) => {
         }
     });
 };
-            
+
 
 // const findMeanPriceWeek = (offerId) => {
 //     return new Promise(async (resolve, reject) => {
@@ -97,6 +97,89 @@ const findMeanPriceWeek = (productId) => {
         }
     });
 };
+
+const findMeanPriceCategoryWeek = (categoryId, weekBefore) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const today = new Date();
+            const thisWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() - (weekBefore * 7), 0, 0, 0, 0);
+            const lastWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7 - (weekBefore * 7), 0, 0, 0, 0);
+
+            const priceHistory = await Price_history.findAll({
+                where: {
+                    createdAt: { [Op.between]: [lastWeek, thisWeek] }
+                },
+                include: [
+                    {
+                        model: Products,
+                        as: "product",
+                        attributes: [],
+                        include: [
+                            {
+                                model: Subcategory,
+                                as: "subcategories",
+                                attributes: [],
+                                where: { category_id: categoryId },
+                                through: { attributes: [] },
+                                required: true
+                            }
+                        ],
+                        required: true
+                    }
+                ]
+            });
+
+            const prices = priceHistory.map(price => parseFloat(price.price));
+            const meanPrice = prices.length > 0 ? prices.reduce((sum, price) => sum + price, 0) / prices.length : 0;
+            resolve(meanPrice);
+        }
+        catch (error) {
+            reject(error);
+        }
+    });
+};
+
+const findMeanPriceSubcategoryWeek = (subcategoryId, weekBefore) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const today = new Date();
+            const thisWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() - (weekBefore * 7), 0, 0, 0, 0);
+            const lastWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7 - (weekBefore * 7), 0, 0, 0, 0);
+
+            const priceHistory = await Price_history.findAll({
+                where: {
+                    createdAt: { [Op.between]: [lastWeek, thisWeek] }
+                },
+                include: [
+                    {
+                        model: Products,
+                        as: "product",
+                        attributes: [],
+                        include: [
+                            {
+                                model: Subcategory,
+                                as: "subcategories",
+                                attributes: [],
+                                where: { id: subcategoryId },
+                                through: { attributes: [] },
+                                required: true
+                            }
+                        ],
+                        required: true
+                    }
+                ]
+            });
+
+            const prices = priceHistory.map(price => parseFloat(price.price));
+            const meanPrice = prices.length > 0 ? prices.reduce((sum, price) => sum + price, 0) / prices.length : 0;
+            resolve(meanPrice);
+        }
+        catch (error) {
+            reject(error);
+        }
+    });
+};
+
 
 
 //get all offers
@@ -315,7 +398,7 @@ router.get('/reactions/user/:username', async (req, res) => {
 });
 
 // Get count of offers per day
-router.get('/count', async (req, res) => {
+router.get('/count', [verifyToken, isAdmin], async (req, res) => {
     try {
         const offers = await Offers.findAll({
             attributes: [
@@ -329,6 +412,163 @@ router.get('/count', async (req, res) => {
     } catch (error) {
         console.error(`Error fetching offers: ${error}`);
         res.status(500).json({ error: "Error fetching offers" });
+    }
+});
+
+// get variance of offers per week, for a category or a subcategory
+router.get('/variance/category/:category_id', async (req, res) => {
+    try {
+        const categoryId = req.params.category_id;
+        const today = new Date();
+        const oneWeekAgo = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7, 0, 0, 0, 0);
+        const variances = [];
+        const offers = await Offers.findAll({
+            attributes: ['id', 'price', 'createdAt'],
+            include: [
+                {
+                    model: Products, as: "product",
+                    attributes: [],
+                    include: [
+                        {
+                            model: Subcategory,
+                            as: "subcategories",
+                            attributes: [],
+                            where: { category_id: categoryId },
+                            through: { attributes: [] },
+                            required: true
+                        }
+                    ],
+                    required: true
+                },
+            ],
+            order: [['createdAt', 'DESC']]
+        });
+        // find the smallest createdAt date
+        const minDate = offers.reduce((min, offer) => offer.createdAt < min ? offer.createdAt : min, offers[0].createdAt);
+        const hello = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 0, 0, 0, 0);
+        const daysPassed = Math.floor((hello - minDate) / (24 * 60 * 60 * 1000));
+        const weeksPassed = Math.floor(daysPassed / 7);
+        for (let i = 0; i <= weeksPassed; i++) {
+            const thisWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() - (i * 7), 0, 0, 0, 0);
+            const lastWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7 - (i * 7), 0, 0, 0, 0);
+
+
+            const meanPrice = await findMeanPriceCategoryWeek(categoryId, i);
+            console.log(meanPrice);
+
+            const weekOffers = offers.filter(offer => {
+                return offer.createdAt >= lastWeek && offer.createdAt < thisWeek;
+            });
+
+            const weekVariances = [];
+
+            // Calculate variance for each day of the week
+            for (let dayOffset = 0; dayOffset < 7; dayOffset++) {
+                const currentDay = new Date(thisWeek);
+                currentDay.setDate(thisWeek.getDate() - dayOffset);
+
+                const dayOffers = weekOffers.filter(offer => {
+                    return (
+                        offer.createdAt >= currentDay &&
+                        offer.createdAt < new Date(currentDay.getFullYear(), currentDay.getMonth(), currentDay.getDate() + 1, 0, 0, 0, 0)
+                    );
+                });
+
+                const prices = dayOffers.map(offer => parseFloat(offer.price));
+
+                if (prices.length > 0 && meanPrice > 0) {
+                    // const meanPrice = prices.reduce((sum, price) => sum + price, 0) / prices.length;
+                    const variance = prices.reduce((sum, price) => sum + ((meanPrice - price) * 100 / meanPrice), 0) / prices.length;
+                    // const variance = Math.max(prices.reduce((sum, price) => (sum + ((price - meanPrice) * 100 / meanPrice)) / prices.length), 0);
+                    weekVariances.push({ date: currentDay, variance: variance });
+                } else {
+                    weekVariances.push({ date: currentDay, variance: 0 });
+                }
+            }
+            variances.push({ week: i, variances: weekVariances });
+        }
+        res.json(variances);
+    }
+    catch (error) {
+        console.error(`Error fetching offers: ${error}`);
+        res.status(500).json({ error: 'Error fetching offers' });
+    }
+});
+
+// get variance of offers per week, for a subcategory
+router.get('/variance/subcategory/:subcategory_id', async (req, res) => {
+    try {
+        const subcategoryId = req.params.subcategory_id;
+        const today = new Date();
+        const oneWeekAgo = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7, 0, 0, 0, 0);
+        const variances = [];
+        const offers = await Offers.findAll({
+            attributes: ['id', 'price', 'createdAt'],
+            include: [
+                {
+                    model: Products, as: "product",
+                    attributes: [],
+                    include: [
+                        {
+                            model: Subcategory,
+                            as: "subcategories",
+                            attributes: [],
+                            where: { id: subcategoryId },
+                            through: { attributes: [] },
+                            required: true
+                        }
+                    ],
+                    required: true
+                },
+            ],
+            order: [['createdAt', 'DESC']]
+        });
+        // find the smallest createdAt date
+        const minDate = offers.reduce((min, offer) => offer.createdAt < min ? offer.createdAt : min, offers[0].createdAt);
+        const hello = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 0, 0, 0, 0);
+        const daysPassed = Math.floor((hello - minDate) / (24 * 60 * 60 * 1000));
+        const weeksPassed = Math.floor(daysPassed / 7);
+        for (let i = 0; i <= weeksPassed; i++) {
+            const thisWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() - (i * 7), 0, 0, 0, 0);
+            const lastWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7 - (i * 7), 0, 0, 0, 0);
+
+
+            const meanPrice = await findMeanPriceSubcategoryWeek(subcategoryId, i);
+
+            const weekOffers = offers.filter(offer => {
+                return offer.createdAt >= lastWeek && offer.createdAt < thisWeek;
+            });
+
+            const weekVariances = [];
+
+            // Calculate variance for each day of the week
+            for (let dayOffset = 0; dayOffset < 7; dayOffset++) {
+                const currentDay = new Date(thisWeek);
+                currentDay.setDate(thisWeek.getDate() - dayOffset);
+
+                const dayOffers = weekOffers.filter(offer => {
+                    return (
+                        offer.createdAt >= currentDay &&
+                        offer.createdAt < new Date(currentDay.getFullYear(), currentDay.getMonth(), currentDay.getDate() + 1, 0, 0, 0, 0)
+                    );
+                });
+
+                const prices = dayOffers.map(offer => parseFloat(offer.price));
+
+                if (prices.length > 0 && meanPrice > 0) {
+                    const variance = prices.reduce((sum, price) => sum + ((meanPrice - price) * 100 / meanPrice), 0) / prices.length;
+                    weekVariances.push({ date: currentDay, variance: variance });
+                } else {
+                    weekVariances.push({ date: currentDay, variance: 0 });
+                }
+            }
+            variances.push({ week: i, variances: weekVariances });
+        }
+        res.json(variances);
+    }
+    catch (error) {
+        console.error(`Error fetching offers: ${error}`);
+        res.status(500).json({ error: 'Error fetching offers' });
     }
 });
 
@@ -373,7 +613,6 @@ router.post('/', verifyToken, async (req, res) => {
 
             // calculate mean price
             const meanPrice = await findMeanPriceYesterday(req.body.product_id);
-            console.log(meanPrice, "HERE");
             if (offerPrice >= meanPrice) {
                 res.status(400).json({ message: 'Offer price must be lower than mean price' });
                 return;

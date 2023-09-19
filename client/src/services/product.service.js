@@ -20,6 +20,11 @@ const getCategories = async () => {
     return response.data;
 }
 
+const getSubcategories = async (category_id) => {
+    const response = await axios.get(API_URL + `categories/subcategories/${category_id}`, { headers: authHeader() });
+    return response.data;
+}
+
 const removeOffer = async (offerId) => {
     const response = await axios.delete(API_URL + `offers/${offerId}`, { headers: authHeader() });
     return response.data;
@@ -30,12 +35,25 @@ const getOffersGroupedByDate = async () => {
     return response.data;
 }
 
+const getVarianceByCategory = async (category_id) => {
+    const response = await axios.get(API_URL + `offers/variance/category/${category_id}`, { headers: authHeader() });
+    return response.data;
+}
+
+const getVarianceBySubcategory = async (subcategory_id) => {
+    const response = await axios.get(API_URL + `offers/variance/subcategory/${subcategory_id}`, { headers: authHeader() });
+    return response.data;
+}
+
 const ProductService = {
     getProduct,
     getProducts,
     getCategories,
+    getSubcategories,
     removeOffer,
-    getOffersGroupedByDate
+    getOffersGroupedByDate,
+    getVarianceByCategory,
+    getVarianceBySubcategory
 };
 
 export default ProductService;
