@@ -128,7 +128,7 @@ const SearchBar = () => {
   };
 
   const inputProps = {
-    placeholder: "Type 'c'",
+    placeholder: "Search Map",
     value,
     onChange,
     className: "form-control"

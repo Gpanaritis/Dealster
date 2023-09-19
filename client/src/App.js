@@ -25,11 +25,11 @@ import Map from "./components/Map";
 import SupermarketOffers from "./components/SupermarketOffers";
 import AddOffer from "./components/addOffer";
 import Product from "./components/Product";
-import SearchBar from "./components/SearchBar";
 import ProductsMap from "./components/productsMap";
 import FilteredSupermarkets from "./components/filteredSupermarkets";
 import Offers from "./components/Offers";
 import Admin from "./components/Admin";
+import YourNavbarComponent from "./components/Navbar";
 
 import EventBus from "./common/EventBus";
 
@@ -56,16 +56,17 @@ const App = () => {
   const [currentUser, setCurrentUser] = useState(undefined);
 
   setFetchMethodForDarkReader(window.fetch);
-  const DarkMode = localStorage.getItem('dark-mode-enabled');
-  if (typeof DarkMode == 'undefined') {
-    AppearanceMode('system');
-  } else if (DarkMode === 'true') {
-    AppearanceMode('dark');
-  } else if (DarkMode === 'false') {
-    AppearanceMode('light');
-  } else if (DarkMode === 'auto') {
-    AppearanceMode('system');
-  }
+  followSystemColorScheme();
+  // const DarkMode = localStorage.getItem('dark-mode-enabled');
+  // if (typeof DarkMode == 'undefined') {
+  //   AppearanceMode('system');
+  // } else if (DarkMode === 'true') {
+  //   AppearanceMode('dark');
+  // } else if (DarkMode === 'false') {
+  //   AppearanceMode('light');
+  // } else if (DarkMode === 'auto') {
+  //   AppearanceMode('system');
+  // }
 
 
   useEffect(() => {
@@ -102,85 +103,12 @@ const App = () => {
   };
 
   return (
-    <div>
-      <nav className="navbar navbar-expand navbar-dark bg-dark" style={{ zIndex: 1 }}>
-        <div className="navbar-nav mr-auto">
-          {/* <li className="nav-item">
-            <Link to={"/home"} className="nav-link">
-              Home
-            </Link>
-          </li> */}
+    // add the navbar component
+    <div className="App">
 
-          <li className="nav-item">
-            <Link to={"/map"} className="nav-link">
-              Map
-            </Link>
-          </li>
-
-          {/* {currentUser && (
-            <li className="nav-item">
-              <Link to={"/user"} className="nav-link">
-                User
-              </Link>
-            </li>
-          )} */}
-
-        </div>
-
-        <div className="navbar-nav">
-          <SearchBar />
-        </div>
-
-        {currentUser ? (
-          <div className="navbar-nav ml-auto">
-            {showAdminBoard && currentUser && (
-          <div className="navbar-nav ml-auto">
-          {/* Render the ProductSection link for admin users */}
-            <Link to="/admin" className="nav-link">
-              Admin
-            </Link>
-          </div>
-        )} 
-            <li className="nav-item">
-              <Link to={`/profile/${currentUser.username}`} className="nav-link">
-                {currentUser.username}
-              </Link>
-            </li>
-            <li className="nav-item">
-              <a href="/login" className="nav-link" onClick={logOut}>
-                <i className="fas fa-power-off"></i>
-              </a>
-            </li>
-          </div>
-        ) : (
-          <div className="navbar-nav ml-auto">
-            <li className="nav-item">
-              <Link to={"/login"} className="nav-link">
-                Login
-              </Link>
-            </li>
-
-            <li className="nav-item">
-              <Link to={"/register"} className="nav-link">
-                Register
-              </Link>
-            </li>
-          </div>
-        )}
-
-        {/* <DropdownButton title="Appearance">
-          <Dropdown.Item onClick={() => AppearanceMode("light")}>
-            Light Mode
-          </Dropdown.Item>
-          <Dropdown.Item onClick={() => AppearanceMode("dark")}>
-            Dark Mode
-          </Dropdown.Item>
-          <Dropdown.Item onClick={() => AppearanceMode("system")}>
-            Follow System Theme
-          </Dropdown.Item>
-        </DropdownButton> */}
-
-      </nav>
+      <div className="col-md-0">
+        <YourNavbarComponent currentUser={currentUser} showAdminBoard={showAdminBoard} logOut={logOut} />
+      </div>
 
       <div className="col-md-0">
         <Routes>
