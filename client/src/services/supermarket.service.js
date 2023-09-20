@@ -11,17 +11,39 @@ const fetchAndStoreSupermarkets = async () => {
 
     const response = await axios.get(API_URL + "supermarkets", { headers: authHeader(), params: { latitude, longitude}});
     if (response.data) {
-        localStorage.setItem("supermarkets", JSON.stringify(response.data));
+        const item = {
+            value: response.data,
+            expiry: new Date().getTime() + 60000
+        }
+        localStorage.setItem("supermarkets", JSON.stringify(item));
     }
     return response.data;
 };
 
 const getStoredSupermarkets = () => {
-    return JSON.parse(localStorage.getItem("supermarkets"));
+    const itemStr = localStorage.getItem("supermarkets");
+    if (!itemStr) {
+        return fetchAndStoreSupermarkets();
+    }
+    const item = JSON.parse(itemStr);
+    if (new Date().getTime() > item.expiry) {
+        localStorage.removeItem("supermarkets");
+        return fetchAndStoreSupermarkets();
+    }
+    return item.value;
 };
 
 const getStoredSupermarketById = (supermarket_id) => {
-    const supermarkets = JSON.parse(localStorage.getItem("supermarkets"));
+    const itemStr = localStorage.getItem("supermarkets");
+    if (!itemStr) {
+        return fetchAndStoreSupermarkets();
+    }
+    const item = JSON.parse(itemStr);
+    if (new Date().getTime() > item.expiry) {
+        localStorage.removeItem("supermarkets");
+        return fetchAndStoreSupermarkets();
+    }
+    const supermarkets = item.value;
     return supermarkets.find(supermarket => supermarket.id == supermarket_id);
 };
 

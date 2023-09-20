@@ -9,10 +9,44 @@ const getProduct = async (product_id) => {
     return response.data;
 }
 
+const getStoredProductById = (product_id) => {
+    const itemStr = localStorage.getItem("products");
+    if (!itemStr) {
+        getProducts();
+    }
+    const item = JSON.parse(itemStr);
+    if (new Date().getTime() > item.expiry) {
+        localStorage.removeItem("products");
+        getProducts();
+    }
+    const products = item.value;
+    return products.find(product => product.id == product_id);
+}
+
 const getProducts = async () => {
 
     const response = await axios.get(API_URL + "products", { headers: authHeader() });
+    if (response.data) {
+        const item = {
+            value: response.data,
+            expiry: new Date().getTime() + 7200000
+        }
+        localStorage.setItem("products", JSON.stringify(item));
+    }
     return response.data;
+}
+
+const getStoredProducts = () => {
+    const itemStr = localStorage.getItem("products");
+    if (!itemStr) {
+        return getProducts();
+    }
+    const item = JSON.parse(itemStr);
+    if (new Date().getTime() > item.expiry) {
+        localStorage.removeItem("products");
+        return getProducts();
+    }
+    return item.value;
 }
 
 const getCategories = async () => {
@@ -47,7 +81,9 @@ const getVarianceBySubcategory = async (subcategory_id) => {
 
 const ProductService = {
     getProduct,
+    getStoredProductById,
     getProducts,
+    getStoredProducts,
     getCategories,
     getSubcategories,
     removeOffer,
