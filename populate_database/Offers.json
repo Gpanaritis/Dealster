@@ -1,332 +1,322 @@
 [{
-    "id": 1,
-    "price": "1.50",
-    "stock": true,
-    "product_id": "1",
-    "supermarket_id": "4",
-    "user_id": "2"
-  },
-  {
-    "id": 2,
-    "price": "2.10",
-    "stock": false,
-    "product_id": "2",
-    "supermarket_id": "3",
-    "user_id": "2"
-  },
-  {
-    "id": 3,
-    "price": "1.10",
-    "stock": false,
-    "product_id": "3",
-    "supermarket_id": "3",
-    "user_id": "2"
-  },
-  {
-    "id": 4,
-    "price": "1.10",
-    "stock": true,
-    "product_id": "4",
-    "supermarket_id": "1",
-    "user_id": "1"
-  },
-  {
-    "id": 5,
-    "price": "1.30",
-    "stock": true,
-    "product_id": "5",
-    "supermarket_id": "2",
-    "user_id": "1"
-  },
-  {
-    "id": 6,
-    "price": "0.25",
-    "stock": true,
-    "product_id": "6",
-    "supermarket_id": "2",
-    "user_id": "1"
-  },
-  {
-    "id": 7,
-    "price": "0.40",
-    "stock": true,
-    "product_id": "7",
-    "supermarket_id": "4",
-    "user_id": "2"
-  },
-  {
-    "id": 8,
-    "price": "0.45",
-    "stock": false,
-    "product_id": "8",
-    "supermarket_id": "4",
-    "user_id": "1"
-  },
-  {
-    "id": 9,
-    "price": "0.68",
-    "stock": true,
-    "product_id": "9",
-    "supermarket_id": "1",
-    "user_id": "2"
-  },
-  {
-    "id": 10,
-    "price": "1.00",
-    "stock": true,
-    "product_id": "10",
-    "supermarket_id": "4",
-    "user_id": "2"
-  },
-  {
-    "id": 11,
-    "price": "0.50",
-    "stock": true,
-    "product_id": "11",
-    "supermarket_id": "3",
-    "user_id": "1"
-  },
-  {
-    "id": 12,
-    "price": "1.05",
-    "stock": true,
-    "product_id": "12",
-    "supermarket_id": "2",
-    "user_id": "1"
-  },
-  {
-    "id": 13,
-    "price": "0.75",
-    "stock": false,
-    "product_id": "13",
-    "supermarket_id": "3",
-    "user_id": "1"
-  },
-  {
-    "id": 14,
-    "price": "1.14",
-    "stock": true,
-    "product_id": "14",
-    "supermarket_id": "4",
-    "user_id": "2"
-  },
-  {
-    "id": 15,
-    "price": "1.09",
-    "stock": false,
-    "product_id": "15",
-    "supermarket_id": "2",
-    "user_id": "2"
-  },
-  {
-    "id": 16,
-    "price": "0.33",
-    "stock": true,
-    "product_id": "16",
-    "supermarket_id": "2",
-    "user_id": "1"
-  },
-  {
-    "id": 17,
-    "price": "0.70",
-    "stock": true,
-    "product_id": "17",
-    "supermarket_id": "1",
-    "user_id": "2"
-  },
-  {
-    "id": 18,
-    "price": "0.82",
-    "stock": true,
-    "product_id": "18",
-    "supermarket_id": "4",
-    "user_id": "2"
-  },
-  {
-    "id": 19,
-    "price": "0.70",
-    "stock": true,
-    "product_id": "19",
-    "supermarket_id": "4",
-    "user_id": "1"
-  },
-  {
-    "id": 20,
-    "price": "2.60",
-    "stock": false,
-    "product_id": "20",
-    "supermarket_id": "2",
-    "user_id": "2"
-  },
-  {
-    "id": 21,
-    "price": "0.15",
-    "stock": false,
-    "product_id": "21",
-    "supermarket_id": "3",
-    "user_id": "2"
-  },
-  {
-    "id": 22,
-    "price": "0.10",
-    "stock": true,
-    "product_id": "22",
-    "supermarket_id": "1",
-    "user_id": "2"
-  },
-  {
-    "id": 23,
-    "price": "0.37",
-    "stock": true,
-    "product_id": "23",
-    "supermarket_id": "2",
-    "user_id": "1"
-  },
-  {
-    "id": 24,
-    "price": "0.30",
-    "stock": false,
-    "product_id": "24",
-    "supermarket_id": "3",
-    "user_id": "2"
-  },
-  {
-    "id": 25,
-    "price": "0.40",
-    "stock": true,
-    "product_id": "25",
-    "supermarket_id": "2",
-    "user_id": "2"
-  },
-  {
-    "id": 26,
-    "price": "0.50",
-    "stock": false,
-    "product_id": "26",
-    "supermarket_id": "4",
-    "user_id": "1"
-  },
-  {
-    "id": 27,
-    "price": "0.76",
-    "stock": true,
-    "product_id": "27",
-    "supermarket_id": "2",
-    "user_id": "2"
-  },
-  {
-    "id": 28,
-    "price": "0.60",
-    "stock": true,
-    "product_id": "28",
-    "supermarket_id": "3",
-    "user_id": "2"
-  },
-  {
-    "id": 29,
-    "price": "0.88",
-    "stock": false,
-    "product_id": "29",
-    "supermarket_id": "2",
-    "user_id": "2"
-  },
-  {
-    "id": 30,
-    "price": "0.91",
-    "stock": true,
-    "product_id": "30",
-    "supermarket_id": "3",
-    "user_id": "2"
-  },
-  {
-    "id": 31,
-    "price": "1.00",
-    "stock": true,
-    "product_id": "31",
-    "supermarket_id": "1",
-    "user_id": "2"
-  },
-  {
-    "id": 32,
-    "price": "0.70",
-    "stock": false,
-    "product_id": "32",
-    "supermarket_id": "2",
-    "user_id": "2"
-  },
-  {
-    "id": 33,
-    "price": "1.10",
-    "stock": true,
-    "product_id": "33",
-    "supermarket_id": "2",
-    "user_id": "1"
-  },
-  {
-    "id": 34,
-    "price": "1.22",
-    "stock": true,
-    "product_id": "34",
-    "supermarket_id": "3",
-    "user_id": "1"
-  },
-  {
-    "id": 35,
-    "price": "1.19",
-    "stock": false,
-    "product_id": "35",
-    "supermarket_id": "3",
-    "user_id": "1"
-  },
-  {
-    "id": 36,
-    "price": "0.45",
-    "stock": true,
-    "product_id": "36",
-    "supermarket_id": "2",
-    "user_id": "2"
-  },
-  {
-    "id": 37,
-    "price": "3.44",
-    "stock": true,
-    "product_id": "37",
-    "supermarket_id": "3",
-    "user_id": "1"
-  },
-  {
-    "id": 38,
-    "price": "1.89",
-    "stock": true,
-    "product_id": "38",
-    "supermarket_id": "3",
-    "user_id": "2"
-  },
-  {
-    "id": 39,
-    "price": "3.10",
-    "stock": false,
-    "product_id": "39",
-    "supermarket_id": "4",
-    "user_id": "2"
-  },
-  {
-    "id": 40,
-    "price": "4.00",
-    "stock": true,
-    "product_id": "40",
-    "supermarket_id": "4",
-    "user_id": "1"
-  },
-  {
-    "id": 41,
-    "price": "1.00",
-    "stock": true,
-    "product_id": "18",
-    "supermarket_id": "1",
-    "user_id": "2",
-    "created_at": "2023-09-10 15:00:00",
-    "updated_at": "2023-09-10 15:00:00"
-  }
+  "id": 1,
+  "price": "1.50",
+  "stock": true,
+  "product_id": "1",
+  "supermarket_id": "4",
+  "user_id": "2"
+},
+{
+  "id": 2,
+  "price": "2.10",
+  "stock": false,
+  "product_id": "2",
+  "supermarket_id": "3",
+  "user_id": "2"
+},
+{
+  "id": 3,
+  "price": "1.00",
+  "stock": false,
+  "product_id": "3",
+  "supermarket_id": "3",
+  "user_id": "2"
+},
+{
+  "id": 4,
+  "price": "1.10",
+  "stock": true,
+  "product_id": "4",
+  "supermarket_id": "1",
+  "user_id": "1"
+},
+{
+  "id": 5,
+  "price": "2.30",
+  "stock": true,
+  "product_id": "5",
+  "supermarket_id": "2",
+  "user_id": "1"
+},
+{
+  "id": 6,
+  "price": "2.50",
+  "stock": true,
+  "product_id": "6",
+  "supermarket_id": "2",
+  "user_id": "1"
+},
+{
+  "id": 7,
+  "price": "1.10",
+  "stock": true,
+  "product_id": "7",
+  "supermarket_id": "4",
+  "user_id": "2"
+},
+{
+  "id": 8,
+  "price": "0.10",
+  "stock": false,
+  "product_id": "8",
+  "supermarket_id": "4",
+  "user_id": "1"
+},
+{
+  "id": 9,
+  "price": "2.25",
+  "stock": true,
+  "product_id": "9",
+  "supermarket_id": "1",
+  "user_id": "2"
+},
+{
+  "id": 10,
+  "price": "0.60",
+  "stock": true,
+  "product_id": "10",
+  "supermarket_id": "4",
+  "user_id": "2"
+},
+{
+  "id": 11,
+  "price": "0.55",
+  "stock": true,
+  "product_id": "11",
+  "supermarket_id": "3",
+  "user_id": "1"
+},
+{
+  "id": 12,
+  "price": "3.40",
+  "stock": true,
+  "product_id": "12",
+  "supermarket_id": "2",
+  "user_id": "1"
+},
+{
+  "id": 13,
+  "price": "1.00",
+  "stock": false,
+  "product_id": "13",
+  "supermarket_id": "3",
+  "user_id": "1"
+},
+{
+  "id": 14,
+  "price": "6.50",
+  "stock": true,
+  "product_id": "14",
+  "supermarket_id": "4",
+  "user_id": "2"
+},
+{
+  "id": 15,
+  "price": "3.40",
+  "stock": false,
+  "product_id": "15",
+  "supermarket_id": "2",
+  "user_id": "2"
+},
+{
+  "id": 16,
+  "price": "0.50",
+  "stock": true,
+  "product_id": "16",
+  "supermarket_id": "2",
+  "user_id": "1"
+},
+{
+  "id": 17,
+  "price": "2.01",
+  "stock": true,
+  "product_id": "17",
+  "supermarket_id": "1",
+  "user_id": "2"
+},
+{
+  "id": 18,
+  "price": "1.02",
+  "stock": true,
+  "product_id": "18",
+  "supermarket_id": "4",
+  "user_id": "2"
+},
+{
+  "id": 19,
+  "price": "0.70",
+  "stock": true,
+  "product_id": "19",
+  "supermarket_id": "4",
+  "user_id": "1"
+},
+{
+  "id": 20,
+  "price": "0.60",
+  "stock": false,
+  "product_id": "20",
+  "supermarket_id": "2",
+  "user_id": "2"
+},
+{
+  "id": 21,
+  "price": "1.00",
+  "stock": false,
+  "product_id": "21",
+  "supermarket_id": "3",
+  "user_id": "2"
+},
+{
+  "id": 22,
+  "price": "0.10",
+  "stock": true,
+  "product_id": "22",
+  "supermarket_id": "1",
+  "user_id": "2"
+},
+{
+  "id": 23,
+  "price": "0.11",
+  "stock": true,
+  "product_id": "23",
+  "supermarket_id": "2",
+  "user_id": "1"
+},
+{
+  "id": 24,
+  "price": "0.30",
+  "stock": false,
+  "product_id": "24",
+  "supermarket_id": "3",
+  "user_id": "2"
+},
+{
+  "id": 25,
+  "price": "0.80",
+  "stock": true,
+  "product_id": "25",
+  "supermarket_id": "2",
+  "user_id": "2"
+},
+{
+  "id": 26,
+  "price": "5.10",
+  "stock": false,
+  "product_id": "26",
+  "supermarket_id": "4",
+  "user_id": "1"
+},
+{
+  "id": 27,
+  "price": "6.00",
+  "stock": true,
+  "product_id": "27",
+  "supermarket_id": "2",
+  "user_id": "2"
+},
+{
+  "id": 28,
+  "price": "0.90",
+  "stock": true,
+  "product_id": "28",
+  "supermarket_id": "3",
+  "user_id": "2"
+},
+{
+  "id": 29,
+  "price": "5.07",
+  "stock": false,
+  "product_id": "29",
+  "supermarket_id": "2",
+  "user_id": "2"
+},
+{
+  "id": 30,
+  "price": "1.00",
+  "stock": true,
+  "product_id": "30",
+  "supermarket_id": "3",
+  "user_id": "2"
+},
+{
+  "id": 31,
+  "price": "2.10",
+  "stock": true,
+  "product_id": "31",
+  "supermarket_id": "1",
+  "user_id": "2"
+},
+{
+  "id": 32,
+  "price": "2.70",
+  "stock": false,
+  "product_id": "32",
+  "supermarket_id": "2",
+  "user_id": "2"
+},
+{
+  "id": 33,
+  "price": "0.10",
+  "stock": true,
+  "product_id": "33",
+  "supermarket_id": "2",
+  "user_id": "1"
+},
+{
+  "id": 34,
+  "price": "0.60",
+  "stock": true,
+  "product_id": "34",
+  "supermarket_id": "3",
+  "user_id": "1"
+},
+{
+  "id": 35,
+  "price": "0.60",
+  "stock": false,
+  "product_id": "35",
+  "supermarket_id": "3",
+  "user_id": "1"
+},
+{
+  "id": 36,
+  "price": "0.40",
+  "stock": true,
+  "product_id": "36",
+  "supermarket_id": "2",
+  "user_id": "2"
+},
+{
+  "id": 37,
+  "price": "1.00",
+  "stock": true,
+  "product_id": "37",
+  "supermarket_id": "3",
+  "user_id": "1"
+},
+{
+  "id": 38,
+  "price": "3.00",
+  "stock": true,
+  "product_id": "38",
+  "supermarket_id": "3",
+  "user_id": "2"
+},
+{
+  "id": 39,
+  "price": "1.90",
+  "stock": false,
+  "product_id": "39",
+  "supermarket_id": "4",
+  "user_id": "2"
+},
+{
+  "id": 40,
+  "price": "2.80",
+  "stock": true,
+  "product_id": "39",
+  "supermarket_id": "4",
+  "user_id": "1"
+}
 
 ]
