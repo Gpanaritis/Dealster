@@ -186,7 +186,7 @@ const DiscountChart = () => {
             },
             title: {
                 display: true,
-                text: 'Number of offers added per day',
+                text: 'Discounts per day',
             },
         },
     };
