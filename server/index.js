@@ -35,7 +35,22 @@ app.use('/points', pointsRouter);
 app.use('/tokens', tokensRouter);
 app.use('/price_history', priceHistoryRouter);
 
-
+// Middleware to set cache-control headers
+app.use((req, res, next) => {
+    // Cache images and CSS for 7 days
+    if (req.url.match(/\.(jpg|jpeg|png|svg|css)$/)) {
+        res.setHeader('Cache-Control', 'public, max-age=604800'); // 7 days in seconds
+    } 
+    // Cache JavaScript (JS) for 1 day
+    else if (req.url.match(/\.js$/)) {
+        res.setHeader('Cache-Control', 'public, max-age=86400'); // 1 day in seconds
+    } 
+    // For other resources, set no-cache headers
+    else {
+        res.setHeader('Cache-Control', 'no-store');
+    }
+    next();
+});
 
 // schedule.start();
 
